@@ -1,4 +1,4 @@
-﻿using nosted_dotnet.MVC.Models.ServiceSkjema;
+using nosted_dotnet.MVC.Models.ServiceSkjema;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -10,21 +10,27 @@ namespace nosted_dotnet.MVC.Controllers
 		{
             var serviceData = new ServiceSkjemaViewModel
             {
-                Mechanic = viewModel.Mechanic,
-                IsAdministrator = viewModel.IsAdministrator,
-                SerialNumber = viewModel.SerialNumber,
-                CreatedDate = viewModel.CreatedDate,
-                ConsumedHours = viewModel.ConsumedHours,
+                Kunde = viewModel.Kunde,
+                //IsAdministrator = viewModel.IsAdministrator,
+                Serienummer = viewModel.Serienummer,
+                MotattDato = viewModel.MotattDato,
+                Arbeidstimer = viewModel.Arbeidstimer,
                 ImageUrl = viewModel.ImageUrl,
-                MechanicComment = viewModel.MechanicComment,
-                CustomerComment = viewModel.CustomerComment,
-                FutureMaintenance = viewModel.FutureMaintenance,
-                CustomerName = viewModel.CustomerName,
-                CustomerEmail = viewModel.CustomerEmail,
-                CustomerStreet = viewModel.CustomerStreet,
-                CustomerCity = viewModel.CustomerCity,
-                CustomerZipcode = viewModel.CustomerZipcode,
-                CustomerTelephoneNumber = viewModel.CustomerTelephoneNumber
+                AvtaltMedKunden = viewModel.AvtaltMedKunden,
+                RepBeskrivelse = viewModel.RepBeskrivelse,
+                MedgåtteDeler = viewModel.MedgåtteDeler,
+                OrdreNummer = viewModel.OrdreNummer,
+                KundeMail = viewModel.KundeMail,
+                KundeAdresse = viewModel.KundeAdresse,
+                KundeTelefonNr = viewModel.KundeTelefonNr,
+                Produkttype = viewModel.Produkttype,
+                Årsmodell = viewModel.Årsmodell,
+                ServiceRep = viewModel.ServiceRep,
+                FerdigDato = viewModel.FerdigDato,
+                UtskiftetDelerRetur = viewModel.UtskiftetDelerRetur,
+                ForsendelsesMåte = viewModel.ForsendelsesMåte,
+                SignaturKunde = viewModel.SignaturKunde,
+                SignaturRep = viewModel.SignaturRep,
             };
             return View(viewModel);
         }
@@ -32,7 +38,3 @@ namespace nosted_dotnet.MVC.Controllers
        
     }
 }
-
-
-
-
