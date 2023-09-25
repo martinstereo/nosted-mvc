@@ -112,50 +112,50 @@
             </div>
             <div class="clear"></div>
 
-            <div class="column">
+            <div class="row">
                 <div class="label"><label for="AvtaltMedKunden">Hva er avtalt med kunden?:</label></div>
                 <textarea class="input" id="AvtaltMedKunden" name="AvtaltMedKunden">@Model.AvtaltMedKunden</textarea>
             </div>
-            <div class="column">
+            <div class="row">
                 <div class="label"><label for="RepBeskrivelse">Reperasjonsbeskrivelse:</label></div>
                 <textarea class="input" id="RepBeskrivelse" name="RepBeskrivelse">@Model.RepBeskrivelse</textarea>
             </div>
-            <div class="clear"></div>
-
-            <div class="column">
+            <div class="row">
                 <div class="label"><label for="MedgåtteDeler">Medgåtte deler:</label></div>
                 <textarea class="input" id="MedgåtteDeler" name="MedgåtteDeler">@Model.MedgåtteDeler</textarea>
             </div>
+            <div class="clear"></div>
+
             <div class="column">
                 <div class="label"><label for="Arbeidstimer">Arbeidstimer:</label></div>
                 <input class="input" type="number" id="Arbeidstimer" name="Arbeidstimer" value="@Model.Arbeidstimer" step="0.01" />
             </div>
-            <div class="clear"></div>
-
             <div class="column">
                 <div class="label"><label for="FerdigDato">Ferdigstilt dato:</label></div>
                 <input class="input" type="datetime-local" id="FerdigDato" name="FerdigDato" value="@Model.FerdigDato.ToString("yyyy-MM-ddTHH:mm:ss")" />
             </div>
+            <div class="clear"></div>
+
             <div class="column">
                 <div class="label"><label for="UtskiftetDelerRetur">Utskiftet deler returnert:</label></div>
                 <input class="input" type="text" id="UtskiftetDelerRetur" name="UtskiftetDelerRetur" value="@Model.UtskiftetDelerRetur" />
             </div>
-            <div class="clear"></div>
-
             <div class="column">
                 <div class="label"><label for="ForsendelsesMåte">Forsendelsesmåte:</label></div>
                 <input class="input" type="text" id="ForsendelsesMåte" name="ForsendelsesMåte" value="@Model.ForsendelsesMåte" />
             </div>
+            <div class="clear"></div>
+
             <div class="column">
                 <div class="label"><label for="SignaturKunde">Signatur kunde:</label></div>
                 <input class="input" type="text" id="SignaturKunde" name="SignaturKunde" value="@Model.SignaturKunde" />
             </div>
-            <div class="clear"></div>
 
             <div class="column">
                 <div class="label"><label for="SignaturRep">Signatur reperatør:</label></div>
                 <input class="input" type="text" id="SignaturRep" name="SignaturRep" value="@Model.SignaturRep" />
             </div>
+            <div class="clear"></div>
 
             <div>
                 <button class="button" type="submit">Submit</button>
