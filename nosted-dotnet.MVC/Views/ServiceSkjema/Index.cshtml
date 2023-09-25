@@ -1,0 +1,76 @@
+﻿@model nosted_dotnet.MVC.Models.ServiceSkjema.ServiceSkjemaViewModel
+
+<head>
+    <title>Service Form</title>
+</head>
+
+<h1>Service Form</h1>
+<form asp-controller="Service" asp-action="Submit" method="post">
+    <div>
+        <label for="Mechanic">Mechanic:</label>
+        <input type="text" id="Mechanic" name="Mechanic" value="@Model.Mechanic" />
+    </div>
+    <div>
+        <label for="IsAdministrator">Is Administrator:</label>
+        <input type="checkbox" id="IsAdministrator" name="IsAdministrator" @(Model.IsAdministrator ? "checked" : "") />
+    </div>
+    <div>
+        <label for="SerialNumber">Serial Number:</label>
+        <input type="text" id="SerialNumber" name="SerialNumber" value="@Model.SerialNumber" />
+    </div>
+    <div>
+        <label for="CreatedDate">Created Date:</label>
+        <input type="datetime-local" id="CreatedDate" name="CreatedDate" value="@Model.CreatedDate.ToString("yyyy-MM-ddTHH:mm:ss")" />
+    </div>
+    <div>
+        <label for="ConsumedHours">Consumed Hours:</label>
+        <input type="number" id="ConsumedHours" name="ConsumedHours" value="@Model.ConsumedHours" step="0.01" />
+    </div>
+    <div>
+        <label for="ImageUrl">Image URL:</label>
+        <input type="text" id="ImageUrl" name="ImageUrl" value="@Model.ImageUrl" />
+    </div>
+    <div>
+        <label for="MechanicComment">Mechanic Comment:</label>
+        <textarea id="MechanicComment" name="MechanicComment">@Model.MechanicComment</textarea>
+    </div>
+    <div>
+        <label for="CustomerComment">Customer Comment:</label>
+        <textarea id="CustomerComment" name="CustomerComment">@Model.CustomerComment</textarea>
+    </div>
+    <div>
+        <label for="FutureMaintenance">Future Maintenance:</label>
+        <input type="text" id="FutureMaintenance" name="FutureMaintenance" value="@Model.FutureMaintenance" />
+    </div>
+    <div>
+        <label for="ServiceSkjemaId">Service Skjema ID:</label>
+        <input type="text" id="ServiceSkjemaId" name="ServiceSkjemaId" value="@Model.ServiceSkjemaId" />
+    </div>
+    <div>
+        <label for="CustomerName">Customer Name:</label>
+        <input type="text" id="CustomerName" name="CustomerName" value="@Model.CustomerName" />
+    </div>
+    <div>
+        <label for="CustomerEmail">Customer Email:</label>
+        <input type="email" id="CustomerEmail" name="CustomerEmail" value="@Model.CustomerEmail" />
+    </div>
+    <div>
+        <label for="CustomerStreet">Customer Street:</label>
+        <input type="text" id="CustomerStreet" name="CustomerStreet" value="@Model.CustomerStreet" />
+    </div>
+    <div>
+        <label for="CustomerCity">Customer City:</label>
+        <input type="text" id="CustomerCity" name="CustomerCity" value="@Model.CustomerCity" />
+    </div>
+    <div>
+        <label for="CustomerZipcode">Customer Zipcode:</label>
+        <input type="text" id="CustomerZipcode" name="CustomerZipcode" value="@Model.CustomerZipcode" />
+    </div>
+    <div>
+        <label for="CustomerTelephoneNumber">Customer Telephone Number:</label>
+        <input type="tel" id="CustomerTelephoneNumber" name="CustomerTelephoneNumber" value="@Model.CustomerTelephoneNumber" />
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
