@@ -1,0 +1,48 @@
+@model bacit_dotnet.MVC.Models.CheckList.CheckListViewModel
+
+<style>
+    .form-container {
+        display: block;
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    .job-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .job-name {
+        flex: 1;
+    }
+
+    .radio-option {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+</style>
+
+<form class="form-container" asp-action="index" asp-controller="checklist" method="post">
+    <h1>Saksnummer @Model.CheckListId</h1>
+    @foreach(var categoryGroup in Model.CategoryGroups)
+    {
+        <h3>@categoryGroup.Name</h3>
+        @foreach (var group in categoryGroup.Jobs)
+        {
+            <div class="job-row">
+                <div class="job-name">@group</div>
+                <div>
+                    <div class="radio-option"><label for="ok">Ok</label><input type="radio" id="ok" name="@group" value="ok"></div>
+                    <div class="radio-option"><label for="bs">Burde Skiftes </label><input type="radio" id="bs" name="@group" value="bs"></div>
+                    <div class="radio-option"><label for="def">Defekt </label><input type="radio" id="def" name="@group" value="def"></div>
+                </div>
+            </div>
+        }
+    }
+    <br />
+    <h3><label for="MechanicComment">Kommentar</label></h3><br />
+    <textarea id="MechanicComment" name="MechanicComment" rows="4" cols="50"></textarea><br><br>
+    <input type="submit" value="Fullfør Sjekkliste">
+</form>
