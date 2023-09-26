@@ -68,7 +68,7 @@
             </div>
             <div class="column">
                 <div class="label"><label for="MotattDato">Motatt dato:</label></div>
-                <input class="input" type="datetime-local" id="MotattDato" name="MotattDato" value="@Model.MotattDato.ToString("yyyy-MM-ddTHH:mm:ss")" />
+                <input class="input" type="datetime-local" id="MotattDato" name="MotattDato" value="@Model.MotattDato.ToString("2023-01-01T00:00:00")" />
             </div>
             <div class="clear"></div>
 
@@ -128,11 +128,11 @@
 
             <div class="column">
                 <div class="label"><label for="Arbeidstimer">Arbeidstimer:</label></div>
-                <input class="input" type="number" id="Arbeidstimer" name="Arbeidstimer" value="@Model.Arbeidstimer" step="0.01" />
+                <input class="input" type="number" id="Arbeidstimer" name="Arbeidstimer" value="@Model.Arbeidstimer" step="0.01" min="0" />
             </div>
             <div class="column">
                 <div class="label"><label for="FerdigDato">Ferdigstilt dato:</label></div>
-                <input class="input" type="datetime-local" id="FerdigDato" name="FerdigDato" value="@Model.FerdigDato.ToString("yyyy-MM-ddTHH:mm:ss")" />
+                <input class="input" type="datetime-local" id="FerdigDato" name="FerdigDato" value="@Model.FerdigDato.ToString("2023-01-01T00:00:00")" />
             </div>
             <div class="clear"></div>
 
