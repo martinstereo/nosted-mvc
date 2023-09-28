@@ -7,7 +7,6 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
         public required string Serienummer { get; set; }
         public DateTime MotattDato { get; set; }
         public decimal Arbeidstimer { get; set; }
-        public required string ImageUrl { get; set; }
         public required string AvtaltMedKunden { get; set; }
         public required string RepBeskrivelse { get; set; }
 
