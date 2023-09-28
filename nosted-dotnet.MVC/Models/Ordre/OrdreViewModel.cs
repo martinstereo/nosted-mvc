@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 
 namespace nosted_dotnet.MVC.Models.ArbeidsDokument
 {
-    public class OrdreLinjeViewModel
+    public class OrdreViewModel
     {
         public int OrdreNummer { get; set; }
         public DateTime DatoMotatt { get; set; }

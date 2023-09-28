@@ -1,11 +1,18 @@
-﻿@model nosted_dotnet.MVC.Models.ArbeidsDokument.OrdreLinjeViewModel
+﻿@model nosted_dotnet.MVC.Models.ArbeidsDokument.OrdreViewModel
 
 @{
     ViewData["Title"] = "OrdreLinje";
 }
 
 <h1>Ordre</h1>
-<!--<form asp-controller="ArbeidsDokument" asp-action="Index" method="post"> -->
+    
+<form asp-controller="ArbeidsDokument" asp-action="Index" method="post">
+
+    <button type="submit" form="Ordre" value="Submit">Lag ny ordre</button>
+
+
+</form>
+
 <table id="ordre">
     <tr>
         <th>Ordrenummer:</th>
@@ -21,10 +28,10 @@
             <td>@Model.OrdreNummer</td>
             <td>@Model.DatoMotatt</td>
             <td>@Model.ProduktType</td>
-            <td>@Model.ServiceSkjema</td>
-            <td>@Model.Sjekkliste</td>
+            <td><button type="submit" form="ServiceSkjema" value="Submit">Lag nytt Serviceskjema</button></td>
+            <td><button type="submit" form="Sjekkliste" value="Submit">Lag ny sjekkliste</button></td>
             <td>@Model.InnenDato</td>
             <td>@Model.ErFerdig</td>
         </tr>
 </table> 
-<!--</form> -->
+

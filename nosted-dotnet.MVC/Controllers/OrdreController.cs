@@ -6,7 +6,7 @@ using nosted_dotnet.MVC.Models.ServiceSkjema;
 
 namespace nosted_dotnet.MVC.Controllers
 {
-    public class OrdreLinjeController : Controller
+    public class OrdreController : Controller
     {
         public IActionResult Index()
         {
@@ -14,7 +14,7 @@ namespace nosted_dotnet.MVC.Controllers
 
 
 
-            var model = new OrdreLinjeViewModel
+            var model = new OrdreViewModel
             {
                 OrdreNummer = 123123,
                 DatoMotatt = new DateTime(2019, 5, 8),
