@@ -1,0 +1,30 @@
+﻿@model nosted_dotnet.MVC.Models.ArbeidsDokument.OrdreLinjeViewModel
+
+@{
+    ViewData["Title"] = "OrdreLinje";
+}
+
+<h1>Ordre</h1>
+<!--<form asp-controller="ArbeidsDokument" asp-action="Index" method="post"> -->
+<table id="ordre">
+    <tr>
+        <th>Ordrenummer:</th>
+        <th>Dato motatt:</th>
+        <th>Produkttype:</th>
+        <th>Serviceskjema:</th>
+        <th>Sjekkliste:</th>
+        <th>Må fullføres innen:</th>
+        <th>Er case ferdig?</th>
+    </tr>
+    
+        <tr>
+            <td>@Model.OrdreNummer</td>
+            <td>@Model.DatoMotatt</td>
+            <td>@Model.ProduktType</td>
+            <td>@Model.ServiceSkjema</td>
+            <td>@Model.Sjekkliste</td>
+            <td>@Model.InnenDato</td>
+            <td>@Model.ErFerdig</td>
+        </tr>
+</table> 
+<!--</form> -->
