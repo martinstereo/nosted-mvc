@@ -15,7 +15,6 @@ namespace nosted_dotnet.MVC.Controllers
                 Serienummer = viewModel.Serienummer,
                 MotattDato = viewModel.MotattDato,
                 Arbeidstimer = viewModel.Arbeidstimer,
-                ImageUrl = viewModel.ImageUrl,
                 AvtaltMedKunden = viewModel.AvtaltMedKunden,
                 RepBeskrivelse = viewModel.RepBeskrivelse,
                 MedgåtteDeler = viewModel.MedgåtteDeler,
