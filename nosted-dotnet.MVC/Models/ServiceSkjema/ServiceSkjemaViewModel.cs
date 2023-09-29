@@ -5,7 +5,7 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
         public required string Kunde { get; set; }
         //public bool IsAdministrator { get; set; }
         public required string Serienummer { get; set; }
-        public DateTime MotattDato { get; set; }
+        public DateTime MottattDato { get; set; }
         public decimal Arbeidstimer { get; set; }
         public required string AvtaltMedKunden { get; set; }
         public required string RepBeskrivelse { get; set; }

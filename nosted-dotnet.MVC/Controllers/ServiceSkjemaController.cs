@@ -13,7 +13,7 @@ namespace nosted_dotnet.MVC.Controllers
                 Kunde = viewModel.Kunde,
                 //IsAdministrator = viewModel.IsAdministrator,
                 Serienummer = viewModel.Serienummer,
-                MotattDato = viewModel.MotattDato,
+                MottattDato = viewModel.MottattDato,
                 Arbeidstimer = viewModel.Arbeidstimer,
                 AvtaltMedKunden = viewModel.AvtaltMedKunden,
                 RepBeskrivelse = viewModel.RepBeskrivelse,
