@@ -1,8 +1,10 @@
 ﻿using bacit_dotnet.MVC.Controllers;
 using bacit_dotnet.MVC.Models.CheckList;
 using Microsoft.AspNetCore.Mvc;
-using nosted_dotnet.MVC.Models.ArbeidsDokument;
+
+using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
+
 
 namespace nosted_dotnet.MVC.Controllers
 {
@@ -10,22 +12,27 @@ namespace nosted_dotnet.MVC.Controllers
     {
         public IActionResult Index()
         {
-
-
-
-
-            var model = new OrdreViewModel
-            {
-                OrdreNummer = 123123,
-                DatoMotatt = new DateTime(2019, 5, 8),
-                ProduktType = "vinsj",
-                ServiceSkjema = new ServiceSkjemaController(),
-                Sjekkliste = new CheckListController(),
-                InnenDato = new DateTime(2019, 6, 1),
-                ErFerdig = true,
-            };
-                   
+            var model = new OrdreViewModel();
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult SaveChecklist (CheckListViewModel viewModel) 
+        { 
+        
+            if (ModelState.IsValid)
+            {
+                // Save checklist to database
+
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If the model state is not valid, return to the checklist creation page with errors
+            return View("CreateChecklist", viewModel);
+
+        }
+
     }
+    
 }

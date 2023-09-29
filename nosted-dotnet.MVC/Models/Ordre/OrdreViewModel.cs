@@ -4,7 +4,7 @@ using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using System.Net.Http.Headers;
 
-namespace nosted_dotnet.MVC.Models.ArbeidsDokument
+namespace nosted_dotnet.MVC.Models.Ordre
 {
     public class OrdreViewModel
     {
