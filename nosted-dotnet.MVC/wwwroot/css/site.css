@@ -22,26 +22,26 @@ body {
 }
 
 
-#ordre {
+#orderTable {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-    #ordre td, #ordre th {
+    #orderTable td, #orderTable th {
         border: 1px solid #ddd;
         padding: 8px;
     }
 
-    #ordre tr:nth-child(even) {
+    #orderTable tr:nth-child(even) {
         background-color: #f2f2f2;
     }
 
-    #ordre tr:hover {
+    #orderTable tr:hover {
         background-color: #ddd;
     }
 
-    #ordre th {
+    #orderTable th {
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;

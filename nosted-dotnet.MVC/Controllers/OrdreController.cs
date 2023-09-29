@@ -25,7 +25,7 @@ namespace nosted_dotnet.MVC.Controllers
                 // Save checklist to database
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Ordre");
             }
 
             // If the model state is not valid, return to the checklist creation page with errors
