@@ -9,7 +9,7 @@ namespace nosted_dotnet.MVC.Models.ArbeidsDokument
     public class OrdreViewModel
     {
         public int OrdreNummer { get; set; }
-        public DateTime DatoMotatt { get; set; }
+        public DateTime DatoMottatt { get; set; }
         public string? ProduktType { get; set; }
         public DateTime InnenDato { get; set; }
         public ServiceSkjemaController? ServiceSkjema { get; set; }
