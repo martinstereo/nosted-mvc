@@ -17,7 +17,7 @@ namespace nosted_dotnet.MVC.Controllers
             var model = new OrdreViewModel
             {
                 OrdreNummer = 123123,
-                DatoMotatt = new DateTime(2019, 5, 8),
+                DatoMottatt = new DateTime(2019, 5, 8),
                 ProduktType = "vinsj",
                 ServiceSkjema = new ServiceSkjemaController(),
                 Sjekkliste = new CheckListController(),
