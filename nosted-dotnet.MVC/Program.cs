@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -23,5 +25,13 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//Removing Server Headers 
+//Headers provide information that is better to hide
+
+WebHost.CreateDefaultBuilder(args)
+.ConfigureKestrel(c => c.AddServerHeader = false)
+.UseStartup<nosted_dotnet.MVC.Startup>()
+.Build();
 
 app.Run();
