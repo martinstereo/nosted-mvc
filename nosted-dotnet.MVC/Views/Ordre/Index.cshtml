@@ -1,38 +1,53 @@
-﻿@model nosted_dotnet.MVC.Models.ArbeidsDokument.OrdreViewModel
+﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
 
 @{
-    ViewData["Title"] = "OrdreLinje";
+    ViewData["Title"] = "Ordre";
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/js/site.js"></script>
+</head>
 
-<h1>Ordre</h1>
+<body>
+
+    <h1>Ordre</h1>
     
-<form asp-controller="ArbeidsDokument" asp-action="Index" method="post">
+    <!-- Knapp som skal lage nye rader (ordre) -->
+    <div class="col-md-12 text-center">
+        <button id="addRowButton" class="btn btn-primary">Legg til ny ordre</button>
+    </div>
 
-    <button type="submit" form="Ordre" value="Submit">Lag ny ordre</button>
-
-
-</form>
-
-<table id="ordre">
-    <tr>
-        <th>Ordrenummer:</th>
-        <th>Dato mottatt:</th>
-        <th>Produkttype:</th>
-        <th>Serviceskjema:</th>
-        <th>Sjekkliste:</th>
-        <th>Må fullføres innen:</th>
-        <th>Er case ferdig?</th>
-    </tr>
-    
-        <tr>
-            <td>@Model.OrdreNummer</td>
-            <td>@Model.DatoMottatt</td>
-            <td>@Model.ProduktType</td>
-            <td><button type="submit" form="ServiceSkjema" value="Submit">Lag nytt Serviceskjema</button></td>
-            <td><button type="submit" form="Sjekkliste" value="Submit">Lag ny sjekkliste</button></td>
-            <td>@Model.InnenDato</td>
-            <td>@Model.ErFerdig</td>
-        <td><button type="button" class="btn btn-success"><i class="button-edit"></i></button></td>
-        </tr>
-</table> 
-
+    <!--Tabell for ordre-->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ordrenummer:</th>
+                <th>Dato motatt:</th>
+                <th>Produkttype:</th>
+                <th>Serviceskjema:</th>
+                <th>Sjekkliste:</th>
+                <th>Må fullføres innen:</th>
+                <th>Er case ferdig?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.OrdreNummer</td>
+                <td>@Model.DatoMotatt</td>
+                <td>@Model.ProduktType</td>
+                <!-- Serviceskjema knapp -->
+                <td>
+                    <a href="@Url.Action("Index", "ServiceSkjema")" class="btn btn-primary">Lag Serviceskjema</a>
+                </td>
+                <!-- Sjekkliste knapp -->
+                <td>
+                    <a href="@Url.Action("Index", "Checklist")" class="btn btn-primary">Lag Sjekkliste</a>
+                </td>
+                <td>@Model.InnenDato</td>
+                <td>@Model.ErFerdig</td>
+            </tr>
+        <tbody>
+    </table> 
+</body>
+</html>
