@@ -1,4 +1,4 @@
-﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
+﻿@model List<nosted_dotnet.MVC.Models.Ordre.OrdreRad>
 
 @{
     ViewData["Title"] = "Ordre";
@@ -13,10 +13,15 @@
 
     <h1>Ordre</h1>
     
-    <!-- Knapp som skal lage nye rader (ordre) -->
-    <div class="col-md-12 text-center">
-        <button id="addRowButton" class="btn btn-primary">Legg til ny ordre</button>
-    </div>
+    <!-- Skjema som skal lage nye rader (ordre) -->
+    <form action="/Ordre/AddRow" method="post">
+        <!-- Form fields for new attributes -->
+        <input type="number" name="OrderID" placeholder="Ordre Nummer">
+        <input type="datetime" name="DateRecieved" placeholder="Dato Mottatt">
+        <input type="text" name="ProductType" placeholder="Produkt Type">
+        <label for="ErFerdig" name="IsDone" placeholder="Framgang"></label>
+        <input type="submit" value="Add Row">
+    </form>
 
     <!--Tabell for ordre-->
     <table class="table table-bordered">
@@ -28,25 +33,49 @@
                 <th>Serviceskjema:</th>
                 <th>Sjekkliste:</th>
                 <th>Må fullføres innen:</th>
-                <th>Er case ferdig?</th>
+                <th>Framgang:</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>@Model.OrdreNummer</td>
-                <td>@Model.DatoMotatt</td>
-                <td>@Model.ProduktType</td>
-                <!-- Serviceskjema knapp -->
-                <td>
-                    <a href="@Url.Action("Index", "ServiceSkjema")" class="btn btn-primary">Lag Serviceskjema</a>
-                </td>
-                <!-- Sjekkliste knapp -->
-                <td>
-                    <a href="@Url.Action("Index", "Checklist")" class="btn btn-primary">Lag Sjekkliste</a>
-                </td>
-                <td>@Model.InnenDato</td>
-                <td>@Model.ErFerdig</td>
-            </tr>
+            @foreach (var row in Model)
+            {
+                <tr>
+                    <td>@row.OrderID</td>
+                    <td>@row.DateRecieved</td>
+                    <td>@row.ProductType</td>
+
+                    <!-- Vis Lag-Serviceskjema-knapp hvis det er tomt
+                        Knappen er ikke laget enda
+                    -->
+                    <td>
+                        @if (row.ServiceSkjema == null)
+                        {
+                            <!--Knapp referer bare til siden !!!
+                            Implementer logikk for å lagre dette i tabellen
+                            -->
+                            <a href="@Url.Action("Index", "ServiceSkjema")" class="btn btn-primary">Lag Serviceskjema</a>
+                        } else {
+                            @Html.DisplayFor(modelItem => row.ServiceSkjema);
+                        }
+                    </td>
+
+                    <!-- Vis Sjekkliste knapp hvis det er tomt -->
+                    <td>
+                        @if (row.Sjekkliste == null)
+                        {
+                            <!--Knapp referer bare til siden !!!
+                                Implementer logikk for å lagre dette i tabellen
+                            -->
+                            <a href="@Url.Action("Index", "Checklist")" class="btn btn-primary">Lag Sjekkliste</a>
+                        } else {
+                            @Html.DisplayFor(modelItem => row.Sjekkliste);
+                        }
+                    </td>
+
+                    <td>@row.WithinDate</td>
+                    <td>@row.IsDone</td>
+                </tr>
+            }
         <tbody>
     </table> 
 </body>

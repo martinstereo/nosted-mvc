@@ -6,15 +6,15 @@ using System.Net.Http.Headers;
 
 namespace nosted_dotnet.MVC.Models.Ordre
 {
-    public class OrdreViewModel
+    public class OrdreRad
     {
-        public int OrdreNummer { get; set; }
-        public DateTime DatoMottatt { get; set; }
-        public string? ProduktType { get; set; }
-        public DateTime InnenDato { get; set; }
+        public int OrderID { get; set; }
+        public DateTime DateRecieved { get; set; }
+        public string? ProductType { get; set; }
+        public DateTime WithinDate { get; set; }
         public ServiceSkjemaController? ServiceSkjema { get; set; }
         public CheckListController? Sjekkliste { get; set; }
-        public bool ErFerdig { get; set; }
+        public bool IsDone { get; set; }
     }
 }
     
