@@ -43,14 +43,35 @@
                     <td>@row.OrderID</td>
                     <td>@row.DateRecieved</td>
                     <td>@row.ProductType</td>
-                    <!-- Serviceskjema knapp -->
+
+                    <!-- Vis Lag-Serviceskjema-knapp hvis det er tomt
+                        Knappen er ikke laget enda
+                    -->
                     <td>
-                        <a href="@Url.Action("Index", "ServiceSkjema")" class="btn btn-primary">Lag Serviceskjema</a>
+                        @if (row.ServiceSkjema == null)
+                        {
+                            <!--Knapp referer bare til siden !!!
+                            Implementer logikk for å lagre dette i tabellen
+                            -->
+                            <a href="@Url.Action("Index", "ServiceSkjema")" class="btn btn-primary">Lag Serviceskjema</a>
+                        } else {
+                            @Html.DisplayFor(modelItem => row.ServiceSkjema);
+                        }
                     </td>
-                    <!-- Sjekkliste knapp -->
+
+                    <!-- Vis Sjekkliste knapp hvis det er tomt -->
                     <td>
-                        <a href="@Url.Action("Index", "Checklist")" class="btn btn-primary">Lag Sjekkliste</a>
+                        @if (row.Sjekkliste == null)
+                        {
+                            <!--Knapp referer bare til siden !!!
+                                Implementer logikk for å lagre dette i tabellen
+                            -->
+                            <a href="@Url.Action("Index", "Checklist")" class="btn btn-primary">Lag Sjekkliste</a>
+                        } else {
+                            @Html.DisplayFor(modelItem => row.Sjekkliste);
+                        }
                     </td>
+
                     <td>@row.WithinDate</td>
                     <td>@row.IsDone</td>
                 </tr>
