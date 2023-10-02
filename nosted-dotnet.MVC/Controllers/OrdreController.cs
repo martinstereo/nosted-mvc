@@ -16,22 +16,7 @@ namespace nosted_dotnet.MVC.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult SaveChecklist (CheckListViewModel viewModel) 
-        { 
-        
-            if (ModelState.IsValid)
-            {
-                // Save checklist to database
-
-
-                return RedirectToAction("Index", "Ordre");
-            }
-
-            // If the model state is not valid, return to the checklist creation page with errors
-            return View("CreateChecklist", viewModel);
-
-        }
+        //HTTP post etc
 
     }
     
