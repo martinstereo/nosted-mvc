@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore;
+using nosted_dotnet.MVC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,7 @@ app.MapControllerRoute(
 
 WebHost.CreateDefaultBuilder(args)
 .ConfigureKestrel(c => c.AddServerHeader = false)
-.UseStartup<nosted_dotnet.MVC.Startup>()
+.UseStartup<Startup>()
 .Build();
 
 app.Run();
