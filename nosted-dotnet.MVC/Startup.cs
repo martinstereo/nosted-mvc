@@ -38,6 +38,9 @@ namespace nosted_dotnet.MVC
                     "connect-src 'self';");
                 await next();
             });
+            
+            // To enforce HTTPS Connection
+            app.UseHsts();
 
             // Enable anti-forgery token validation
             app.UseAuthentication();
