@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 40px;
 }
 
 .box {
@@ -30,15 +31,4 @@
         margin-top: 20px;
     }
 
-    /* Custom background colors for each box */
-    .box:nth-child(1) {
-        background-color: #007BFF;
-    }
-
-    .box:nth-child(2) {
-        background-color: #28A745;
-    }
-
-    .box:nth-child(3) {
-        background-color: #DC3545;
-    }
+   
