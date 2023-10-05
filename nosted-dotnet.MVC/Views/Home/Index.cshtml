@@ -1,8 +1,93 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+        /* Basic CSS styling for the boxes */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .box {
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            margin: 20px;
+            display: inline-block;
+            vertical-align: top;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            /* Styling for the icons */
+            .box img {
+                width: 100px; /* Adjust the size of the icon */
+                height: 100px; /* Adjust the size of the icon */
+                margin-top: 20px; /* Adjust the vertical alignment */
+            }
+
+            /* Styling for the text */
+            .box span {
+                display: block;
+                font-weight: bold;
+                font-size: 18px;
+                margin-top: 10px;
+            }
+
+            /* Custom background colors for each box */
+            .box:nth-child(1) {
+                background-color: #007BFF;
+            }
+
+            .box:nth-child(2) {
+                background-color: #28A745;
+            }
+
+            .box:nth-child(3) {
+                background-color: #DC3545;
+            }
+        /* Add more colors as needed */
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="icon1.jpg" alt="Icon 1">
+        <span>Home</span>
+    </div>
+    <div class="box">
+        <img src="icon2.jpg" alt="Icon 2">
+        <span>About</span>
+    </div>
+    <div class="box">
+        <img src="icon3.jpg" alt="Icon 3">
+        <span>Settings</span>
+    </div>
+    <div class="box">
+        <img src="icon4.jpg" alt="Icon 4">
+        <span>Service</span>
+    </div>
+    <div class="box">
+            <img src="icon6.jpg" alt="Icon 6">
+            <span>Utstyr</span>
+        </div>
+
+        <div class="box">
+            <img src="icon6.jpg" alt="Icon 6">
+            <span>Utstyr</span>
+        </div>
+
+        <div class="box">
+            <img src="icon6.jpg" alt="Icon 6">
+            <span>Utstyr</span>
+        </div>
+
+        <!-- Add more boxes as needed -->
+</body>
+</html>
