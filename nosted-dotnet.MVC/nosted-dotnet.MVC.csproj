@@ -20,5 +20,8 @@
   <ItemGroup>
     <Folder Include="obj\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\ServiceSkjema.css" />
+  </ItemGroup>
 
 </Project>
