@@ -1,0 +1,44 @@
+﻿.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+    /* Styling for the icons */
+    .box img {
+        width: 50px; /* Adjust the size of the icon */
+        height: 50px; /* Adjust the size of the icon */
+        margin-top: 60px; /* Adjust the vertical alignment */
+    }
+
+    /* Styling for the text */
+    .box span {
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    /* Custom background colors for each box */
+    .box:nth-child(1) {
+        background-color: #007BFF;
+    }
+
+    .box:nth-child(2) {
+        background-color: #28A745;
+    }
+
+    .box:nth-child(3) {
+        background-color: #DC3545;
+    }

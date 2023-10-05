@@ -9,58 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/ServiceSkjema.css">
+
     <title>Serviceskjema</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 100%;
-            margin: 20px auto;
-            padding: 30px;
-            box-sizing: border-box;
-            page-break-inside: avoid;
-        }
-
-        .column {
-            width: 25%;
-            float: left;
-            box-sizing: border-box;
-        }
-
-        .label {
-            font-weight: bold;
-        }
-
-        .input {
-            width: 80%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .textarea {
-            width: 80%;
-            height: 100px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .button {
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .clear {
-            clear: both;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -167,16 +118,6 @@
                 <button class="button" type="submit">Submit</button>
             </div>
         </form>
-    </div>
-
-    <div>
-        <h3>
-         Kunde:   @Model.Kunde <br/>
-            Serienummer:   @Model.Serienummer <br />
-          MottatDato:  @Model.MotattDato<br />
-         Arbeidstimer:   @Model.Arbeidstimer<br />
-          Avtalt med kunden:  @Model.AvtaltMedKunden<br />
-        </h3>
     </div>
 </body>
 </html>
