@@ -31,24 +31,26 @@ namespace nosted_dotnet.MVC.Controllers
             // You can access and use the query string parameters here
             // For example, you can pass them to a service, save them to a database, or perform any other logic.
 
-
-            // Encode the received query string parameters
-            Kunde = _htmlEncoder.Encode(Kunde);
-            KundeMail = _htmlEncoder.Encode(KundeMail);
-            KundeAdresse = _htmlEncoder.Encode(KundeAdresse);
-            KundeTelefonNr = _htmlEncoder.Encode(KundeTelefonNr);
-            Serienummer = _htmlEncoder.Encode(Serienummer);
-            Produkttype = _htmlEncoder.Encode(Produkttype);
-            Årsmodell = _htmlEncoder.Encode(Årsmodell);
-            ServiceRep = _htmlEncoder.Encode(ServiceRep);
-            OrdreNummer = _htmlEncoder.Encode(OrdreNummer);
-            AvtaltMedKunden = _htmlEncoder.Encode(AvtaltMedKunden);
-            RepBeskrivelse = _htmlEncoder.Encode(RepBeskrivelse);
-            MedgåtteDeler = _htmlEncoder.Encode(MedgåtteDeler);
-            UtskiftetDelerRetur = _htmlEncoder.Encode(UtskiftetDelerRetur);
-            ForsendelsesMåte = _htmlEncoder.Encode(ForsendelsesMåte);
-            SignaturKunde = _htmlEncoder.Encode(SignaturKunde);
-            SignaturRep = _htmlEncoder.Encode(SignaturRep);
+            
+            // Sjekker og encoder de motatte query string parameterene
+            //ved å utføre disse nullsjekkene før vi kaller _htmlEncoder.Encode,
+            //unngår vi ArgumentNullException og trygt kryptere query string parameterene
+            Kunde = Kunde != null ? _htmlEncoder.Encode(Kunde) : null;
+            KundeMail = KundeMail != null ? _htmlEncoder.Encode(KundeMail) : null;
+            KundeAdresse = KundeAdresse != null ? _htmlEncoder.Encode(KundeAdresse) : null;
+            KundeTelefonNr = KundeTelefonNr != null ? _htmlEncoder.Encode(KundeTelefonNr) : null;
+            Serienummer = Serienummer != null ? _htmlEncoder.Encode(Serienummer) : null;
+            Produkttype = Produkttype != null ? _htmlEncoder.Encode(Produkttype) : null;
+            Årsmodell = Årsmodell != null ? _htmlEncoder.Encode(Årsmodell) : null;
+            ServiceRep = ServiceRep != null ? _htmlEncoder.Encode(ServiceRep) : null;
+            OrdreNummer = OrdreNummer != null ? _htmlEncoder.Encode(OrdreNummer) : null;
+            AvtaltMedKunden = AvtaltMedKunden != null ? _htmlEncoder.Encode(AvtaltMedKunden) : null;
+            RepBeskrivelse = RepBeskrivelse != null ? _htmlEncoder.Encode(RepBeskrivelse) : null;
+            MedgåtteDeler = MedgåtteDeler != null ? _htmlEncoder.Encode(MedgåtteDeler) : null;
+            UtskiftetDelerRetur = UtskiftetDelerRetur != null ? _htmlEncoder.Encode(UtskiftetDelerRetur) : null;
+            ForsendelsesMåte = ForsendelsesMåte != null ? _htmlEncoder.Encode(ForsendelsesMåte) : null;
+            SignaturKunde = SignaturKunde != null ? _htmlEncoder.Encode(SignaturKunde) : null;
+            SignaturRep = SignaturRep != null ? _htmlEncoder.Encode(SignaturRep) : null;
 
 
             var viewModel = new ServiceSkjemaViewModel
