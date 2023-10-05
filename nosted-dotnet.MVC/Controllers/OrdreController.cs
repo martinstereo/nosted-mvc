@@ -1,31 +1,35 @@
 ﻿using bacit_dotnet.MVC.Controllers;
 using bacit_dotnet.MVC.Models.CheckList;
 using Microsoft.AspNetCore.Mvc;
-using nosted_dotnet.MVC.Models.ArbeidsDokument;
+
+using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
+
 
 namespace nosted_dotnet.MVC.Controllers
 {
     public class OrdreController : Controller
     {
+        private List<OrdreRad> OrderDataTable = new();
+        
         public IActionResult Index()
         {
-
-
-
-
-            var model = new OrdreViewModel
-            {
-                OrdreNummer = 123123,
-                DatoMottatt = new DateTime(2019, 5, 8),
-                ProduktType = "vinsj",
-                ServiceSkjema = new ServiceSkjemaController(),
-                Sjekkliste = new CheckListController(),
-                InnenDato = new DateTime(2019, 6, 1),
-                ErFerdig = true,
-            };
-                   
-            return View(model);
+            return View(OrderDataTable);
         }
+
+        //HTTP post etc
+        [HttpPost]
+        public IActionResult AddRow(OrdreRad row)
+        {
+            // Add the submitted row to the table
+            OrderDataTable.Add(row);
+
+            // Redirect back to the index page
+
+            return View("Index", OrderDataTable);
+        }
+
+
     }
+    
 }

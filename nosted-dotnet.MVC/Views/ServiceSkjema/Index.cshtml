@@ -1,5 +1,9 @@
 @model nosted_dotnet.MVC.Models.ServiceSkjema.ServiceSkjemaViewModel
 
+@{
+    ViewData["Title"] = "Serviceskjema";
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +16,10 @@
     <div class="container">
         <h1>Serviceskjema</h1>
         <form asp-controller="ServiceSkjema" asp-action="Index" method="post">
+            @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
             <div class="column">
                 <div class="label"><label for="Kunde">Kunde:</label></div>
+                <!-- Razor will automatically HTML-encode alfakrollModel.Kunde osv -->
                 <input class="input" type="text" id="Kunde" name="Kunde" value="@Model.Kunde" />
             </div>
             <div class="column">
