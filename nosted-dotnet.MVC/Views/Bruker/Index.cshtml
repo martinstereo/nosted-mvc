@@ -5,9 +5,14 @@
 }
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="~/js/site.js"></script>
-</head>
+    <head>
+        <script src="~/js/site.js"></script>
+        <script>
+            function confirmDelete() {
+            return confirm("Er du sikker på at du vil slette denne brukeren?");
+            }
+        </script>
+    </head>
 
 <body>
 
@@ -21,12 +26,20 @@
         <input type="text" name="Etternavn" placeholder="Etternavn">
         <input type="text" name="Adresse" placeholder="Adresse">
         <input type="text" name="Telefonnummer" placeholder="Telefonnummer">
-        <input type="text" name="Stilling" placeholder="Stilling">
+       
+  
+        <select name="Stilling" id="Stilling" placeholder="Stilling">
+            <option value="" >Stilling</option>
+            <option value="Mekaniker">Mekaniker</option>
+            <option value="Kundesenter">Kundesenter</option>
+            <option value="Administrator">Administrator</option>
+        </select>
 
-        <input type="submit" value="Add Row">
+        <input type="submit" value="Add">
     </form>
 
-    <!--Tabell for Bruker-->
+
+    <!-- Table for Bruker -->
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -36,7 +49,7 @@
                 <th>Adresse:</th>
                 <th>Telefonnummer:</th>
                 <th>Stilling:</th>
- 
+                <th>Action:</th> <!-- Add a new column for the delete button -->
             </tr>
         </thead>
         <tbody>
@@ -49,9 +62,18 @@
                     <td>@row.Adresse</td>
                     <td>@row.Telefonnummer</td>
                     <td>@row.Stilling</td>
+                    <td>
+                        <!-- Add a delete button that sends a POST request to DeleteUser action -->
+                        <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="brukerId" value="@row.BrukerID" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
-        <tbody>
-    </table> 
+        </tbody>
+    </table>
+
+
 </body>
 </html>
