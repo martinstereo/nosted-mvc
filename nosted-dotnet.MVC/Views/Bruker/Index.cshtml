@@ -1,0 +1,57 @@
+﻿@model List<nosted_dotnet.MVC.Models.Bruker.BrukerRad>
+
+@{
+    ViewData["Title"] = "Bruker";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/js/site.js"></script>
+</head>
+
+<body>
+
+    <h1>Bruker</h1>
+    
+    <!-- Skjema som skal lage nye rader (Bruker) -->
+    <form action="/Bruker/AddRow" method="post">
+        <!-- Form fields for new attributes -->
+        <input type="number" name="BrukerID" placeholder="Bruker ID">
+        <input type="text" name="Navn" placeholder="Navn">
+        <input type="text" name="Etternavn" placeholder="Etternavn">
+        <input type="text" name="Adresse" placeholder="Adresse">
+        <input type="text" name="Telefonnummer" placeholder="Telefonnummer">
+        <input type="text" name="Stilling" placeholder="Stilling">
+
+        <input type="submit" value="Add Row">
+    </form>
+
+    <!--Tabell for Bruker-->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bruker ID:</th>
+                <th>Navn:</th>
+                <th>Etternavn:</th>
+                <th>Adresse:</th>
+                <th>Telefonnummer:</th>
+                <th>Stilling:</th>
+ 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model)
+            {
+                <tr>
+                    <td>@row.BrukerID</td>
+                    <td>@row.Navn</td>
+                    <td>@row.Etternavn</td>
+                    <td>@row.Adresse</td>
+                    <td>@row.Telefonnummer</td>
+                    <td>@row.Stilling</td>
+                </tr>
+            }
+        <tbody>
+    </table> 
+</body>
+</html>
