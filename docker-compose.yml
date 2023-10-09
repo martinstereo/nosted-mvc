@@ -1,0 +1,23 @@
+﻿version: '3'
+services:
+  app:
+    build:
+      context: ./nosted-dotnet.MVC
+      dockerfile: Dockerfile
+    container_name: my-app-container
+    ports:
+      - "80:80"
+    depends_on:
+      - database
+  database:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: mariadb_container
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: webAppDatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
