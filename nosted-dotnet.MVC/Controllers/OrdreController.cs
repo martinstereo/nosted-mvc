@@ -29,7 +29,25 @@ namespace nosted_dotnet.MVC.Controllers
             return View("Index", OrderDataTable);
         }
 
+        public IActionResult Create()
+        {
+            var model = new OrdreSkjema();
+            return View(model);
+        }
 
+        [HttpPost]
+        public IActionResult Create(OrdreSkjema model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Behandle den gyldige modellen her (lagre den i databasen, osv.)
+                // ...
+                return RedirectToAction("Suksess"); // Redirect til en suksessside etter opprettelse
+            }
+
+            // Hvis modellen ikke er gyldig, vis skjemaet igjen med feilmeldinger
+            return View(model);
+        }
     }
-    
 }
+    
