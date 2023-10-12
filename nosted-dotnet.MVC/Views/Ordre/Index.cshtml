@@ -12,6 +12,18 @@
 <body>
 
     <h1>Ordre</h1>
+
+    <!-- Knapp som åpner skjema for ny ordre (ordre) -->
+    <button id="openButton" style="margin-top: 10px; margin-left: 90%;">Ny ordre</button>
+
+    <script>
+        // Legg til en eventlytter på knappen for å åpne en ny side
+        document.getElementById("openButton").addEventListener("click", function () {
+            event.preventDefault();
+            // Åpne den nye siden
+            window.location.href = "/Ordre/Create";
+        });
+    </script>
     
     <!-- Skjema som skal lage nye rader (ordre) -->
     <form action="/Ordre/AddRow" method="post">
