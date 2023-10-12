@@ -1,9 +1,6 @@
-﻿using bacit_dotnet.MVC.Controllers;
-using bacit_dotnet.MVC.Models.CheckList;
-using nosted_dotnet.MVC.Controllers;
+﻿using bacit_dotnet.MVC.Models.CheckList;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using System.ComponentModel.DataAnnotations;
-using System.Net.Http.Headers;
 
 namespace nosted_dotnet.MVC.Models.Ordre
 {
@@ -11,15 +8,17 @@ namespace nosted_dotnet.MVC.Models.Ordre
     {
         public int OrderID { get; set; }
         public DateTime DateRecieved { get; set; }
+        public OrdreSkjema OrdreSkjema { get; set; } = new OrdreSkjema();
         public string? ProductType { get; set; }
         public DateTime WithinDate { get; set; }
-        public ServiceSkjemaController? ServiceSkjema { get; set; }
-        public CheckListController? Sjekkliste { get; set; }
+        public ServiceSkjemaViewModel? ServiceSkjema { get; set; }
+        public CheckListViewModel? Sjekkliste { get; set; }
         public bool IsDone { get; set; }
     }
    
     public class OrdreSkjema
     {
+        //trenger vi OrdreskjemaID her? 
         public string OrdreSkjemaID { get; set; }
 
         [Required(ErrorMessage = "Vennligst oppgi kundenavn.")]
