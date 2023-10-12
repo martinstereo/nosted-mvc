@@ -1,7 +1,7 @@
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 using System.Text.Encodings.Web;
 
 //In the GET request, it receives query string parameters,
@@ -11,7 +11,6 @@ using System.Text.Encodings.Web;
 
 namespace nosted_dotnet.MVC.Controllers
 {
-
     public class ServiceSkjemaController : Controller
     {
         private readonly HtmlEncoder _htmlEncoder;
@@ -21,6 +20,7 @@ namespace nosted_dotnet.MVC.Controllers
             _htmlEncoder = htmlEncoder;
         }
 
+        // Dette er handlingsmetoden for å vise skjemaet
         public IActionResult Index(string Kunde, string MotattDato, string KundeMail, string KundeAdresse,
                                   string KundeTelefonNr, string Serienummer, string Produkttype,
                                   string Årsmodell, string ServiceRep, string OrdreNummer,
@@ -28,31 +28,23 @@ namespace nosted_dotnet.MVC.Controllers
                                   decimal Arbeidstimer, string FerdigDato, string UtskiftetDelerRetur,
                                   string ForsendelsesMåte, string SignaturKunde, string SignaturRep)
         {
-            // You can access and use the query string parameters here
-            // For example, you can pass them to a service, save them to a database, or perform any other logic.
+            // Hent alle offentlige egenskaper (properties) til denne kontrolleren
+            PropertyInfo[] properties = this.GetType().GetProperties();
 
-            
-            // Sjekker og encoder de motatte query string parameterene
-            //ved å utføre disse nullsjekkene før vi kaller _htmlEncoder.Encode,
-            //unngår vi ArgumentNullException og trygt kryptere query string parameterene
-            Kunde = Kunde != null ? _htmlEncoder.Encode(Kunde) : null;
-            KundeMail = KundeMail != null ? _htmlEncoder.Encode(KundeMail) : null;
-            KundeAdresse = KundeAdresse != null ? _htmlEncoder.Encode(KundeAdresse) : null;
-            KundeTelefonNr = KundeTelefonNr != null ? _htmlEncoder.Encode(KundeTelefonNr) : null;
-            Serienummer = Serienummer != null ? _htmlEncoder.Encode(Serienummer) : null;
-            Produkttype = Produkttype != null ? _htmlEncoder.Encode(Produkttype) : null;
-            Årsmodell = Årsmodell != null ? _htmlEncoder.Encode(Årsmodell) : null;
-            ServiceRep = ServiceRep != null ? _htmlEncoder.Encode(ServiceRep) : null;
-            OrdreNummer = OrdreNummer != null ? _htmlEncoder.Encode(OrdreNummer) : null;
-            AvtaltMedKunden = AvtaltMedKunden != null ? _htmlEncoder.Encode(AvtaltMedKunden) : null;
-            RepBeskrivelse = RepBeskrivelse != null ? _htmlEncoder.Encode(RepBeskrivelse) : null;
-            MedgåtteDeler = MedgåtteDeler != null ? _htmlEncoder.Encode(MedgåtteDeler) : null;
-            UtskiftetDelerRetur = UtskiftetDelerRetur != null ? _htmlEncoder.Encode(UtskiftetDelerRetur) : null;
-            ForsendelsesMåte = ForsendelsesMåte != null ? _htmlEncoder.Encode(ForsendelsesMåte) : null;
-            SignaturKunde = SignaturKunde != null ? _htmlEncoder.Encode(SignaturKunde) : null;
-            SignaturRep = SignaturRep != null ? _htmlEncoder.Encode(SignaturRep) : null;
+            // Gå gjennom egenskapene og krypter dem hvis de er strenger
+            foreach (var property in properties)
+            {
+                if (property.PropertyType == typeof(string))
+                {
+                    var value = (string)property.GetValue(this);
+                    if (value != null)
+                    {
+                        property.SetValue(this, _htmlEncoder.Encode(value));
+                    }
+                }
+            }
 
-
+            // Opprett en visningsmodell (view model) med de krypterte verdiene
             var viewModel = new ServiceSkjemaViewModel
             {
                 Kunde = Kunde,
@@ -68,7 +60,7 @@ namespace nosted_dotnet.MVC.Controllers
                 AvtaltMedKunden = AvtaltMedKunden,
                 RepBeskrivelse = RepBeskrivelse,
                 MedgåtteDeler = MedgåtteDeler,
-                Arbeidstimer = Arbeidstimer, 
+                Arbeidstimer = Arbeidstimer,
                 FerdigDato = string.IsNullOrEmpty(FerdigDato) ? DateTime.Now : DateTime.Parse(FerdigDato),
                 UtskiftetDelerRetur = UtskiftetDelerRetur,
                 ForsendelsesMåte = ForsendelsesMåte,
@@ -76,33 +68,29 @@ namespace nosted_dotnet.MVC.Controllers
                 SignaturRep = SignaturRep
             };
 
-            // You can now use the viewModel to perform further actions or render a view.
+            // Du kan nå bruke visningsmodellen til å utføre videre handlinger eller vise en visning.
             return View(viewModel);
         }
 
+        // Dette er handlingsmetoden for å håndtere innsendt skjemadata
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Index(ServiceSkjemaViewModel viewModel)
         {
-           
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //Does not redirect to anything. Define where it should redirect.
-                return BadRequest("Not a valid model");
+                // Returnerer ingen videre kobling. Definer hvor den skal omdirigere.
+                return BadRequest("Ikke en gyldig modell");
             }
 
-            // Access the form data via the model object
+            // Få tilgang til skjemadata via modellobjektet
             string Kunde = viewModel.Kunde;
-           
 
-            // Log the form data
+            // Logg skjemadata
             Debug.WriteLine($"Kunde: {Kunde}");
-            
 
-            // Redirect to a confirmation page or back to the form page after handling the data.
+            // Omdiriger til en bekreftelsesside eller tilbake til skjemasiden etter å ha behandlet dataene.
             return RedirectToAction("Index");
         }
-
-
     }
 }
