@@ -20,6 +20,8 @@ public class CheckList : IEntity
     public string VinsjType { get; set; }
     public string VinsjModel { get; set; }
 
+    public string VinsjRegNr { get; set; }
+
     public int UserId { get; set; }
 
     public User? User { get; set; }

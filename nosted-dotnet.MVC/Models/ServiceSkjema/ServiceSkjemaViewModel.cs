@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using bacit_dotnet.MVC.Controllers;
+using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Models.ServiceSkjema
 {
@@ -7,6 +9,8 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
         //bruker data annotations for validation for hvilke krav vi har osv
         //viktig med validation for å sikre sikkerheten til applikasjonen
         public int Id { get; set; }
+        public int UserId { get; set; }
+
 
         [Required(ErrorMessage = "Vennligst skriv en reparasjonsbeskrivelse.")]
         public string RepBeskrivelse { get; set; }
@@ -35,5 +39,9 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
 
         [Required(ErrorMessage = "Reperatørsignatur kreves.")]
         public string SignaturRep { get; set; }
-    }
+        public User? User { get; set; }
+
+        public Order? Order { get; set; }
+        public CheckList? CheckList { get; set; }
+}
 }
