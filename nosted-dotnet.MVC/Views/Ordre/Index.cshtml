@@ -24,18 +24,8 @@
             window.location.href = "/Ordre/Create";
         });
     </script>
-    
-    <!-- Skjema som skal lage nye rader (ordre) -->
-    <form action="/Ordre/AddRow" method="post">
-        <!-- Form fields for new attributes -->
-        <input type="number" name="OrderID" placeholder="Ordre Nummer">
-        <input type="datetime" name="DateRecieved" placeholder="Dato Mottatt">
-        <input type="text" name="ProductType" placeholder="Produkt Type">
-        <label for="ErFerdig" name="IsDone" placeholder="Framgang"></label>
-        <input type="submit" value="Legg til Ordre">
-    </form>
 
-    <!--Tabell for ordre-->
+    <!--Tabellvisning for ordre-->
     <table class="table table-bordered">
         <thead>
             <tr>
