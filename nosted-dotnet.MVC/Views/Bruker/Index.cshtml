@@ -56,7 +56,7 @@
             @foreach (var row in Model)
             {
                 <tr>
-                    <td>@row.BrukerID</td>
+                    <td>@row.Id</td>
                     <td>@row.Navn</td>
                     <td>@row.Etternavn</td>
                     <td>@row.Adresse</td>
@@ -65,7 +65,7 @@
                     <td>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->
                         <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="brukerId" value="@row.BrukerID" />
+                            <input type="hidden" name="brukerId" value="@row.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>

@@ -1,26 +1,15 @@
-﻿using bacit_dotnet.MVC.Controllers;
-using bacit_dotnet.MVC.Models.CheckList;
-using nosted_dotnet.MVC.Controllers;
-using nosted_dotnet.MVC.Models.ServiceSkjema;
-using System.Net.Http.Headers;
-
-namespace nosted_dotnet.MVC.Models.Bruker
+﻿namespace nosted_dotnet.MVC.Models.Bruker
 {
-    public class BrukerRad
+    public class BrukerRad : IEntity
     {
-        public int BrukerID { get; set; }
+        public int Id { get; set; }
         public string? Navn { get; set; }
         public string? Etternavn { get; set; }
         public string? Adresse { get; set; }
         public string? Telefonnummer { get; set; }
         public string? Stilling { get; set; }
-
         public string? Kundesenter { get; set; }
         public string? Administrator { get; set; }
         public string? Mekaniker { get; set; }
-
-       
-
     }
 }
-    

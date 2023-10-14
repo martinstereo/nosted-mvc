@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using nosted_dotnet.MVC.Mappers;
 using nosted_dotnet.MVC.Models.Bruker;
 
 namespace nosted_dotnet.MVC.Controllers
@@ -22,6 +24,12 @@ namespace nosted_dotnet.MVC.Controllers
             //  row.BrukerID = GenerateUniqueId(); // Generate a unique ID
             BrukerDataTable.Add(row);
 
+
+
+            //var user = EntityHelpers.UserMapper(row);
+            // dbContext.Users.Add(user);
+            // dbContext.SaveChanges();
+
             // Redirect back to the index page
             return RedirectToAction("Index");
         }
@@ -30,7 +38,7 @@ namespace nosted_dotnet.MVC.Controllers
         public IActionResult DeleteUser(int brukerId)
         {
             // Find and remove the user with the specified ID
-            var userToRemove = BrukerDataTable.FirstOrDefault(user => user.BrukerID == brukerId);
+            var userToRemove = BrukerDataTable.FirstOrDefault(user => user.Id == brukerId);
             if (userToRemove != null)
             {
                 BrukerDataTable.Remove(userToRemove);
@@ -57,7 +65,7 @@ namespace nosted_dotnet.MVC.Controllers
         public IActionResult EditUser(BrukerRad editedUser)
         {
             // Find the user in the list by BrukerID
-            var existingUser = BrukerDataTable.FirstOrDefault(user => user.BrukerID == editedUser.BrukerID);
+            var existingUser = BrukerDataTable.FirstOrDefault(user => user.Id == editedUser.Id);
 
             if (existingUser != null)
             {

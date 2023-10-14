@@ -1,10 +1,19 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Add other services as needed
@@ -15,6 +24,9 @@ namespace nosted_dotnet.MVC
             });
 
             // Add other configuration here
+
+            services.AddDbContext<NostedDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         public void Configure(IApplicationBuilder app)

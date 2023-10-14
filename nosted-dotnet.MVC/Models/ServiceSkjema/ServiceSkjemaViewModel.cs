@@ -2,8 +2,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace nosted_dotnet.MVC.Models.ServiceSkjema
 {
-    public class ServiceSkjemaViewModel
+    public class ServiceSkjemaViewModel : IEntity
     {
+        public int Id { get; set; }
+
         //bruker data annotations for validation for hvilke krav vi har osv
         //viktig med validation for å sikre sikkerheten til applikasjonen
         [Key]
@@ -70,5 +72,6 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
 
         [Required(ErrorMessage = "Reperatørsignatur kreves.")]
         public string SignaturRep { get; set; }
+
     }
 }

@@ -2,6 +2,7 @@ using bacit_dotnet.MVC.Models.CheckList;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
+using nosted_dotnet.MVC.Mappers;
 
 namespace bacit_dotnet.MVC.Controllers
 {
@@ -41,6 +42,14 @@ namespace bacit_dotnet.MVC.Controllers
             // Log the form data
             Debug.WriteLine($"CheckListId: {checkListId}");
             Debug.WriteLine($"Comment: {comment}");
+
+
+
+            var entity = EntityHelpers.CheckListMapper(model);
+            // dbcontext.Checklists.Add(entitiy);
+            // save
+
+
 
             // Redirect to a confirmation page or back to the form page after handling the data.
             return RedirectToAction("Index");
