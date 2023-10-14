@@ -1,6 +1,8 @@
-﻿namespace nosted_dotnet.MVC.Entities;
+﻿using nosted_dotnet.MVC.Models;
 
-public enum CategoryType
+namespace nosted_dotnet.MVC.Entities;
+
+public enum CategoryType 
 {
     Ok,
     BurdeSkiftes,

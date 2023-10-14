@@ -20,7 +20,6 @@ namespace nosted_dotnet.MVC.Migrations
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CheckList", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CheckListId")
@@ -110,7 +109,86 @@ namespace nosted_dotnet.MVC.Migrations
 
                     b.HasIndex("CheckListId");
 
-                    b.ToTable("ChecklistCategory");
+                    b.ToTable("ChecklistCategories");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AvtaltMedKunden")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kunde")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KundeAdresse")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KundeMail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("KundeTelefonNr")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("MotattDato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Produkttype")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Serienummer")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServiceRep")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Årsmodell")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerInformations");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateReceived")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ProductType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("TargetDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.ServiceSchema", b =>
@@ -155,9 +233,6 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Property<DateTime>("MotattDato")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("OrdreNummer")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -199,6 +274,8 @@ namespace nosted_dotnet.MVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("ServiceSchemas");
                 });
 
@@ -230,11 +307,19 @@ namespace nosted_dotnet.MVC.Migrations
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CheckList", b =>
                 {
+                    b.HasOne("nosted_dotnet.MVC.Entities.ServiceSchema", "ServiceSchema")
+                        .WithOne("CheckList")
+                        .HasForeignKey("nosted_dotnet.MVC.Entities.CheckList", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ServiceSchema");
 
                     b.Navigation("User");
                 });
@@ -248,23 +333,73 @@ namespace nosted_dotnet.MVC.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
+                {
+                    b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
+                {
+                    b.HasOne("nosted_dotnet.MVC.Entities.CustomerInformation", "CustomerInformation")
+                        .WithOne("Order")
+                        .HasForeignKey("nosted_dotnet.MVC.Entities.Order", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerInformation");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.ServiceSchema", b =>
                 {
-                    b.HasOne("nosted_dotnet.MVC.Entities.CheckList", "CheckList")
+                    b.HasOne("nosted_dotnet.MVC.Entities.Order", "Order")
                         .WithOne("ServiceSchema")
                         .HasForeignKey("nosted_dotnet.MVC.Entities.ServiceSchema", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CheckList");
+                    b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CheckList", b =>
                 {
                     b.Navigation("ChecklistCategories");
+                });
 
-                    b.Navigation("ServiceSchema")
-                        .IsRequired();
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
+                {
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
+                {
+                    b.Navigation("ServiceSchema");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.ServiceSchema", b =>
+                {
+                    b.Navigation("CheckList");
                 });
 #pragma warning restore 612, 618
         }

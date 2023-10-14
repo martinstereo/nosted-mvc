@@ -6,8 +6,6 @@ public class ServiceSchema : IEntity
 {
     public int Id { get; set; }
 
-    public int OrderId { get; set; }
-
     public string Kunde { get; set; }
 
     public string Serienummer { get; set; }
@@ -49,4 +47,8 @@ public class ServiceSchema : IEntity
     public int UserId { get; set; }
 
     public CheckList? CheckList { get; set; }
+
+    public Order? Order { get; set; }
+
+    public User? User { get; set; }
 }

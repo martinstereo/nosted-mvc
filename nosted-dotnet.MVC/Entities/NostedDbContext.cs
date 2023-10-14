@@ -28,10 +28,11 @@ namespace nosted_dotnet.MVC.Entities
 
         // Define DbSet properties for your entities
         public DbSet<User> Users { get; set; }
-
         public DbSet<CheckList> CheckLists { get; set; }
-
         public DbSet<ServiceSchema> ServiceSchemas { get; set; }
+        public DbSet<ChecklistCategory> ChecklistCategories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<CustomerInformation> CustomerInformations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,48 @@ namespace nosted_dotnet.MVC.Entities
                 .HasOne(e => e.ServiceSchema)
                 .WithOne(e => e.CheckList)
                 .HasForeignKey<ServiceSchema>(e => e.Id);
+
+            modelBuilder.Entity<ServiceSchema>()
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<ServiceSchema>()
+                .HasOne(e => e.Order)
+                .WithOne(e => e.ServiceSchema)
+                .HasForeignKey<Order>(e => e.Id);
+
+            modelBuilder.Entity<ServiceSchema>()
+                .HasOne(e => e.CheckList)
+                .WithOne(e => e.ServiceSchema)
+                .HasForeignKey<CheckList>(e => e.Id);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(e => e.ServiceSchema)
+                .WithOne(e => e.Order)
+                .HasForeignKey<ServiceSchema>(e => e.Id);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(e => e.CustomerInformation)
+                .WithOne(e => e.Order)
+                .HasForeignKey<CustomerInformation>(e => e.Id);
+
+            modelBuilder.Entity<Order>()
+                .HasOne( e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<CustomerInformation>()
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.Id);
+
+            modelBuilder.Entity<CustomerInformation>()
+                .HasOne(e => e.Order)
+                .WithOne(e => e.CustomerInformation)
+                .HasForeignKey<Order>(e => e.Id);
+
+
         }
     }
 }

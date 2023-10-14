@@ -6,9 +6,9 @@ using System.Net.Http.Headers;
 
 namespace nosted_dotnet.MVC.Models.Ordre
 {
-    public class OrdreRad
+    public class OrdreRad: IEntity
     {
-        public int OrderID { get; set; }
+        public int Id { get; set; }
         public DateTime DateRecieved { get; set; }
         public string? ProductType { get; set; }
         public DateTime WithinDate { get; set; }
