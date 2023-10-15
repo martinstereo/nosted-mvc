@@ -5,6 +5,7 @@ namespace nosted_dotnet.MVC
 {
     public class Startup
     {
+        // Hva er dette? 
         public void ConfigureServices(IServiceCollection services)
         {
             // Add other services as needed
