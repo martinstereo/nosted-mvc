@@ -1,22 +1,25 @@
 ﻿.column {
-    width: 100%;
+    width: 25%;
+    float: left;
     box-sizing: border-box;
-    margin-bottom: 20px; /* Add spacing between columns */
 }
+
 
 .label {
     font-weight: bold;
 }
 
-.input,
-.textarea {
-    width: 100%; /* Full width on smaller screens */
+.input {
+    width: 80%;
     padding: 10px;
     margin-bottom: 10px;
 }
 
 .textarea {
-    height: 150px; /* Adjust the height for textarea on smaller screens */
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .button {
@@ -29,20 +32,4 @@
 
 .clear {
     clear: both;
-}
-
-/* Responsive Styles */
-
-/* For screens 768px and larger */
-@media (min-width: 768px) {
-    .column {
-        width: 48%; /* 2 columns per row on medium-sized screens */
-    }
-}
-
-/* For screens 1024px and larger */
-@media (min-width: 1024px) {
-    .column {
-        width: 50%; /* 2 columns per row on large screens */
-    }
-}
+}   
