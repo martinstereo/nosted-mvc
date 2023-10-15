@@ -4,25 +4,25 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using nosted_dotnet.MVC.Mappers;
-using nosted_dotnet.MVC.Models.Bruker;
+using nosted_dotnet.MVC.Models.User;
 
 namespace nosted_dotnet.MVC.Controllers
 {
-    public class BrukerController : Controller
+    public class UserController : Controller
     {
-        private static List<BrukerRad> BrukerDataTable = new List<BrukerRad>();
+        private static List<UserViewModel> UserDataTable = new List<UserViewModel>();
 
         public IActionResult Index()
         {
-            return View(BrukerDataTable);
+            return View(UserDataTable);
         }
 
         [HttpPost]
-        public IActionResult AddRow(BrukerRad row)
+        public IActionResult AddRow(UserViewModel row)
         {
             // Add the submitted row to the table
             //  row.BrukerID = GenerateUniqueId(); // Generate a unique ID
-            BrukerDataTable.Add(row);
+            UserDataTable.Add(row);
 
 
 
@@ -35,13 +35,13 @@ namespace nosted_dotnet.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteUser(int brukerId)
+        public IActionResult DeleteUser(int userId)
         {
             // Find and remove the user with the specified ID
-            var userToRemove = BrukerDataTable.FirstOrDefault(user => user.Id == brukerId);
+            var userToRemove = UserDataTable.FirstOrDefault(user => user.Id == userId);
             if (userToRemove != null)
             {
-                BrukerDataTable.Remove(userToRemove);
+                UserDataTable.Remove(userToRemove);
             }
 
             // Redirect back to the index page
@@ -62,10 +62,10 @@ namespace nosted_dotnet.MVC.Controllers
 
 
         [HttpPost]
-        public IActionResult EditUser(BrukerRad editedUser)
+        public IActionResult EditUser(UserViewModel editedUser)
         {
             // Find the user in the list by BrukerID
-            var existingUser = BrukerDataTable.FirstOrDefault(user => user.Id == editedUser.Id);
+            var existingUser = UserDataTable.FirstOrDefault(user => user.Id == editedUser.Id);
 
             if (existingUser != null)
             {

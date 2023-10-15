@@ -39,9 +39,6 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
 
         [Required(ErrorMessage = "Reperatørsignatur kreves.")]
         public string SignaturRep { get; set; }
-        public User? User { get; set; }
-
-        public Order? Order { get; set; }
-        public CheckList? CheckList { get; set; }
+        
 }
 }

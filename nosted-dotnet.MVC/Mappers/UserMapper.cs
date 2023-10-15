@@ -1,18 +1,19 @@
 ﻿using bacit_dotnet.MVC.Models.CheckList;
 using nosted_dotnet.MVC.Entities;
-using nosted_dotnet.MVC.Models.Bruker;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
+using nosted_dotnet.MVC.Models.User;
 
 namespace nosted_dotnet.MVC.Mappers
 {
     public static class EntityHelpers
     {
-        public static User UserMapper(BrukerRad model)
+        public static User UserMapper(UserViewModel model)
         {
             var user = new User();
             user.Adresse = model.Adresse;
             user.Etternavn = model.Etternavn;
             user.Id = model.Id;
+            user.Telefonnummer = model.Telefonnummer;
 
             return user;
         }
@@ -38,6 +39,7 @@ namespace nosted_dotnet.MVC.Mappers
             checkList.VinsjModel=model.VinsjModel;
             checkList.VinsjType=model.VinsjType;
             checkList.VinsjRegNr=model.VinsjRegNr;
+            
             
 
             return checkList;
@@ -101,9 +103,6 @@ namespace nosted_dotnet.MVC.Mappers
             serviceSchema.ForsendelsesMåte=model.ForsendelsesMåte;
             serviceSchema.SignaturRep=model.SignaturRep;
             serviceSchema.UserId = model.UserId;
-            serviceSchema.CheckList = model.CheckList;
-            serviceSchema.Order = model.Order;
-            serviceSchema.User = model.User;
             return serviceSchema;
 
         }
