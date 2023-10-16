@@ -1,0 +1,64 @@
+/* styles.css */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding-top: 200px; /* Add padding to move content down */
+}
+
+#logo {
+    max-width: 2000px; /* Increase the size of the logo */
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 24px; 
+}
+
+.form-group {
+    text-align: center;
+    margin: 30px 0; /* Increase the margin to move the form elements farther down */
+}
+
+.form-control {
+    display: block; /* Make the input elements block-level */
+    margin: 0 auto; /* Horizontally center the block-level elements */
+    width: 100%;
+    max-width: 300px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px; 
+}
+
+/* Create a two-column layout */
+.form-group::before {
+    content: "";
+    display: inline-block;
+    width: 10%; /* Adjust the width to control the space between label and input */
+}
+
+
+/* Center the text in labels */
+.form-group label {
+    display: inline-block;
+    width: 30%; 
+    text-align: left;
+    padding-right: 10px; /* Add some space between label and input */
+}
+
+.login-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.login-btn {
+    background-color: orangered;
+    color: #fff;
+    display: inline-block;
+    padding: 8px 16px; /* Adjust the padding to make the button smaller */
+    border: none;
+    border-radius: 10px;
+    font-size: 16px; /* Adjust the font size to make the text smaller */
+}
