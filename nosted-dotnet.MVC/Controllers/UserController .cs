@@ -5,38 +5,73 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using nosted_dotnet.MVC.Mappers;
 using nosted_dotnet.MVC.Models.User;
+using System.Text.Encodings.Web;
+using System.Reflection;
 
 namespace nosted_dotnet.MVC.Controllers
 {
     public class UserController : Controller
     {
         private static List<UserViewModel> UserDataTable = new List<UserViewModel>();
+        private readonly HtmlEncoder _htmlEncoder;
+
+        public UserController(HtmlEncoder htmlEncoder)
+        {
+            _htmlEncoder = htmlEncoder;
+        }
 
         public IActionResult Index()
         {
+            // Gå gjennom brukerdata og krypter tekstfelt før visning
+            foreach (var user in UserDataTable)
+            {
+                PropertyInfo[] properties = user.GetType().GetProperties();
+
+                foreach (var property in properties)
+                {
+                    if (property.PropertyType == typeof(string))
+                    {
+                        var value = (string)property.GetValue(user);
+                        if (value != null)
+                        {
+                            property.SetValue(user, _htmlEncoder.Encode(value));
+                        }
+                    }
+                }
+            }
+
             return View(UserDataTable);
         }
 
         [HttpPost]
         public IActionResult AddRow(UserViewModel row)
         {
-            // Add the submitted row to the table
-            //  row.BrukerID = GenerateUniqueId(); // Generate a unique ID
+            // Gå gjennom alle offentlige egenskaper i UserViewModel og utfør HTML encoding på strengverdiene
+            PropertyInfo[] properties = row.GetType().GetProperties();
+
+            foreach (var property in properties)
+            {
+                if (property.PropertyType == typeof(string))
+                {
+                    var value = (string)property.GetValue(row);
+                    if (value != null)
+                    {
+                        property.SetValue(row, _htmlEncoder.Encode(value));
+                    }
+                }
+            }
+
             UserDataTable.Add(row);
 
-
-
-            //var user = EntityHelpers.UserMapper(row);
-            // dbContext.Users.Add(user);
-            // dbContext.SaveChanges();
-
-            // Redirect back to the index page
+            // Redirect tilbake til index-siden
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public IActionResult DeleteUser(int userId)
         {
+            // Implementer HTML encoding etter behov
+
             // Find and remove the user with the specified ID
             var userToRemove = UserDataTable.FirstOrDefault(user => user.Id == userId);
             if (userToRemove != null)
@@ -44,42 +79,30 @@ namespace nosted_dotnet.MVC.Controllers
                 UserDataTable.Remove(userToRemove);
             }
 
-            // Redirect back to the index page
+            // Redirect tilbake til index-siden
             return RedirectToAction("Index");
         }
-
-        // Helper method to generate a unique ID (you can implement your own logic)
-        //private int GenerateUniqueId()
-        //{
-        // Random random = new Random();
-        //int uniqueId;
-        //   do
-        //   {
-        // uniqueId = random.Next(1000, 9999); // Modify the range as needed
-        // } while (BrukerDataTable.Any(user => user.BrukerID == uniqueId));
-        //     return uniqueId;
-        //  }
-
 
         [HttpPost]
         public IActionResult EditUser(UserViewModel editedUser)
         {
-            // Find the user in the list by BrukerID
-            var existingUser = UserDataTable.FirstOrDefault(user => user.Id == editedUser.Id);
+            // Utfør HTML encoding på inndataene før oppdatering
+            PropertyInfo[] properties = editedUser.GetType().GetProperties();
 
-            if (existingUser != null)
+            foreach (var property in properties)
             {
-                // Update the user information
-                existingUser.Navn = editedUser.Navn;
-                existingUser.Etternavn = editedUser.Etternavn;
-                existingUser.Adresse = editedUser.Adresse;
-                existingUser.Telefonnummer = editedUser.Telefonnummer;
-                existingUser.Stilling = editedUser.Stilling;
+                if (property.PropertyType == typeof(string))
+                {
+                    var value = (string)property.GetValue(editedUser);
+                    if (value != null)
+                    {
+                        property.SetValue(editedUser, _htmlEncoder.Encode(value));
+                    }
+                }
             }
 
-            // Redirect back to the index page
+            // Redirect tilbake til index-siden
             return RedirectToAction("Index");
         }
-
     }
 }
