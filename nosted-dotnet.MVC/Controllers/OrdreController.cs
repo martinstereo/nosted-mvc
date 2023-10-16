@@ -10,6 +10,13 @@ namespace nosted_dotnet.MVC.Controllers
 {
     public class OrdreController : Controller
     {
+        private List<OrdreRad> OrderDataTable = new();
+
+        public IActionResult Index()
+        {
+            return View(OrderDataTable);
+        }
+
         public IActionResult Create()
         {
             var model = new OrdreSkjema();
