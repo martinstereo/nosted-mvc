@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using nosted_dotnet.MVC;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    // Anti Forgery Token for every controller
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 
 var app = builder.Build();
 

@@ -5,18 +5,6 @@ namespace nosted_dotnet.MVC
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            // Add other services as needed
-
-            services.AddAntiforgery(options =>
-            {
-                options.HeaderName = "X-CSRF-TOKEN"; // Customize the header name if needed
-            });
-
-            // Add other configuration here
-        }
-
         public void Configure(IApplicationBuilder app)
         {
             // Security set up of HTTP headers
@@ -42,11 +30,6 @@ namespace nosted_dotnet.MVC
             // To enforce HTTPS Connection
             app.UseHsts();
 
-            // Enable anti-forgery token validation
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            // Other middleware configurations
         }
     }
 }
