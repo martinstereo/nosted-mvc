@@ -12,8 +12,8 @@ namespace bacit_dotnet.MVC.Controllers
             var model = new CheckListViewModel
             {
                 CategoryGroups = new List<CheckListCategoryGroupModel> {
-                    new CheckListCategoryGroupModel {Name ="Mekanisk", Jobs=new List<string>{"Clutch Lameller", "Bremser|Bånd|Pal","Trommel Lager","Kjedestrammer","Wire", "Pinion Lager","Kjedehjul Kile"} },
-                    new CheckListCategoryGroupModel{ Name="Hydraulisk", Jobs=new List<string>{"Sylinder Lekasje","Slanger","Hydraulikkblokk Test","Oljeskifte på Tank","Oljeskifte på Girboks","Ringsylinder | Skift Tetninger","Bremsesylinder | Skift Tetninger" } },
+                    new CheckListCategoryGroupModel {Name ="Mekanisk", Jobs=new List<string>{"Clutch Lameller", "Bremser|BÃ¥nd|Pal","Trommel Lager","Kjedestrammer","Wire", "Pinion Lager","Kjedehjul Kile"} },
+                    new CheckListCategoryGroupModel{ Name="Hydraulisk", Jobs=new List<string>{"Sylinder Lekasje","Slanger","Hydraulikkblokk Test","Oljeskifte pÃ¥ Tank","Oljeskifte pÃ¥ Girboks","Ringsylinder | Skift Tetninger","Bremsesylinder | Skift Tetninger" } },
                     new CheckListCategoryGroupModel{ Name="Elektrisk", Jobs=new List<string>{"Ledningsnett","Radio", "Knappekasse" } },
                 },
                 CheckListId = 1
@@ -51,7 +51,7 @@ namespace bacit_dotnet.MVC.Controllers
 //ConsumedHours = 0,
 //CreatedDate = new DateTime(2023, 9, 7),
 //CustomerCity = "Kristiansand",
-//CustomerComment = "Hei og hå, jeg er en kundekommentar",
+//CustomerComment = "Hei og hï¿½, jeg er en kundekommentar",
 //CustomerEmail = "customer@thesystem.no",
 //CustomerName = "Sattosk Rev",
 //CustomerStreet = "Gata 13",
@@ -60,4 +60,4 @@ namespace bacit_dotnet.MVC.Controllers
 
 //Mechanic = "Espen",
 //MechanicComment = "ingen kommentar",
-//SerialNumber = "pirepioj123åojå",
+//SerialNumber = "pirepioj123ï¿½ojï¿½",

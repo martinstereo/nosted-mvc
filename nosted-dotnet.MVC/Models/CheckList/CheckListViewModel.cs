@@ -22,6 +22,10 @@ namespace bacit_dotnet.MVC.Models.CheckList
         public string VinsjType { get; set; }
         public string VinsjModel { get; set; }
         public string VinsjRegNr { get; set; }
+		public float TrykkSetting { get; set; }
+        public string FunksjonsTestKommentar { get; set; }
+        public float TrekKraft { get; set; }
+        public float BremseKraft { get; set; }
 
     }
 
