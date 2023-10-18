@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace nosted_dotnet.MVC.Entities
 {
@@ -9,7 +10,7 @@ namespace nosted_dotnet.MVC.Entities
 
         public NostedDbContext()
         {
-            
+
         }
         public NostedDbContext(IConfiguration configuration)
         {
@@ -22,8 +23,7 @@ namespace nosted_dotnet.MVC.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            // connect to sqlite database
-            options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            options.UseMySql(serverVersion:ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // Define DbSet properties for your entities
@@ -36,59 +36,31 @@ namespace nosted_dotnet.MVC.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure your entity relationships, constraints, and indexes here
-
-            modelBuilder.Entity<CheckList>()
-                .HasOne(e => e.User)
-                .WithMany()
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<CheckList>()
-                .HasOne(e => e.ServiceSchema)
-                .WithOne(e => e.CheckList)
-                .HasForeignKey<ServiceSchema>(e => e.Id);
-
-            modelBuilder.Entity<ServiceSchema>()
-                .HasOne(e => e.User)
-                .WithMany()
-                .HasForeignKey(e => e.UserId);
-
-            modelBuilder.Entity<ServiceSchema>()
-                .HasOne(e => e.Order)
-                .WithOne(e => e.ServiceSchema)
-                .HasForeignKey<Order>(e => e.Id);
-
-            modelBuilder.Entity<ServiceSchema>()
-                .HasOne(e => e.CheckList)
-                .WithOne(e => e.ServiceSchema)
-                .HasForeignKey<CheckList>(e => e.Id);
-
             modelBuilder.Entity<Order>()
-                .HasOne(e => e.ServiceSchema)
-                .WithOne(e => e.Order)
-                .HasForeignKey<ServiceSchema>(e => e.Id);
+                .HasOne(e => e.User)
+                .WithMany()
+                .HasForeignKey(e => e.UserId);
 
             modelBuilder.Entity<Order>()
                 .HasOne(e => e.CustomerInformation)
                 .WithOne(e => e.Order)
-                .HasForeignKey<CustomerInformation>(e => e.Id);
+                .HasForeignKey<CustomerInformation>(e => e.OrderId);
 
             modelBuilder.Entity<Order>()
-                .HasOne( e => e.User)
-                .WithMany()
-                .HasForeignKey(e => e.UserId);
+                .HasOne(e => e.ServiceSchema)
+                .WithOne(e => e.Order)
+                .HasForeignKey<ServiceSchema>(e => e.OrderId);
 
-            modelBuilder.Entity<CustomerInformation>()
-                .HasOne(e => e.User)
-                .WithMany()
-                .HasForeignKey(e => e.Id);
+            modelBuilder.Entity<ServiceSchema>()
+                .HasOne(e => e.CheckList)
+                .WithOne(e => e.ServiceSchema)
+                .HasForeignKey<CheckList>(e => e.ServiceSchemaId);
 
-            modelBuilder.Entity<CustomerInformation>()
-                .HasOne(e => e.Order)
-                .WithOne(e => e.CustomerInformation)
-                .HasForeignKey<Order>(e => e.Id);
-
-
+            // this entitiy configuration has already covered by ef core, so that's why is disabled
+            //modelBuilder.Entity<CheckList>()
+            //    .HasMany(e => e.ChecklistCategories)
+            //    .WithOne()
+            //    .HasForeignKey(e => e.CheckListId);
         }
     }
 }

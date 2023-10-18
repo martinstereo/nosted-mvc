@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using nosted_dotnet.MVC.Entities;
+using nosted_dotnet.MVC.Repositories;
 
 namespace nosted_dotnet.MVC
 {
@@ -26,7 +27,11 @@ namespace nosted_dotnet.MVC
             // Add other configuration here
 
             services.AddDbContext<NostedDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(
+                    new MariaDbServerVersion(
+                        ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection")))));
+
+            services.AddTransient<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -50,7 +55,7 @@ namespace nosted_dotnet.MVC
                     "connect-src 'self';");
                 await next();
             });
-            
+
             // To enforce HTTPS Connection
             app.UseHsts();
 

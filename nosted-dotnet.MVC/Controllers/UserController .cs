@@ -7,6 +7,8 @@ using nosted_dotnet.MVC.Mappers;
 using nosted_dotnet.MVC.Models.User;
 using System.Text.Encodings.Web;
 using System.Reflection;
+using nosted_dotnet.MVC.Entities;
+using nosted_dotnet.MVC.Repositories;
 
 namespace nosted_dotnet.MVC.Controllers
 {
@@ -14,10 +16,12 @@ namespace nosted_dotnet.MVC.Controllers
     {
         private static List<UserViewModel> UserDataTable = new List<UserViewModel>();
         private readonly HtmlEncoder _htmlEncoder;
+        private readonly IUserRepository _userRepository;
 
         public UserController(HtmlEncoder htmlEncoder)
         {
             _htmlEncoder = htmlEncoder;
+            _userRepository = new UserRepository(new NostedDbContext());
         }
 
         public IActionResult Index()
@@ -44,7 +48,7 @@ namespace nosted_dotnet.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRow(UserViewModel row)
+        public async Task<IActionResult> AddRow(UserViewModel row)
         {
             // Gå gjennom alle offentlige egenskaper i UserViewModel og utfør HTML encoding på strengverdiene
             PropertyInfo[] properties = row.GetType().GetProperties();
@@ -61,7 +65,12 @@ namespace nosted_dotnet.MVC.Controllers
                 }
             }
 
-            UserDataTable.Add(row);
+            //UserDataTable.Add(row);
+
+            var userRecord = EntityHelpers.UserMapper(row);
+            var savedUser = await _userRepository.AddUser(userRecord);
+            var saveUserViewModel = EntityHelpers.UserViewModeMapper(savedUser);
+            UserDataTable.Add(saveUserViewModel);
 
             // Redirect tilbake til index-siden
             return RedirectToAction("Index");

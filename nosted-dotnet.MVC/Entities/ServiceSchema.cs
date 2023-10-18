@@ -20,6 +20,8 @@ public class ServiceSchema : IEntity
 
     public int UserId { get; set; }
 
+    public int OrderId { get; set; }
+
     public CheckList? CheckList { get; set; }
 
     public Order? Order { get; set; }

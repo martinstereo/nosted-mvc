@@ -18,6 +18,17 @@ namespace nosted_dotnet.MVC.Mappers
             return user;
         }
 
+        public static UserViewModel UserViewModeMapper(User user)
+        {
+            var userViewModel = new UserViewModel();
+            userViewModel.Adresse = user.Adresse;
+            userViewModel.Etternavn = user.Etternavn;
+            userViewModel.Id = user.Id;
+            userViewModel.Telefonnummer = user.Telefonnummer;
+
+            return userViewModel;
+        }
+
         public static CheckList CheckListMapper(CheckListViewModel model)
         {
             var checkList = new CheckList();
@@ -39,8 +50,6 @@ namespace nosted_dotnet.MVC.Mappers
             checkList.VinsjModel=model.VinsjModel;
             checkList.VinsjType=model.VinsjType;
             checkList.VinsjRegNr=model.VinsjRegNr;
-            
-            
 
             return checkList;
         }

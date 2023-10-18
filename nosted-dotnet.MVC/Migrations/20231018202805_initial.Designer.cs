@@ -11,8 +11,8 @@ using nosted_dotnet.MVC.Entities;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(NostedDbContext))]
-    [Migration("20231014150511_initialmigration")]
-    partial class initialmigration
+    [Migration("20231018202805_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,7 @@ namespace nosted_dotnet.MVC.Migrations
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CheckList", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CheckListId")
@@ -70,10 +71,17 @@ namespace nosted_dotnet.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ServiceSchemaId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("VinsjModel")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VinsjRegNr")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -82,6 +90,9 @@ namespace nosted_dotnet.MVC.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ServiceSchemaId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -118,6 +129,7 @@ namespace nosted_dotnet.MVC.Migrations
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("AvtaltMedKunden")
@@ -143,6 +155,9 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Property<DateTime>("MotattDato")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Produkttype")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -164,12 +179,18 @@ namespace nosted_dotnet.MVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("CustomerInformations");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DateReceived")
@@ -197,14 +218,8 @@ namespace nosted_dotnet.MVC.Migrations
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.ServiceSchema", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Arbeidstimer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AvtaltMedKunden")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FerdigDato")
                         .HasColumnType("TEXT");
@@ -213,50 +228,14 @@ namespace nosted_dotnet.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Kunde")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("KundeAdresse")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("KundeMail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("KundeTelefonNr")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("MedgåtteDeler")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("MotattDato")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OrdreNummer")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Produkttype")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("OrderId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("RepBeskrivelse")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Serienummer")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ServiceRep")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SignaturKunde")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -271,11 +250,10 @@ namespace nosted_dotnet.MVC.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Årsmodell")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -312,7 +290,7 @@ namespace nosted_dotnet.MVC.Migrations
                 {
                     b.HasOne("nosted_dotnet.MVC.Entities.ServiceSchema", "ServiceSchema")
                         .WithOne("CheckList")
-                        .HasForeignKey("nosted_dotnet.MVC.Entities.CheckList", "Id")
+                        .HasForeignKey("nosted_dotnet.MVC.Entities.CheckList", "ServiceSchemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -329,29 +307,20 @@ namespace nosted_dotnet.MVC.Migrations
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.ChecklistCategory", b =>
                 {
-                    b.HasOne("nosted_dotnet.MVC.Entities.CheckList", null)
+                    b.HasOne("nosted_dotnet.MVC.Entities.CheckList", "CheckList")
                         .WithMany("ChecklistCategories")
                         .HasForeignKey("CheckListId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CheckList");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
                 {
-                    b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
-                {
-                    b.HasOne("nosted_dotnet.MVC.Entities.CustomerInformation", "CustomerInformation")
-                        .WithOne("Order")
-                        .HasForeignKey("nosted_dotnet.MVC.Entities.Order", "Id")
+                    b.HasOne("nosted_dotnet.MVC.Entities.Order", "Order")
+                        .WithOne("CustomerInformation")
+                        .HasForeignKey("nosted_dotnet.MVC.Entities.CustomerInformation", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -361,7 +330,18 @@ namespace nosted_dotnet.MVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CustomerInformation");
+                    b.Navigation("Order");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
+                {
+                    b.HasOne("nosted_dotnet.MVC.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -370,7 +350,7 @@ namespace nosted_dotnet.MVC.Migrations
                 {
                     b.HasOne("nosted_dotnet.MVC.Entities.Order", "Order")
                         .WithOne("ServiceSchema")
-                        .HasForeignKey("nosted_dotnet.MVC.Entities.ServiceSchema", "Id")
+                        .HasForeignKey("nosted_dotnet.MVC.Entities.ServiceSchema", "OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -390,13 +370,10 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Navigation("ChecklistCategories");
                 });
 
-            modelBuilder.Entity("nosted_dotnet.MVC.Entities.CustomerInformation", b =>
-                {
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.Order", b =>
                 {
+                    b.Navigation("CustomerInformation");
+
                     b.Navigation("ServiceSchema");
                 });
 
