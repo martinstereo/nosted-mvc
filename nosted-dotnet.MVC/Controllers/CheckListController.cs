@@ -28,7 +28,7 @@ namespace bacit_dotnet.MVC.Controllers
             //Create a way to Request from list instead of singel iteam in list
             var test = HttpContext.Request.Form["Ledningsnett"];
             var testComment = HttpContext.Request.Form["MechanicComment"];
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 //Does not redirect to anything. Define where it should redirect.
                 return BadRequest("Not a valid model");
@@ -47,17 +47,3 @@ namespace bacit_dotnet.MVC.Controllers
         }
     }
 }
-
-//ConsumedHours = 0,
-//CreatedDate = new DateTime(2023, 9, 7),
-//CustomerCity = "Kristiansand",
-//CustomerComment = "Hei og h�, jeg er en kundekommentar",
-//CustomerEmail = "customer@thesystem.no",
-//CustomerName = "Sattosk Rev",
-//CustomerStreet = "Gata 13",
-//CustomerTelephoneNumber = "1337",
-//CustomerZipcode = "1234",
-
-//Mechanic = "Espen",
-//MechanicComment = "ingen kommentar",
-//SerialNumber = "pirepioj123�oj�",
