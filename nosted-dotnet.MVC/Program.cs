@@ -1,15 +1,27 @@
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using nosted_dotnet.MVC;
+using nosted_dotnet.MVC.Data;
+using nosted_dotnet.MVC.Data.Ordre;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("MariaDb"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MariaDb"))));
+
+builder.Services.AddScoped<IVinsjRepository, VinsjRepository>();
+builder.Services.AddScoped<IKundeRepository, KundeRepository>();
+builder.Services.AddScoped<IAnsattRepository, AnsattRepository>();
+builder.Services.AddScoped<IAdresseRepository, AdresseRepository>();
+
+
+builder.Services.AddScoped<IOrdreRepository, OrdreRepository>();
+builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
+builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
+
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
-{
-    // Anti Forgery Token for every controller
-    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-});
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
