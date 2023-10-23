@@ -1,4 +1,4 @@
-﻿using bacit_dotnet.MVC.Models.CheckList;
+﻿using nosted_dotnet.MVC.Models.CheckList;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using System.ComponentModel.DataAnnotations;
 
