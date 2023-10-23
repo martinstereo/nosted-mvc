@@ -47,24 +47,24 @@ namespace nosted_dotnet.MVC.Controllers
             // Opprett en visningsmodell (view model) med de krypterte verdiene
             var viewModel = new ServiceSkjemaViewModel
             {
-                Kunde = Kunde,
-                MotattDato = string.IsNullOrEmpty(MotattDato) ? DateTime.Now : DateTime.Parse(MotattDato),
-                KundeMail = KundeMail,
-                KundeAdresse = KundeAdresse,
-                KundeTelefonNr = KundeTelefonNr,
-                Serienummer = Serienummer,
-                Produkttype = Produkttype,
-                Årsmodell = Årsmodell,
-                ServiceRep = ServiceRep,
+                //Kunde = Kunde,
+                //MotattDato = string.IsNullOrEmpty(MotattDato) ? DateTime.Now : DateTime.Parse(MotattDato),
+                //KundeMail = KundeMail,
+                //KundeAdresse = KundeAdresse,
+                //KundeTelefonNr = KundeTelefonNr,
+                //Serienummer = Serienummer,
+                //Produkttype = Produkttype,
+                //Årsmodell = Årsmodell,
+                //ServiceRep = ServiceRep,
                 OrdreNummer = OrdreNummer,
-                AvtaltMedKunden = AvtaltMedKunden,
+                //AvtaltMedKunden = AvtaltMedKunden,
                 RepBeskrivelse = RepBeskrivelse,
                 MedgåtteDeler = MedgåtteDeler,
                 Arbeidstimer = Arbeidstimer,
                 FerdigDato = string.IsNullOrEmpty(FerdigDato) ? DateTime.Now : DateTime.Parse(FerdigDato),
                 UtskiftetDelerRetur = UtskiftetDelerRetur,
                 ForsendelsesMåte = ForsendelsesMåte,
-                SignaturKunde = SignaturKunde,
+                //SignaturKunde = SignaturKunde,
                 SignaturRep = SignaturRep
             };
 
@@ -84,10 +84,10 @@ namespace nosted_dotnet.MVC.Controllers
             }
 
             // Få tilgang til skjemadata via modellobjektet
-            string Kunde = viewModel.Kunde;
+            //string Kunde = viewModel.Kunde;
 
             // Logg skjemadata
-            Debug.WriteLine($"Kunde: {Kunde}");
+            //Debug.WriteLine($"Kunde: {Kunde}");
 
             // Omdiriger til en bekreftelsesside eller tilbake til skjemasiden etter å ha behandlet dataene.
             return RedirectToAction("Index");

@@ -1,7 +1,7 @@
-﻿@model List<nosted_dotnet.MVC.Models.Bruker.BrukerRad>
+﻿@model List<nosted_dotnet.MVC.Models.User.UserViewModel>
 
 @{
-    ViewData["Title"] = "Bruker";
+    ViewData["Title"] = "User";
 }
 <!DOCTYPE html>
 <html>
@@ -19,8 +19,9 @@
     <h1>Bruker</h1>
     
     <!-- Skjema som skal lage nye rader (Bruker) -->
-    <form action="/Bruker/AddRow" method="post">
+    <form action="/User/AddRow" method="post">
         <!-- Form fields for new attributes -->
+        <input type="number" name="BrukerID" placeholder="Bruker ID">
         <input type="text" name="Navn" placeholder="Navn">
         <input type="text" name="Etternavn" placeholder="Etternavn">
         <input type="text" name="Adresse" placeholder="Adresse">
@@ -55,7 +56,7 @@
             @foreach (var row in Model)
             {
                 <tr>
-                    <td>@row.BrukerID</td>
+                    <td>@row.Id</td>
                     <td>@row.Navn</td>
                     <td>@row.Etternavn</td>
                     <td>@row.Adresse</td>
@@ -63,8 +64,8 @@
                     <td>@row.Stilling</td>
                     <td>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->
-                        <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="brukerId" value="@row.BrukerID" />
+                        <form method="post" action="/User/DeleteUser" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="userId" value="@row.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
