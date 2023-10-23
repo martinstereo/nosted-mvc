@@ -1,9 +1,9 @@
-using bacit_dotnet.MVC.Models.CheckList;
+using nosted_dotnet.MVC.Models.CheckList;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace bacit_dotnet.MVC.Controllers
+namespace nosted_dotnet.MVC.Controllers
 {
     public class CheckListController : Controller
     {
