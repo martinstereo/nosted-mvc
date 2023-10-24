@@ -8,6 +8,7 @@ namespace nosted_dotnet.MVC.Models.Ordre
 {   
     public class OrdreViewModel
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime MottattDato { get; set; } = DateTime.Now;

@@ -4,6 +4,7 @@ namespace nosted_dotnet.MVC.Models.Kunde
 {
     public class KundeViewModel
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Vennligst oppgi kundenavn.")]
