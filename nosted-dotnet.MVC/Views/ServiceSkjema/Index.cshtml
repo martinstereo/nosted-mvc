@@ -20,13 +20,13 @@
         @Html.AntiForgeryToken() <!-- This line to include the anti-forgery token -->
         @*
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="Kunde">Kunde:</label>
                     <input class="form-control" type="text" id="Kunde" name="Kunde" value="@Model.Kunde" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="MottattDato">Mottatt dato:</label>
                     <input class="form-control" type="date" id="MottattDato" name="MottattDato" value="@Model.MotattDato.ToString("yyyy-MM-dd")" />
@@ -35,13 +35,13 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="KundeMail">Kunde Email:</label>
                     <input class="form-control" type="text" id="KundeMail" name="KundeMail" value="@Model.KundeMail" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="KundeAdresse">Kundeadresse:</label>
                     <input class="form-control" type="text" id="KundeAdresse" name="KundeAdresse" value="@Model.KundeAdresse" />
@@ -50,13 +50,13 @@
         </div>
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="KundeTelefonNr">Kundetelefonnummer:</label>
                     <input class="form-control" type="tel" id="KundeTelefonNr" name="KundeTelefonNr" value="@Model.KundeTelefonNr" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="Serienummer">Serienummer:</label>
                     <input class="form-control" type="text" id="Serienummer" name="Serienummer" value="@Model.Serienummer" />
@@ -65,13 +65,13 @@
         </div>
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="Produkttype">Produkttype:</label>
                     <input class="form-control" type="text" id="Produkttype" name="Produkttype" value="@Model.Produkttype" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="Årsmodell">Årsmodell:</label>
                     <input class="form-control" type="text" id="Årsmodell" name="Årsmodell" value="@Model.Årsmodell" />
@@ -80,7 +80,7 @@
         </div>
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="ServiceRep">Service / rep garanti:</label>
                     <input class="form-control" type="text" id="ServiceRep" name="ServiceRep" value="@Model.ServiceRep" />
@@ -88,7 +88,7 @@
             </div> 
 *@
             
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="OrdreNummer">Ordrenummer:</label>
                 <input class="form-control" type="text" id="OrdreNummer" name="OrdreNummer" value="@Model.OrdreNummer" />
@@ -96,7 +96,7 @@
         </div>
         @*
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="AvtaltMedKunden">Hva er avtalt med kunden?:</label>
                         <textarea class="form-control" id="AvtaltMedKunden" name="AvtaltMedKunden">@Model.AvtaltMedKunden</textarea>
@@ -106,7 +106,7 @@
 *@
             
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="RepBeskrivelse">Reparasjonsbeskrivelse:</label>
                     <textarea class="form-control" id="RepBeskrivelse" name="RepBeskrivelse">@Model.RepBeskrivelse</textarea>
@@ -115,7 +115,7 @@
         </div>
             
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="MedgåtteDeler">Medgåtte deler:</label>
                     <textarea class="form-control" id="MedgåtteDeler" name="MedgåtteDeler">@Model.MedgåtteDeler</textarea>
@@ -124,13 +124,13 @@
         </div>
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="Arbeidstimer">Arbeidstimer:</label>
                     <input class="form-control" type="number" id="Arbeidstimer" name="Arbeidstimer" value="@Model.Arbeidstimer" step="0.01" min="0" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="FerdigDato">Ferdigstilt dato:</label>
                     <input class="form-control" type="date" id="FerdigDato" name="FerdigDato" value="@Model.FerdigDato.ToString("yyyy-MM-dd")" />
@@ -139,13 +139,13 @@
         </div>
             
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="UtskiftetDelerRetur">Utskiftet deler returnert:</label>
                     <input class="form-control" type="text" id="UtskiftetDelerRetur" name="UtskiftetDelerRetur" value="@Model.UtskiftetDelerRetur" />
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="ForsendelsesMåte">Forsendelsesmåte:</label>
                     <input class="form-control" type="text" id="ForsendelsesMåte" name="ForsendelsesMåte" value="@Model.ForsendelsesMåte" />
@@ -154,13 +154,13 @@
         </div>
         
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="SignaturKunde">Signatur kunde:</label>
                         <input class="form-control" type="text" id="SignaturKunde" name="SignaturKunde" value="@Model.SignaturKunde" />
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="SignaturRep">Signatur reparatør:</label>
                         <input class="form-control" type="text" id="SignaturRep" name="SignaturRep" value="@Model.SignaturRep" />
