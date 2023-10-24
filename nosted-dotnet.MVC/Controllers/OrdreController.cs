@@ -12,10 +12,9 @@ namespace nosted_dotnet.MVC.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public IActionResult NyOrdre()
+        public IActionResult Ordreskjema()
         {
+            
             return View();
         }
 

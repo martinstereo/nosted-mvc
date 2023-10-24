@@ -1,7 +1,7 @@
 ﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
 
 @{
-    ViewData["Title"] = "NyOrdre";
+    ViewData["Title"] = "Ordreskjema";
  }
  
 <head>
@@ -18,14 +18,14 @@
     <h1>Ny ordre</h1>
     <p>Fyll ut kundeinformasjon</p>
         
-    <form asp-controller="Ordre" asp-action="Create" method="post">
+    <form asp-controller="Ordre" asp-action="" method="post">
             @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
 
 
             <!-- -------------------KUNDE INFORMASJON ----------------- -->
             <div class="column">
                 <div class="label"><label for="Fornavn">Navn:</label></div>
-                <input class="input" type="text" id="Fornavn" name="Fornavn" value="@Model.Kunde.Navn" />
+                <input class="input" type="text" id="Navn" name="Navn" value="@Model.Kunde.Navn" />
             </div>
         
             <div class="column">

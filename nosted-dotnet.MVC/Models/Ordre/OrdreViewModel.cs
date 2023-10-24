@@ -22,4 +22,3 @@ namespace nosted_dotnet.MVC.Models.Ordre
         public bool ErFerdig { get; set; } = false;
     }
 }
-    
