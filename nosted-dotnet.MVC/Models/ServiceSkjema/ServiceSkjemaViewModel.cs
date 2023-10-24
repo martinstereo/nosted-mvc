@@ -32,8 +32,8 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
         [Required(ErrorMessage = "Vennligst oppgi forsendelsesmåte.")]
         public string ForsendelsesMåte { get; set; }
 
-        //[Required(ErrorMessage = "Kundesignatur kreves.")]
-        //public string SignaturKunde { get; set; }
+        [Required(ErrorMessage = "Kundesignatur kreves.")]
+        public string SignaturKunde { get; set; }
 
         [Required(ErrorMessage = "Reperatørsignatur kreves.")]
         public string SignaturRep { get; set; }
