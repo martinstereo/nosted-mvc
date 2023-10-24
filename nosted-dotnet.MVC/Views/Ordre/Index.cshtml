@@ -1,4 +1,4 @@
-﻿@model List<nosted_dotnet.MVC.Models.Ordre.OrdreRad>
+﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
 
 @{
     ViewData["Title"] = "Ordre";
@@ -14,16 +14,9 @@
     <h1>Ordre</h1>
 
     <!-- Knapp som åpner skjema for ny ordre (ordre) -->
-    <button id="openButton" style="margin-top: 10px; margin-left: 90%;">Ny ordre</button>
+    <button style="margin-top: 10px; margin-bottom: 40px;"><a class="nav-link text-dark" asp-area="" asp-controller="Ordre" asp-action="NyOrdre">Ny Ordre</a></button>
 
-    <script>
-        // Legg til en eventlytter på knappen for å åpne en ny side
-        document.getElementById("openButton").addEventListener("click", function () {
-            event.preventDefault();
-            // Åpne den nye siden
-            window.location.href = "/Ordre/Create";
-        });
-    </script>
+    
 
     <!--Tabellvisning for ordre-->
     <table class="table table-bordered">
@@ -39,6 +32,8 @@
             </tr>
         </thead>
         <tbody>
+            
+            @*
             @foreach (var row in Model)
             {
                 <tr>
@@ -52,6 +47,7 @@
                     <td>@row.IsDone</td>
                 </tr>
             }
+            *@
         <tbody>
     </table> 
 </body>

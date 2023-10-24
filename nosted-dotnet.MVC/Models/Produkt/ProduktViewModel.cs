@@ -12,8 +12,6 @@ namespace nosted_dotnet.MVC.Models.Produkt
 
             [Required(ErrorMessage = "Vennligst oppgi serienummer.")]
             public string Serienummer { get; set; }
-        }
     }
+}
 
-}
-}
