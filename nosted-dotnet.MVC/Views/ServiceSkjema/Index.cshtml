@@ -1,5 +1,6 @@
 @model nosted_dotnet.MVC.Models.ServiceSkjema.ServiceSkjemaViewModel
 
+
 @{
     ViewData["Title"] = "Serviceskjema";
 }
@@ -17,7 +18,9 @@
     < class="container">
         <h1>Serviceskjema</h1>
         <form asp-controller="ServiceSkjema" asp-action="Index" method="post">
+          
             @Html.AntiForgeryToken() <!-- This line to include the anti-forgery token -->
+          
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -31,7 +34,6 @@
                         <input class="form-control" type="date" id="MottattDato" name="MottattDato" value="@Model.MotattDato.ToString("yyyy-MM-dd")" />
                     </div>
                 </div>
-            </div>
 
             <div class="row">
                 <div class="col-md-6">

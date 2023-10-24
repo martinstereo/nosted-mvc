@@ -35,7 +35,7 @@ namespace nosted_dotnet.MVC.Controllers
                 FerdigDato = string.IsNullOrEmpty(FerdigDato) ? DateTime.Today : DateTime.Parse(FerdigDato).Date,
                 UtskiftetDelerRetur = UtskiftetDelerRetur,
                 ForsendelsesMåte = ForsendelsesMåte,
-                SignaturKunde = SignaturKunde,
+                //SignaturKunde = SignaturKunde,
                 SignaturRep = SignaturRep
             };
 
@@ -55,10 +55,10 @@ namespace nosted_dotnet.MVC.Controllers
             }
 
             // Få tilgang til skjemadata via modellobjektet
-            string Kunde = viewModel.Kunde;
+            //string Kunde = viewModel.Kunde;
 
             // Logg skjemadata
-            Debug.WriteLine($"Kunde: {Kunde}");
+            //Debug.WriteLine($"Kunde: {Kunde}");
 
             // Omdiriger til en bekreftelsesside eller tilbake til skjemasiden etter å ha behandlet dataene.
             return RedirectToAction("Index");

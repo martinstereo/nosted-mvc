@@ -1,9 +1,9 @@
-using bacit_dotnet.MVC.Models.CheckList;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Diagnostics;
+using bacit_dotnet.MVC.Models.CheckList;
+using nosted_dotnet.MVC.Mappers;
 
-namespace bacit_dotnet.MVC.Controllers
+namespace nosted_dotnet.MVC.Controllers
 {
     public class CheckListController : Controller
     {
@@ -12,8 +12,8 @@ namespace bacit_dotnet.MVC.Controllers
             var model = new CheckListViewModel
             {
                 CategoryGroups = new List<CheckListCategoryGroupModel> {
-                    new CheckListCategoryGroupModel {Name ="Mekanisk", Jobs=new List<string>{"Clutch Lameller", "Bremser|BÃ¥nd|Pal","Trommel Lager","Kjedestrammer","Wire", "Pinion Lager","Kjedehjul Kile"} },
-                    new CheckListCategoryGroupModel{ Name="Hydraulisk", Jobs=new List<string>{"Sylinder Lekasje","Slanger","Hydraulikkblokk Test","Oljeskifte pÃ¥ Tank","Oljeskifte pÃ¥ Girboks","Ringsylinder | Skift Tetninger","Bremsesylinder | Skift Tetninger" } },
+                    new CheckListCategoryGroupModel {Name ="Mekanisk", Jobs=new List<string>{"Clutch Lameller", "Bremser|Bånd|Pal","Trommel Lager","Kjedestrammer","Wire", "Pinion Lager","Kjedehjul Kile"} },
+                    new CheckListCategoryGroupModel{ Name="Hydraulisk", Jobs=new List<string>{"Sylinder Lekasje","Slanger","Hydraulikkblokk Test","Oljeskifte på Tank","Oljeskifte på Girboks","Ringsylinder | Skift Tetninger","Bremsesylinder | Skift Tetninger" } },
                     new CheckListCategoryGroupModel{ Name="Elektrisk", Jobs=new List<string>{"Ledningsnett","Radio", "Knappekasse" } },
                 },
                 CheckListId = 1
@@ -42,6 +42,14 @@ namespace bacit_dotnet.MVC.Controllers
             Debug.WriteLine($"CheckListId: {checkListId}");
             Debug.WriteLine($"Comment: {comment}");
 
+
+
+            var entity = EntityHelpers.CheckListMapper(model);
+            // dbcontext.Checklists.Add(entitiy);
+            // save
+
+
+
             // Redirect to a confirmation page or back to the form page after handling the data.
             return RedirectToAction("Index");
         }
@@ -51,7 +59,7 @@ namespace bacit_dotnet.MVC.Controllers
 //ConsumedHours = 0,
 //CreatedDate = new DateTime(2023, 9, 7),
 //CustomerCity = "Kristiansand",
-//CustomerComment = "Hei og hï¿½, jeg er en kundekommentar",
+//CustomerComment = "Hei og hå, jeg er en kundekommentar",
 //CustomerEmail = "customer@thesystem.no",
 //CustomerName = "Sattosk Rev",
 //CustomerStreet = "Gata 13",
@@ -60,4 +68,4 @@ namespace bacit_dotnet.MVC.Controllers
 
 //Mechanic = "Espen",
 //MechanicComment = "ingen kommentar",
-//SerialNumber = "pirepioj123ï¿½ojï¿½",
+//SerialNumber = "pirepioj123åojå",

@@ -1,15 +1,29 @@
 using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using nosted_dotnet.MVC;
+using nosted_dotnet.MVC.Entities;
+using nosted_dotnet.MVC.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<NostedDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAntiforgery(options =>
 {
-    // Anti Forgery Token for every controller
-    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+    options.HeaderName = "X-CSRF-TOKEN"; // Customize the header name if needed
 });
+
+builder.Services.AddTransient<IUserRepository, UserRepository>();
+
+
+
+
+
 
 var app = builder.Build();
 
@@ -26,18 +40,35 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// To enforce HTTPS Connection
+app.UseHsts();
+
+// Enable anti-forgery token validation
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//Removing Server Headers 
-//Headers provide information that is better to hide
+// Security setup of HTTP headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-Xss-Protection", "1");
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    context.Response.Headers.Add("Referrer-Policy", "no-referrer");
+    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Add(
+        "Content-Security-Policy",
+        "default-src 'self';" +
+        "img-src 'self';" +
+        "font-src 'self';" +
+        "style-src 'self';" +
+        "script-src 'self';" +
+        "frame-src 'self'; " +
+        "connect-src 'self';");
+    await next();
+});
 
-WebHost.CreateDefaultBuilder(args)
-.ConfigureKestrel(c => c.AddServerHeader = false)
-.UseStartup<Startup>()
-.Build();
 
 app.Run();
