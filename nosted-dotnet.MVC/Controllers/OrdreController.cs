@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
+using nosted_dotnet.MVC.Data.Ordre;
 using nosted_dotnet.MVC.Models.Ordre;
 
 
@@ -7,10 +7,15 @@ namespace nosted_dotnet.MVC.Controllers
 {
     public class OrdreController : Controller
     {
+        // private readonly IOrdreRepository _ordreRepository;
+
 
         public IActionResult Index()
         {
-            return View();
+            var model = new FullOrdreViewModel();
+            // model.OrdreList = _ordreRepository.HentAlle().Select(x => new OrdreViewModel { Id = x.Id }).ToList();
+            
+            return View(model);
         }
 
         public IActionResult Ordreskjema()

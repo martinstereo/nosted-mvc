@@ -2,17 +2,16 @@
 
 namespace nosted_dotnet.MVC.Models.Ordre
 {
-        public class OrdreFullViewModel
+
+        // Model som skal fremvises som liste fra database
+        public class FullOrdreViewModel
         {
-            public OrdreFullViewModel()
+            public FullOrdreViewModel()
             {
                 UpsertModel = new OrdreViewModel();
                 OrdreList = new List<OrdreViewModel>();
             }
         public OrdreViewModel UpsertModel { get; set; }
         public List<OrdreViewModel> OrdreList { get; set; }
-
-
-      
     }
 }

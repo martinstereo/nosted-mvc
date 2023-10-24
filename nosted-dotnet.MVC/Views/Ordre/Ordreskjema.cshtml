@@ -14,17 +14,17 @@
 </head>
  
 
-<div class="container">
+<div class="container align-content-center">
     <h1>Ny ordre</h1>
     <h3>Fyll ut kundeinformasjon</h3>
         
     <form asp-controller="Ordre" asp-action="SubmitOrder" method="post">
-            @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
-
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
 
             <!-- -------------------KUNDE INFORMASJON ----------------- -->
             <div class="column">
-                <div class="label"><label for="Fornavn">Navn:</label></div>
+                <div class="label"><label for="Navn">Navn:</label></div>
                 <input class="input" type="text" id="Navn" name="Navn" value="@Model.Kunde.Navn" />
             </div>
         

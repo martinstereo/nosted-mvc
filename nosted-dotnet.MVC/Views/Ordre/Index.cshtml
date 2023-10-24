@@ -1,4 +1,4 @@
-﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
+﻿@model nosted_dotnet.MVC.Models.Ordre.FullOrdreViewModel
 
 @{
     ViewData["Title"] = "Ordre";
@@ -24,30 +24,38 @@
             <tr>
                 <th>Ordrenummer:</th>
                 <th>Dato motatt:</th>
-                <th>Produkttype:</th>
+                <th>Produkt:</th>
+                <th>Kundenavn:</th>
+                <th>Kommentar:</th>
                 <th>Serviceskjema:</th>
                 <th>Sjekkliste:</th>
-                <th>Må fullføres innen:</th>
                 <th>Fremgang:</th>
             </tr>
         </thead>
         <tbody>
             
-            @*
-            @foreach (var row in Model)
+            @foreach (var ordre in Model.OrdreList)
             {
-                <tr>
-                    <td>@row.OrderID</td>
-                    <td>@row.DateRecieved</td>
-                    <!-- <td> Kunde <td> -->
-                    <td>@row.ProductType</td>
-                    <td>@row.ServiceSkjema</td>
-                    <td>@row.Sjekkliste</td>
-                    <td>@row.WithinDate</td>
-                    <td>@row.IsDone</td>
-                </tr>
+            <tr>
+                <td>@ordre.Id</td>
+                <td>@ordre.MottattDato</td>
+                <td>@ordre.Produkt.Type @ordre.Produkt.AarsModell</td>
+                <td>@ordre.Kunde.Navn</td>
+                <td>@ordre.Kommentar</td>
+                <td>@ordre.ServiceSkjema.ServiceSkjemaID</td>
+                <td>@ordre.Sjekkliste.CheckListId</td>
+                <td>
+                    @if (ordre.ErFerdig == true)
+                        {
+                            <p>Fullført</p>
+                        } else
+                        {
+                            <p>I prosess</p>
+                        }
+                </td>
+            </tr>
             }
-            *@
+            
         <tbody>
     </table> 
 </body>
