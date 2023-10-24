@@ -16,9 +16,9 @@
 
 <div class="container">
     <h1>Ny ordre</h1>
-    <p>Fyll ut kundeinformasjon</p>
+    <h3>Fyll ut kundeinformasjon</h3>
         
-    <form asp-controller="Ordre" asp-action="" method="post">
+    <form asp-controller="Ordre" asp-action="SubmitOrder" method="post">
             @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
 
 
@@ -45,20 +45,20 @@
                 <input class="input" type="tel" id="TelefonNr" name="TelefonNr" value="@Model.Kunde.TelefonNr" />
             </div>
             
-            <!-- ------------------------------ KOMMENTAR FRA KUNDEN -------------------------- ->
+            <!-- ------------------------------ KOMMENTAR FRA KUNDEN -------------------------- -->
 
             <div class="clear"></div>
 
-            <div class="column">
-                <div class="label"><label for="Kommentar">Kommentar fra kunden:</label></div>
-                <input class="input" type="text" id="Kommentar" name="Kommentar" value="@Model.Kommentar" />
-            </div>
+        <div class="column">
+            <div class="label"><label for="Kommentar">Kommentar fra kunden:</label></div>
+            @Html.TextAreaFor(model => model.Kommentar, new { @class = "input", @rows = 6, @cols = 20 })
+        </div>
 
             <!-- -------------------PRODUKTINFORMASJON  -------------------------------- -->
 
         <div class="clear"></div>
 
-            <p>Fyll ut produktinformasjon</p>
+            <h3>Fyll ut produktinformasjon</h3>
 
             <div class="column">
                 <div class="label"><label for="Serienummer">Serienummer:</label></div>
