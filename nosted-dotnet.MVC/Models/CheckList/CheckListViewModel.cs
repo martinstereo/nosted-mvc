@@ -9,6 +9,10 @@ namespace bacit_dotnet.MVC.Models.CheckList
         public string Mechanic { get; set; }
         public DateTime CreatedDate { get; set; }
         public decimal ConsumedHours { get; set; }
+        public int TrykkSetting { get; set; }
+        public int TrekKraft { get; set; }
+        public int BremseKraft { get; set; }
+        public string FunksjonsTestKommentar { get; set; }
         public string MechanicComment { get; set; }
 
         public int CheckListId { get; set; }

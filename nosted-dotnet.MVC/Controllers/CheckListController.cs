@@ -55,17 +55,3 @@ namespace nosted_dotnet.MVC.Controllers
         }
     }
 }
-
-//ConsumedHours = 0,
-//CreatedDate = new DateTime(2023, 9, 7),
-//CustomerCity = "Kristiansand",
-//CustomerComment = "Hei og hå, jeg er en kundekommentar",
-//CustomerEmail = "customer@thesystem.no",
-//CustomerName = "Sattosk Rev",
-//CustomerStreet = "Gata 13",
-//CustomerTelephoneNumber = "1337",
-//CustomerZipcode = "1234",
-
-//Mechanic = "Espen",
-//MechanicComment = "ingen kommentar",
-//SerialNumber = "pirepioj123åojå",
