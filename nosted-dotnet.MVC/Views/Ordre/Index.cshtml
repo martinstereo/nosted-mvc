@@ -4,59 +4,67 @@
     ViewData["Title"] = "Ordre";
 }
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="~/js/site.js"></script>
+    <title>Ordre</title>
+
 </head>
 
 <body>
-
-    <h1>Ordre</h1>
+    <h1 class="text-md-start">Ordre</h1>
 
     <!-- Knapp som åpner skjema for ny ordre (ordre) -->
-    <button style="margin-top: 10px; margin-bottom: 40px;"><a class="nav-link text-dark" asp-area="" asp-controller="Ordre" asp-action="Ordreskjema">Ny Ordre</a></button>
+    <button class="btn btn-primary btn-sm">
+        <a class="nav-link text-light" asp-area="" asp-controller="Ordre" asp-action="Ordreskjema">Ny Ordre</a>
+    </button>
 
-    
 
     <!--Tabellvisning for ordre-->
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Ordrenummer:</th>
-                <th>Dato motatt:</th>
-                <th>Produkt:</th>
-                <th>Kundenavn:</th>
-                <th>Kommentar:</th>
-                <th>Serviceskjema:</th>
-                <th>Sjekkliste:</th>
-                <th>Fremgang:</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @foreach (var ordre in Model.OrdreList)
-            {
-            <tr>
-                <td>@ordre.Id</td>
-                <td>@ordre.MottattDato</td>
-                <td>@ordre.Produkt.Type @ordre.Produkt.AarsModell</td>
-                <td>@ordre.Kunde.Navn</td>
-                <td>@ordre.Kommentar</td>
-                <td>@ordre.ServiceSkjema</td>
-                <td>@ordre.Sjekkliste</td>
-                <td>
-                    @if (ordre.ErFerdig == true)
-                        {
-                            <p>Fullført</p>
-                        } else
-                        {
-                            <p>I prosess</p>
-                        }
-                </td>
-            </tr>
-            }
-            
-        <tbody>
-    </table> 
+    <div class="table-responsive mt-3">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Ordrenummer:</th>
+                    <th>Dato mottatt:</th>
+                    <th>Produkt:</th>
+                    <th>Kundenavn:</th>
+                    <th>Kommentar:</th>
+                    <th>Serviceskjema:</th>
+                    <th>Sjekkliste:</th>
+                    <th>Fremgang:</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var ordre in Model.OrdreList)
+                {
+                    <tr>
+                        <td>@ordre.Id</td>
+                        <td>@ordre.MottattDato</td>
+                        <td>@ordre.Produkt.Type @ordre.Produkt.AarsModell</td>
+                        <td>@ordre.Kunde.Navn</td>
+                        <td>@ordre.Kommentar</td>
+                        <td>@ordre.ServiceSkjema</td>
+                        <td>@ordre.Sjekkliste</td>
+                        <td>
+                            @if (ordre.ErFerdig == true)
+                            {
+                                <span class="badge badge-success">Fullført</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">I prosess</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            <tbody>
+        </table>
+    </div>
 </body>
 </html>
