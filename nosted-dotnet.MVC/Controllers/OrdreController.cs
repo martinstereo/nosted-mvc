@@ -26,6 +26,7 @@ namespace nosted_dotnet.MVC.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitOrder(OrdreViewModel model)
         {
             if (ModelState.IsValid)
