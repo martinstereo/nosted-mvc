@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using nosted_dotnet.MVC.Data.Ordre;
 using nosted_dotnet.MVC.Models.Ordre;
 
 namespace nosted_dotnet.MVC.Controllers
