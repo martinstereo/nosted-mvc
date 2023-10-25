@@ -1,0 +1,104 @@
+﻿@model nosted_dotnet.MVC.Models.Ordre.OrdreViewModel
+
+@{
+    ViewData["Title"] = "Ordreskjema";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="~/css/OrdreSkjema.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Ny ordre</title>
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Ny ordre</h1>
+        <h3 class="text-center">Fyll ut kundeinformasjon</h3>
+
+        <form asp-controller="Ordre" asp-action="SubmitOrder" method="post">
+            @Html.ValidationSummary()
+            @Html.AntiForgeryToken()
+
+            <!-- -------------------KUNDE INFORMASJON ----------------- -->
+            <div class="form row">
+                <div class="form-group col-md-6">
+                    <label for="Navn">Navn:</label>
+                    <input class="form-control" type="text" id="Navn" name="Navn" value="@Model.Kunde.Navn" />
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label for="Email">E-mail:</label>
+                    <input class="form-control" type="text" id="Email" name="Email" value="@Model.Kunde.Email" />
+                </div>
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="form row">
+                <div class="form-group col-md-6">
+                    <label for="Adresse">Adresse:</label>
+                    <input class="form-control" type="text" id="Adresse" name="Adresse" value="@Model.Kunde.Adresse" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="TelefonNr">Telefonnummer:</label>
+                    <input class="form-control" type="tel" id="TelefonNr" name="TelefonNr" value="@Model.Kunde.TelefonNr" />
+                </div>
+            </div>
+
+            <!-- ------------------------------ KOMMENTAR FRA KUNDEN -------------------------- -->
+
+            <div class="clear"></div>
+
+            <div class="form-group">
+                <label for="Kommentar">Kommentar fra kunden:</label>
+                @Html.TextAreaFor(model => model.Kommentar, new { @class = "form-control", @rows = 6 })
+            </div>
+
+            <!-- -------------------PRODUKTINFORMASJON  -------------------------------- -->
+
+            <div class="clear"></div>
+
+            <h3 class="text-center mt-4">Fyll ut produktinformasjon</h3>
+
+            <div class="form-group">
+                <label for="Serienummer">Serienummer:</label>
+                <input class="form-control" type="text" id="Serienummer" name="Serienummer" value="@Model.Produkt.Serienummer" />
+            </div>
+
+            <div class="form-group">
+                <label for="Produkttype">Produkttype:</label>
+                <input class="form-control" type="text" id="Produkttype" name="Produkttype" value="@Model.Produkt.Type" />
+            </div>
+
+            <div class="clear"></div>
+
+            <div class="form-group">
+                <label for="Årsmodell">Årsmodell:</label>
+                <input class="form-control" type="text" id="Årsmodell" name="Årsmodell" value="@Model.Produkt.AarsModell" />
+            </div>
+
+            <!-- ------------ GARANTI ------------------- -->
+            <div class="form-group">
+                <label for="ServiceRep">Service / rep garanti:</label>
+                <input class="form-control" type="text" id="ServiceRep" name="ServiceRep" value="@Model.ServiceRep" />
+            </div>
+
+            <div class="clear"></div>
+
+            <!-- ------------KNAPP ----------------------- -->
+            <div class="text-center">
+                <button class="btn btn-primary" type="submit">Opprett ny ordre</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+

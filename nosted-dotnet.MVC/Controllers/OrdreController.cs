@@ -1,31 +1,43 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc;
 using nosted_dotnet.MVC.Models.Ordre;
-
 
 namespace nosted_dotnet.MVC.Controllers
 {
     public class OrdreController : Controller
     {
-        private List<OrdreRad> OrderDataTable = new();
         
+        // private readonly IOrdreRepository _ordreRepository;
+
+
         public IActionResult Index()
         {
-            return View(OrderDataTable);
+            var model = new FullOrdreViewModel();
+            // model.OrdreList = _ordreRepository.HentAlle().Select(x => new OrdreViewModel { Id = x.Id }).ToList();
+            
+            return View(model);
         }
 
-        //HTTP post etc
-        [HttpPost]
-        public IActionResult AddRow(OrdreRad row)
+
+        public IActionResult Ordreskjema()
         {
-            // Add the submitted row to the table
-            OrderDataTable.Add(row);
-
-            // Redirect back to the index page
-
-            return View("Index", OrderDataTable);
+            var model = new OrdreViewModel();
+            return View(model);
         }
 
+
+        [HttpPost]
+        public IActionResult SubmitOrder(OrdreViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Process the form data (e.g., save to the database)
+                // Redirect to a success page or take further actions
+                return RedirectToAction("Index");
+            }
+
+            // If the model is not valid, return the view with validation errors and the input data
+            return View("Ordreskjema", model);
+        }
 
     }
     

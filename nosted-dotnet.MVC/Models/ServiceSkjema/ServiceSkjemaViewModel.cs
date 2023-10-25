@@ -1,3 +1,4 @@
+
 using System.ComponentModel.DataAnnotations;
 
 namespace nosted_dotnet.MVC.Models.ServiceSkjema
@@ -38,5 +39,6 @@ namespace nosted_dotnet.MVC.Models.ServiceSkjema
         [Required(ErrorMessage = "Reperatørsignatur kreves.")]
         public string SignaturRep { get; set; }
         
-}
+    }
+
 }
