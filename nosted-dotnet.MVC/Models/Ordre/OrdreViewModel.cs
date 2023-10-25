@@ -1,4 +1,4 @@
-﻿using nosted_dotnet.MVC.Models.CheckList;
+using nosted_dotnet.MVC.Models.CheckList;
 using nosted_dotnet.MVC.Models.Kunde;
 using nosted_dotnet.MVC.Models.Produkt;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
@@ -29,3 +29,4 @@ namespace nosted_dotnet.MVC.Models.Ordre
         public ServiceSkjemaViewModel ServiceSkjema { get; set; } = new ServiceSkjemaViewModel();
     }
 }
+

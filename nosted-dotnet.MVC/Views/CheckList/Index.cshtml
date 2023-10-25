@@ -1,16 +1,22 @@
-@model nosted_dotnet.MVC.Models.CheckList.CheckListViewModel
-
+@model bacit_dotnet.MVC.Models.CheckList.CheckListViewModel
 @{
     ViewData["Title"] = "Sjekkliste";
 }
 
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet" type="text/css" href="~/css/ServiceSkjema.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <title>Sjekkliste</title>
+    <style>
     .form-container {
         display: block;
         width: 600px;
         margin: 0 auto;
     }
-
     .job-row {
         display: flex;
         justify-content: space-between;
@@ -20,20 +26,20 @@
     .job-name {
         flex: 1;
     }
-
     .radio-option {
         display: inline-block;
-        margin-right: 75px;
+        margin-right: 75px;     
     }
-    
-    @*
-    1. GjÃ¸re radioknapper stÃ¸rre og gi dem bakgrunsfarge som samsvarer med verdien.
-    2' Script for Ã¥ kunne velge "ok" for en hel category.
-    3. Insert into Database.
-    *@
+     
+     @*
+     1. Gjøre radioknapper større og gi dem bakgrunsfarge som samsvarer med verdien.
+     2' Script for å kunne velge "ok" for en hel category.
+     3. Insert into Database.
+     *@
+    </style>
+</head>
 
-</style>
-
+ 
 <form class="form-container" asp-action="index" asp-controller="checklist" method="post">
     @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
     <h1>Saksnummer @Model.CheckListId</h1>
@@ -45,7 +51,7 @@
         {
             <div class="job-row">
                 <div class="job-name">@group</div>
-                <div>
+                <div>                   
                     <div class="radio-option"><label for="ok"></label><input type="radio" id="ok" name="@group" value="ok"></div>
                     <div class="radio-option"><label for="bs"></label><input type="radio" id="bs" name="@group" value="bs"></div>
                     <div class="radio-option"><label for="def"></label><input type="radio" id="def" name="@group" value="def"></div>
@@ -54,10 +60,9 @@
         }
     }
 
-
     <br>
     <h3><label for="TestSettings">TrykkSetting og Funksjons Test</label></h3><br>
-
+     
     <div class="column">
         <div class="label"><label for="trykksetting">Trykksetting</label></div>
         @Html.TextBoxFor(m => m.TrykkSetting) Bar
@@ -71,12 +76,17 @@
         @Html.TextBoxFor(m => m.BremseKraft) KN
     </div>
     <div class="column">
-        <div class="label"><label for="Resulatat">Resultat For Test</label></div>
-        @Html.TextAreaFor(m => m.FunksjonsTestKommentar)
-    </div>
-
+            <div class="label"><label for="Resulatat">Resultat For Test</label></div>
+            @Html.TextAreaFor(m => m.FunksjonsTestKommentar)
+        </div>
+    <div class="column">
+            <div class="label"><label for="ConsumedHours">Antall Timer</label></div>
+            @Html.TextBoxFor(m => m.ConsumedHours)
+        </div>
     <br/>
-    <h3><label for="MechanicComment">Kommentar</label></h3><br/>
-    <textarea id="MechanicComment" name="MechanicComment" rows="4" cols="50"></textarea><br><br>
-    <input type="submit" value="FullfÃ¸r Sjekkliste">
+    <div class="column">
+        <div class="label"><h3><label for="MechanicComment">Kommentar</label></h3></div>
+        @Html.TextAreaFor(m => m.MechanicComment)
+    </div>
+    <input type="submit" value="Fullfør Sjekkliste">
 </form>
