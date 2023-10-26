@@ -1,0 +1,33 @@
+@using nosted_dotnet.MVC.Models.Ordre
+@using nosted_dotnet.MVC.Entities
+@model OrdreDetailsViewModel
+
+<h1>Ordre Details</h1>
+
+<h2>Ordre:</h2>
+<p>OrdreId: @Model.Ordre.OrdreId</p>
+<p>ServiceDato: @Model.Ordre.ServiceDato</p>
+<p>ServiceRep: @Model.Ordre.ServiceRep</p>
+<!-- Add the rest of the Ordre properties here... -->
+
+<h2>Kunde:</h2>
+<p>KundeId: @Model.Kunde.KundeId</p>
+<p>Fornavn: @Model.Kunde.Fornavn</p>
+<p>Etternavn: @Model.Kunde.Etternavn</p>
+<!-- Add the rest of the Kunde properties here... -->
+
+<h2>Adresse:</h2>
+<p>AdreseeId: @Model.Adresse.AdreseeId</p>
+<p>Postkode: @Model.Adresse.Postkode</p>
+<p>Poststed: @Model.Adresse.Poststed</p>
+<!-- Add the rest of the Adresse properties here... -->
+
+<h2>Produkt:</h2>
+<p>ProduktId: @Model.Produkt.ProduktId</p>
+<p>RegNr: @Model.Produkt.RegNr</p>
+<p>Model: @Model.Produkt.Model</p>
+<!-- Add the rest of the Produkt properties here... -->
+
+
+
+
