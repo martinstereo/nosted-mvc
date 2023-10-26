@@ -1,22 +1,22 @@
+using nosted_dotnet.MVC.Repositories;
 using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using nosted_dotnet.MVC;
 using nosted_dotnet.MVC.Data;
-using nosted_dotnet.MVC.Data.Ordre;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("MariaDb"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MariaDb"))));
 
-builder.Services.AddScoped<IVinsjRepository, VinsjRepository>();
-builder.Services.AddScoped<IKundeRepository, KundeRepository>();
+builder.Services.AddScoped<IProduktRepository, EfProduktRepository>();
+builder.Services.AddScoped<IKundeRepository, EfKundeRepository>();
 builder.Services.AddScoped<IAnsattRepository, AnsattRepository>();
-builder.Services.AddScoped<IAdresseRepository, AdresseRepository>();
+builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
 
 
-builder.Services.AddScoped<IOrdreRepository, OrdreRepository>();
+builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
 builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
 builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
 

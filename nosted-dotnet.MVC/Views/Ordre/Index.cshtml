@@ -1,58 +1,36 @@
-﻿@model List<nosted_dotnet.MVC.Models.Ordre.OrdreRad>
+﻿@using nosted_dotnet.MVC.Models.Ordre
 
-@{
-    ViewData["Title"] = "Ordre";
-}
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="~/js/site.js"></script>
-</head>
+@model List<nosted_dotnet.MVC.Models.Ordre.OrdreIndexViewModel>
 
-<body>
+<h1>Ordrelinje</h1>
 
-    <h1>Ordre</h1>
+<a href="@Url.Action("Create", "Ordre")" class="btn btn-primary">Create New Ordre</a>
 
-    <!-- Knapp som åpner skjema for ny ordre (ordre) -->
-    <button id="openButton" style="margin-top: 10px; margin-left: 90%;">Ny ordre</button>
-
-    <script>
-        // Legg til en eventlytter på knappen for å åpne en ny side
-        document.getElementById("openButton").addEventListener("click", function () {
-            event.preventDefault();
-            // Åpne den nye siden
-            window.location.href = "/Ordre/Create";
-        });
-    </script>
-
-    <!--Tabellvisning for ordre-->
-    <table class="table table-bordered">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Fornavn</th>
+            <th>Etternavn</th>
+            <th>Type</th>
+            <th>RegNr</th>
+            <th>ServiceDato</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ordre in Model)
+        {
             <tr>
-                <th>Ordrenummer:</th>
-                <th>Dato motatt:</th>
-                <th>Produkttype:</th>
-                <th>Serviceskjema:</th>
-                <th>Sjekkliste:</th>
-                <th>Må fullføres innen:</th>
-                <th>Fremgang:</th>
+                <td>@ordre.Fornavn</td>
+                <td>@ordre.Etternavn</td>
+                <td>@ordre.Type</td>
+                <td>@ordre.RegNr</td>
+                <td>@ordre.ServiceDato</td>
+                <td>
+                    <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Details</a>
+                    <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Edit</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var row in Model)
-            {
-                <tr>
-                    <td>@row.OrderID</td>
-                    <td>@row.DateRecieved</td>
-                    <!-- <td> Kunde <td> -->
-                    <td>@row.ProductType</td>
-                    <td>@row.ServiceSkjema</td>
-                    <td>@row.Sjekkliste</td>
-                    <td>@row.WithinDate</td>
-                    <td>@row.IsDone</td>
-                </tr>
-            }
-        <tbody>
-    </table> 
-</body>
-</html>
+        }
+    </tbody>
+</table>

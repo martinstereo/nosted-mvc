@@ -1,17 +1,20 @@
-namespace nosted_dotnet.MVC.Entites;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class Kunde
+namespace nosted_dotnet.MVC.Entities
 {
-    public int Id { get; set; }
-    public string? Navn { get; set; }
-    public string? Etternavn { get; set; }
-    public string? Email { get; set; }
-    public string? TelefonNr { get; set; }
-    
-    public virtual Ordre Ordre { get; set; }
-    public int OrdreId { get; set; }
-    public virtual Vinsj Vinsj { get; set; }
-    public int VinsjId { get; set; }
-    public virtual Adresse Adresse { get; set; }
-    public  int AdresseId { get; set; }
+    [Table("Kunde")]
+    public class Kunde
+    {
+        public int Id { get; set; }
+        public string? Navn { get; set; }
+        public string? Etternavn { get; set; }
+        public string? Email { get; set; }
+        public string? TelefonNr { get; set; }
+
+
+        //public virtual Produkt Produkt { get; set; }
+        //public int ProduktId { get; set; }
+        public virtual Adresse Adresse { get; set; }
+        public int AdresseId { get; set; }
+    }
 }

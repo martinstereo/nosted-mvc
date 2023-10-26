@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using nosted_dotnet.MVC.Entites;
+using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Data;
 
@@ -16,25 +17,31 @@ public class DataContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Ansatt>().HasKey(x => x.Id);
-        modelBuilder.Entity<Vinsj>().HasKey(x => x.Id);
-        modelBuilder.Entity<Kunde>().HasKey(x => x.Id);
-        modelBuilder.Entity<Adresse>().HasKey(x => x.Id);
-        
-        modelBuilder.Entity<Entites.Ordre>().HasKey(x => x.Id);
         modelBuilder.Entity<ServiceSkjema>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekkliste>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
         modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
         
-        modelBuilder.Entity<Vinsj>()
-            .HasOne(v => v.Kunde)
-            .WithOne(k => k.Vinsj)
-            .HasForeignKey<Kunde>(k => k.VinsjId);
+        modelBuilder.Entity<Ansatt>().ToTable("Ansatt").HasKey(x => x.Id);
+        modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
+        modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
+        modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
+        modelBuilder.Entity<Ordre>().ToTable("Ordre").HasKey(x => x.Id);
+            
         modelBuilder.Entity<Kunde>()
-            .HasOne(k => k.Ordre)
-            .WithOne(o => o.Kunde)
-            .HasForeignKey<Entites.Ordre>(o => o.KundeId);
+            .HasOne(k => k.Adresse)
+            .WithMany()
+            .HasForeignKey(k => k.AdresseId);
+
+        modelBuilder.Entity<Ordre>()
+            .HasOne(o => o.Kunde)
+            .WithMany()
+            .HasForeignKey(o => o.KundeId);
+
+        modelBuilder.Entity<Ordre>()
+            .HasOne(o => o.Produkt)
+            .WithMany()
+            .HasForeignKey(o => o.ProduktId);
         
         /*modelBuilder.Entity<Entites.Ordre>()
             .HasOne(o => o.Sjekkliste)
@@ -55,12 +62,12 @@ public class DataContext : DbContext
         base.OnModelCreating(modelBuilder);
     }
     
-    public required DbSet<Vinsj> Vinsj { get; set; }
+    public required DbSet<Produkt> Produkt { get; set; }
     public required DbSet<Ansatt> Ansatt { get; set; }
     public required DbSet<Kunde> Kunde { get; set; }
     public required DbSet<Adresse> Adresse { get; set; }
     
-    public required DbSet<Entites.Ordre> Ordre { get; set; }
+    public required DbSet<Ordre> Ordre { get; set; }
     public required DbSet<ServiceSkjema> ServiceSkjema { get; set; }
     public required DbSet<Sjekkliste> Sjekkliste { get; set; }
     public required DbSet<Sjekk> Sjekk { get; set; }
