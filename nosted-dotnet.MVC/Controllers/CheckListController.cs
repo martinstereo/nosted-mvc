@@ -1,7 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using nosted_dotnet.MVC.Models.CheckList;
-using nosted_dotnet.MVC.Mappers;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace nosted_dotnet.MVC.Controllers
 {
@@ -28,7 +28,7 @@ namespace nosted_dotnet.MVC.Controllers
             //Create a way to Request from list instead of singel iteam in list
             var test = HttpContext.Request.Form["Ledningsnett"];
             var testComment = HttpContext.Request.Form["MechanicComment"];
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 //Does not redirect to anything. Define where it should redirect.
                 return BadRequest("Not a valid model");
@@ -41,14 +41,6 @@ namespace nosted_dotnet.MVC.Controllers
             // Log the form data
             Debug.WriteLine($"CheckListId: {checkListId}");
             Debug.WriteLine($"Comment: {comment}");
-
-
-
-            var entity = EntityHelpers.CheckListMapper(model);
-            // dbcontext.Checklists.Add(entitiy);
-            // save
-
-
 
             // Redirect to a confirmation page or back to the form page after handling the data.
             return RedirectToAction("Index");

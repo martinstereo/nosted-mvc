@@ -1,33 +1,27 @@
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using nosted_dotnet.MVC;
-using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Repositories;
+using Microsoft.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using nosted_dotnet.MVC;
+using nosted_dotnet.MVC.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("MariaDb"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MariaDb"))));
+
+builder.Services.AddScoped<IProduktRepository, EfProduktRepository>();
+builder.Services.AddScoped<IKundeRepository, EfKundeRepository>();
+builder.Services.AddScoped<IAnsattRepository, AnsattRepository>();
+builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
+
+
+builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
+builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
+builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
+
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-});
-
-builder.Services.AddDbContext<NostedDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddAntiforgery(options =>
-{
-    options.HeaderName = "X-CSRF-TOKEN"; // Customize the header name if needed
-});
-
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-
-
-
-
-
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -44,35 +38,18 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// To enforce HTTPS Connection
-app.UseHsts();
-
-// Enable anti-forgery token validation
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Security setup of HTTP headers
-app.Use(async (context, next) =>
-{
-    context.Response.Headers.Add("X-Xss-Protection", "1");
-    context.Response.Headers.Add("X-Frame-Options", "DENY");
-    context.Response.Headers.Add("Referrer-Policy", "no-referrer");
-    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-    context.Response.Headers.Add(
-        "Content-Security-Policy",
-        "default-src 'self';" +
-        "img-src 'self';" +
-        "font-src 'self';" +
-        "style-src 'self';" +
-        "script-src 'self';" +
-        "frame-src 'self'; " +
-        "connect-src 'self';");
-    await next();
-});
+//Removing Server Headers 
+//Headers provide information that is better to hide
 
+WebHost.CreateDefaultBuilder(args)
+.ConfigureKestrel(c => c.AddServerHeader = false)
+.UseStartup<Startup>()
+.Build();
 
 app.Run();

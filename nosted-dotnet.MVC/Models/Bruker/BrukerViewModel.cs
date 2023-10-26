@@ -1,4 +1,10 @@
-﻿namespace nosted_dotnet.MVC.Models.Bruker
+﻿using nosted_dotnet.MVC.Controllers;
+using nosted_dotnet.MVC.Models.CheckList;
+using nosted_dotnet.MVC.Controllers;
+using nosted_dotnet.MVC.Models.ServiceSkjema;
+using System.Net.Http.Headers;
+
+namespace nosted_dotnet.MVC.Models.Bruker
 {
     public class BrukerRad
     {
