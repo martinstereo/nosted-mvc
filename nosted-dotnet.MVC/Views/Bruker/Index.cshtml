@@ -22,12 +22,9 @@
     <form action="/Bruker/AddRow" method="post">
         <!-- Form fields for new attributes -->
         <input type="number" name="BrukerID" placeholder="Bruker ID">
-        <input type="text" name="Navn" placeholder="Navn">
+        <input type="text" name="Fornavn" placeholder="Fornavn">
         <input type="text" name="Etternavn" placeholder="Etternavn">
-        <input type="text" name="Adresse" placeholder="Adresse">
-        <input type="text" name="Telefonnummer" placeholder="Telefonnummer">
        
-  
         <select name="Stilling" id="Stilling" placeholder="Stilling">
             <option value="" >Stilling</option>
             <option value="Mekaniker">Mekaniker</option>
@@ -43,11 +40,9 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Bruker ID:</th>
-                <th>Navn:</th>
+                <th>Bruker-ID:</th>
+                <th>Fornavn:</th>
                 <th>Etternavn:</th>
-                <th>Adresse:</th>
-                <th>Telefonnummer:</th>
                 <th>Stilling:</th>
                 <th>Action:</th> <!-- Add a new column for the delete button -->
             </tr>
@@ -57,10 +52,9 @@
             {
                 <tr>
                     <td>@row.BrukerID</td>
-                    <td>@row.Navn</td>
+                    <td>@row.Fornavn</td>
                     <td>@row.Etternavn</td>
-                    <td>@row.Adresse</td>
-                    <td>@row.Telefonnummer</td>
+                    <td>@Model.Email</td>
                     <td>@row.Stilling</td>
                     <td>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->

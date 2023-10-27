@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using nosted_dotnet.MVC.Data;
+using nosted_dotnet.MVC.Entites;
 using nosted_dotnet.MVC.Models.Bruker;
 
 namespace nosted_dotnet.MVC.Controllers
 {
     public class BrukerController : Controller
     {
-        private static List<BrukerRad> BrukerDataTable = new List<BrukerRad>();
+        private readonly IBrukerRepository brukerRepository;
+
+        public BrukerController(IBrukerRepository brukerRepository)
+        {
+            this.brukerRepository = brukerRepository;
+        }
 
         public IActionResult Index()
         {
@@ -16,11 +23,19 @@ namespace nosted_dotnet.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddRow(BrukerRad row)
+        public IActionResult AddUser(BrukerViewModel model)
         {
-            // Add the submitted row to the table
-            //  row.BrukerID = GenerateUniqueId(); // Generate a unique ID
-            BrukerDataTable.Add(row);
+            BrukerEntity newUser = new BrukerEntity
+            {
+                Fornavn = model.Fornavn,
+                Etternavn = model.Etternavn,
+                Email = model.Email,
+            };
+            var roles = new List<string>();
+            if (model.Stilling == "Mekaniker")
+                roles.Add("Mekaniker");
+            else if (model.Stilling == "")
+                roles.Add("Mekaniker");
 
             // Redirect back to the index page
             return RedirectToAction("Index");

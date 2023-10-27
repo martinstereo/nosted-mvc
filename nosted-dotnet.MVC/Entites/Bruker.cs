@@ -1,16 +1,14 @@
 using nosted_dotnet.MVC.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nosted_dotnet.MVC.Entites;
 
-public class Bruker
+[Table("Bruker")]
+public class BrukerEntity
 {
     public int Id { get; set; }
     public string? Fornavn { get; set; }
     public string? Etternavn { get; set; }
     public string? Email { get; set; }
-    public string? TelefonNr { get; set; }
     public string? Stilling { get; set; }
-    
-    public virtual Adresse Adresse { get; set; }
-    public  int AdresseId { get; set; }
 }
