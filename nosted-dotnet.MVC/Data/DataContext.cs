@@ -22,7 +22,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
         modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
         
-        modelBuilder.Entity<Ansatt>().ToTable("Ansatt").HasKey(x => x.Id);
+        modelBuilder.Entity<Bruker>().ToTable("Ansatt").HasKey(x => x.Id);
         modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
         modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
         modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
@@ -63,7 +63,7 @@ public class DataContext : DbContext
     }
     
     public required DbSet<Produkt> Produkt { get; set; }
-    public required DbSet<Ansatt> Ansatt { get; set; }
+    public required DbSet<Bruker> Ansatt { get; set; }
     public required DbSet<Kunde> Kunde { get; set; }
     public required DbSet<Adresse> Adresse { get; set; }
     
