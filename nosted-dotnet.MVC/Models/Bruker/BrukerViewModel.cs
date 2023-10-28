@@ -27,9 +27,6 @@ namespace nosted_dotnet.MVC.Models.Bruker
         public string? Etternavn { get; set; }
         public string Email { get; set; }
         public string? Stilling { get; set; }
-
-       
-
     }
 }
     
