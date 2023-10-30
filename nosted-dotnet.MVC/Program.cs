@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using nosted_dotnet.MVC;
 using nosted_dotnet.MVC.Data;
+using nosted_dotnet.MVC.Data.ServiceSkjema;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
 
 
 builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
+builder.Services.AddScoped<IServiceSkjemaRepository, EfServiceSkjemaRepository>();
 builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
 builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
 

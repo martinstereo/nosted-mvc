@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Reflection;
 using System.Text.Encodings.Web;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using nosted_dotnet.MVC.Data.ServiceSkjema;
+using nosted_dotnet.MVC.Entities;
+using nosted_dotnet.MVC.Models.Ordre;
 
 //In the GET request, it receives query string parameters,
 //encodes them to prevent XSS attacks, and displays them in a view model.
@@ -12,6 +16,86 @@ using System.Text.Encodings.Web;
 namespace nosted_dotnet.MVC.Controllers
 {
     public class ServiceSkjemaController : Controller
+    {
+        private readonly IServiceSkjemaRepository _serviceSkjemaRepository;
+
+        public ServiceSkjemaController(IServiceSkjemaRepository serviceSkjemaRepository)
+        {
+            _serviceSkjemaRepository = serviceSkjemaRepository;
+        }
+
+        public IActionResult Create(int ordreId)
+        {
+            var serviceSkjema = new ServiceSkjema
+            {
+                OrdreId = ordreId
+            };
+            _serviceSkjemaRepository.Upsert(serviceSkjema);
+
+            return RedirectToAction("Upsert", new { id = serviceSkjema.Id });
+        }
+
+        public IActionResult Upsert(int id)
+        {
+            var serviceSkjema = _serviceSkjemaRepository.Get(id);
+            if (serviceSkjema == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ServiceSkjemaViewModel
+            {
+                Id = serviceSkjema.Id,
+                AvtaltKunde = serviceSkjema.AvtaltKunde,
+                DelerBrukt = serviceSkjema.DelerBrukt,
+                DelerSkiftet = serviceSkjema.DelerSkiftet,
+                RepBeskrivelse = serviceSkjema.RepBeskrivelse,
+                UtførtAv = serviceSkjema.UtførtAv,
+                ArbeidsTimer = serviceSkjema.ArbeidsTimer,
+                OrdreId = serviceSkjema.OrdreId
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Upsert(ServiceSkjemaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    // Log the error message
+                    System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
+                }
+
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
+
+            var serviceSkjema = new ServiceSkjema
+            {
+                Id = model.Id,
+                AvtaltKunde = model.AvtaltKunde,
+                DelerBrukt = model.DelerBrukt,
+                DelerSkiftet = model.DelerSkiftet,
+                RepBeskrivelse = model.RepBeskrivelse,
+                UtførtAv = model.UtførtAv,
+                ArbeidsTimer = model.ArbeidsTimer,
+                OrdreId = model.OrdreId
+            };
+            _serviceSkjemaRepository.Upsert(serviceSkjema);
+            return RedirectToAction("Index", "Ordre");
+        }
+
+        
+        
+    }
+    
+
+    
+    
+    /*public class ServiceSkjemaController : Controller
     {
         private readonly HtmlEncoder _htmlEncoder;
 
@@ -92,5 +176,5 @@ namespace nosted_dotnet.MVC.Controllers
             // Omdiriger til en bekreftelsesside eller tilbake til skjemasiden etter å ha behandlet dataene.
             return RedirectToAction("Index");
         }
-    }
+    }*/
 }
