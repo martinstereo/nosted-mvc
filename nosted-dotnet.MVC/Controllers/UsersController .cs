@@ -4,28 +4,28 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Entites;
-using nosted_dotnet.MVC.Models.Bruker;
+using nosted_dotnet.MVC.Models.Users;
 
 namespace nosted_dotnet.MVC.Controllers
 {
     public class BrukerController : Controller
     {
-        private readonly IBrukerRepository brukerRepository;
+        private readonly IUserRepository brukerRepository;
 
-        public BrukerController(IBrukerRepository brukerRepository)
+        public BrukerController(IUserRepository brukerRepository)
         {
             this.brukerRepository = brukerRepository;
         }
 
         public IActionResult Index()
         {
-            return View(BrukerDataTable);
+            return View();
         }
 
         [HttpPost]
-        public IActionResult AddUser(BrukerViewModel model)
+        public IActionResult AddUser(UserViewModel model)
         {
-            BrukerEntity newUser = new BrukerEntity
+            UserEntity newUser = new UserEntity
             {
                 Fornavn = model.Fornavn,
                 Etternavn = model.Etternavn,

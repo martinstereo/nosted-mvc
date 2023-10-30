@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 using nosted_dotnet.MVC.Models.Account;
-using nosted_dotnet.MVC.Entities;
-using nosted_dotnet.MVC.Repositories;
+using nosted_dotnet.MVC.Data;
+using nosted_dotnet.MVC.Entites;
 
 namespace nosted_dotnet.MVC.Controllers
 {

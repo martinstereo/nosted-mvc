@@ -1,4 +1,4 @@
-﻿@model List<nosted_dotnet.MVC.Models.Bruker.BrukerRad>
+﻿@model List<nosted_dotnet.MVC.Models.Users.UserViewModel>
 
 @{
     ViewData["Title"] = "Bruker";
@@ -24,13 +24,9 @@
         <input type="number" name="BrukerID" placeholder="Bruker ID">
         <input type="text" name="Fornavn" placeholder="Fornavn">
         <input type="text" name="Etternavn" placeholder="Etternavn">
-       
-        <select name="Stilling" id="Stilling" placeholder="Stilling">
-            <option value="" >Stilling</option>
-            <option value="Mekaniker">Mekaniker</option>
-            <option value="Kundesenter">Kundesenter</option>
-            <option value="Administrator">Administrator</option>
-        </select>
+               
+        <input type="checkbox" name="Admin" id="isAdmin" placeholder="Administrator">
+            
 
         <input type="submit" value="Add">
     </form>
@@ -48,14 +44,11 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var row in Model)
+            @foreach (var user in Model.Users)
             {
                 <tr>
-                    <td>@row.BrukerID</td>
-                    <td>@row.Fornavn</td>
-                    <td>@row.Etternavn</td>
-                    <td>@Model.Email</td>
-                    <td>@row.Stilling</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
                     <td>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->
                         <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">

@@ -1,6 +1,6 @@
 namespace nosted_dotnet.MVC.Data;
 
-public interface IBrukerRepository
+public interface IUserRepository
 {
     
 }

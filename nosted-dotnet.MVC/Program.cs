@@ -13,7 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 builder.Services.AddScoped<IProduktRepository, EfProduktRepository>();
 builder.Services.AddScoped<IKundeRepository, EfKundeRepository>();
-builder.Services.AddScoped<IAnsattRepository, AnsattRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
 
 
