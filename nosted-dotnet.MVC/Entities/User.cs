@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace nosted_dotnet.MVC.Entites;
 
-[Table("User")]
+[Table("Users")]
 public class UserEntity
 {
     public int Id { get; set; }
