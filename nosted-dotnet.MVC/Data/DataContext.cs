@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using nosted_dotnet.MVC.Entites;
+
 using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Data;
@@ -17,7 +17,7 @@ public class DataContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<ServiceSkjema>().HasKey(x => x.Id);
+        modelBuilder.Entity<Entities.ServiceSkjema>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekkliste>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
         modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
@@ -42,6 +42,11 @@ public class DataContext : DbContext
             .HasOne(o => o.Produkt)
             .WithMany()
             .HasForeignKey(o => o.ProduktId);
+        
+        modelBuilder.Entity<Entities.ServiceSkjema>()
+            .HasOne(o => o.Ordre)
+            .WithMany()
+            .HasForeignKey(o => o.OrdreId);
         
         /*modelBuilder.Entity<Entites.Ordre>()
             .HasOne(o => o.Sjekkliste)
@@ -68,7 +73,7 @@ public class DataContext : DbContext
     public required DbSet<Adresse> Adresse { get; set; }
     
     public required DbSet<Ordre> Ordre { get; set; }
-    public required DbSet<ServiceSkjema> ServiceSkjema { get; set; }
+    public required DbSet<Entities.ServiceSkjema> ServiceSkjema { get; set; }
     public required DbSet<Sjekkliste> Sjekkliste { get; set; }
     public required DbSet<Sjekk> Sjekk { get; set; }
     public required DbSet<UtførtSjekk> UtførtSjekk { get; set; }

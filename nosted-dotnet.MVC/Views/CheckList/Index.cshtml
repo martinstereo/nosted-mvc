@@ -1,88 +1,82 @@
 @model nosted_dotnet.MVC.Models.CheckList.CheckListViewModel
+
 @{
     ViewData["Title"] = "Sjekkliste";
 }
 
-<!DOCTYPE html>
-<html lang="nb-NO">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .form-container {
+        display: block;
+        width: 600px;
+        margin: 0 auto;
+    }
 
-    <title>Sjekkliste</title>
-</head>
+    .job-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .job-name {
+        flex: 1;
+    }
 
-<form class="form-container" asp-action="Index" asp-controller="CheckList" method="post">
-    @Html.AntiForgeryToken()
+    .radio-option {
+        display: inline-block;
+        margin-right: 75px;
+    }
+    
+    @*
+    1. Gjøre radioknapper større og gi dem bakgrunsfarge som samsvarer med verdien.
+    2' Script for å kunne velge "ok" for en hel category.
+    3. Insert into Database.
+    *@
+
+</style>
+
+<form class="form-container" asp-action="index" asp-controller="checklist" method="post">
+    @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
     <h1>Saksnummer @Model.CheckListId</h1>
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                @for (var i = 0; i < Model.CategoryGroups.Count; i++)
-                {
-                    <div class="card">
-                        <div class="card-body text-left">
-                            <h3>@Model.CategoryGroups[i].Name</h3>
-                            <table class="table">
-                                <tbody>
-                                @foreach (var group in Model.CategoryGroups[i].Jobs)
-                                {
-                                    <tr>
-                                        <td class="align-middle fixed-width-label">@group</td>
-                                        <td class="align-middle">
-                                            <div class="btn-group btn-label" data-toggle="buttons">
-                                                <label class="btn btn-default">
-                                                    <input type="radio" name="@group" value="ok"> OK
-                                                </label>
-                                                <label class="btn btn-default">
-                                                    <input type="radio" name="@group" value="bs"> Burde Skiftes
-                                                </label>
-                                                <label class="btn btn-default">
-                                                    <input type="radio" name="@group" value="def"> Defekt
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4 mt-4">
-                    <h3><label for="TestSettings">TrykkSetting og Funksjons Test</label></h3>
-                    <div class="form-group">
-                        <label for="trykksetting">Trykksetting Bar</label>
-                        @Html.TextBoxFor(m => m.TrykkSetting, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        <label for="Trekkkraft">Trekkkraft (KN)</label>
-                        @Html.TextBoxFor(m => m.TrekKraft, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        <label for="BremseKraft">BremseKraft (KN)</label>
-                        @Html.TextBoxFor(m => m.BremseKraft, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        <label for="Resulatat">Resultat For Test</label>
-                        @Html.TextAreaFor(m => m.FunksjonsTestKommentar, new { @class = "form-control" })
-                    </div>
-                    <div class="form-group">
-                        <label for="ConsumedHours">Antall Timer</label>
-                        @Html.TextBoxFor(m => m.ConsumedHours, new { @class = "form-control" })
-                    </div>
+    @*Trenger en rad for OK, Burde Skiftes og Defekt over hver coloumn for valgene *@
+    @foreach (var categoryGroup in Model.CategoryGroups)
+    {
+        <h3>@categoryGroup.Name</h3>
+        @foreach (var group in categoryGroup.Jobs)
+        {
+            <div class="job-row">
+                <div class="job-name">@group</div>
+                <div>
+                    <div class="radio-option"><label for="ok"></label><input type="radio" id="ok" name="@group" value="ok"></div>
+                    <div class="radio-option"><label for="bs"></label><input type="radio" id="bs" name="@group" value="bs"></div>
+                    <div class="radio-option"><label for="def"></label><input type="radio" id="def" name="@group" value="def"></div>
                 </div>
+            </div>
+        }
+    }
 
-    <div class="col-md-12 mt-4">
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Fullfør Sjekkliste</button>
-        </div>
+
+    <br>
+    <h3><label for="TestSettings">TrykkSetting og Funksjons Test</label></h3><br>
+
+    <div class="column">
+        <div class="label"><label for="trykksetting">Trykksetting</label></div>
+        @Html.TextBoxFor(m => m.TrykkSetting) Bar
     </div>
-    
+    <div class="column">
+        <div class="label"><label for="Trekkkraft">Trekkkraft</label></div>
+        @Html.TextBoxFor(m => m.TrekKraft) KN
+    </div>
+    <div class="column">
+        <div class="label"><label for="BremseKraft">BremseKraft</label></div>
+        @Html.TextBoxFor(m => m.BremseKraft) KN
+    </div>
+    <div class="column">
+        <div class="label"><label for="Resulatat">Resultat For Test</label></div>
+        @Html.TextAreaFor(m => m.FunksjonsTestKommentar)
+    </div>
+
+    <br/>
+    <h3><label for="MechanicComment">Kommentar</label></h3><br/>
+    <textarea id="MechanicComment" name="MechanicComment" rows="4" cols="50"></textarea><br><br>
+    <input type="submit" value="Fullfør Sjekkliste">
 </form>

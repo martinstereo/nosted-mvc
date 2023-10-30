@@ -1,6 +1,6 @@
 ﻿using nosted_dotnet.MVC.Entities;
 
-namespace nosted_dotnet.MVC.Repositories
+namespace nosted_dotnet.MVC.Data
 {
     public interface IProduktRepository
     {

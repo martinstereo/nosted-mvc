@@ -10,10 +10,7 @@ namespace nosted_dotnet.MVC.Entities
         public string? Etternavn { get; set; }
         public string? Email { get; set; }
         public string? TelefonNr { get; set; }
-
-
-        //public virtual Produkt Produkt { get; set; }
-        //public int ProduktId { get; set; }
+        
         public virtual Adresse Adresse { get; set; }
         public int AdresseId { get; set; }
     }
