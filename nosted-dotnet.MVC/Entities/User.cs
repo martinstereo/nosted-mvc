@@ -10,5 +10,4 @@ public class UserEntity
     public string? Fornavn { get; set; }
     public string? Etternavn { get; set; }
     public string Email { get; set; }
-    public bool isAdmin { get; set; }
 }

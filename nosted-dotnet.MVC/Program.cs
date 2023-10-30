@@ -5,6 +5,11 @@ using Microsoft.Extensions.Options;
 using nosted_dotnet.MVC;
 using nosted_dotnet.MVC.Data;
 using Microsoft.AspNetCore.Mvc;
+using nosted_dotnet.MVC.Data.User;
+using static nosted_dotnet.MVC.Data.User.EfUserRepository;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.SqlClient;
 
 public class Program
 {
@@ -13,24 +18,14 @@ public class Program
 
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddDbContext<DataContext>(options =>
-            options.UseMySql(builder.Configuration.GetConnectionString("MariaDb"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MariaDb"))));
-
-        builder.Services.AddScoped<IProduktRepository, EfProduktRepository>();
-        builder.Services.AddScoped<IKundeRepository, EfKundeRepository>();
-        builder.Services.AddScoped<IUserRepository, UserRepository>();
-        builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
-
-
-        builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
-        builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
-        builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
 
         // Add services to the container.
         builder.Services.AddControllersWithViews(options =>
         {
             options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
         });
+
+        SetupDataConnections(builder);
 
         SetupAuthentication(builder);
 
@@ -44,13 +39,11 @@ public class Program
             app.UseHsts();
         }
 
-        app.UseHttpsRedirection();
         app.UseStaticFiles();
 
         app.UseRouting();
 
-        app.UseAuthentication();
-        app.UseAuthorization();
+        UseAuthentication(app);
 
         app.MapControllerRoute(
             name: "default",
@@ -80,46 +73,70 @@ public class Program
         app.Run();
     }
 
-
-private static void SetupAuthentication(WebApplicationBuilder builder)
-{
-//Setup for Authentication
-builder.Services.Configure<IdentityOptions>(options =>
-{
-// Default Lockout settings.
-options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-options.Lockout.MaxFailedAccessAttempts = 5;
-options.Lockout.AllowedForNewUsers = false;
-options.SignIn.RequireConfirmedPhoneNumber = false;
-options.SignIn.RequireConfirmedEmail = false;
-options.SignIn.RequireConfirmedAccount = false;
-options.User.RequireUniqueEmail = true;
-});
-
-builder.Services
-    .AddIdentityCore<IdentityUser>()
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<DataContext>()
-    .AddSignInManager()
-    .AddDefaultTokenProviders();
-
-builder.Services.AddAuthentication(o =>
-{
-o.DefaultScheme = IdentityConstants.ApplicationScheme;
-o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
-
-}).AddIdentityCookies(o => { });
-
-builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
-}
-
-public class AuthMessageSender : IEmailSender
-{
-    public Task SendEmailAsync(string email, string subject, string htmlMessage)
+    private static void SetupDataConnections(WebApplicationBuilder builder)
     {
-        Console.WriteLine(email);
-        Console.WriteLine(subject);
-        Console.WriteLine(htmlMessage);
-        return Task.CompletedTask;
+        builder.Services.AddDbContext<DataContext>(options =>
+        {
+            options.UseMySql(builder.Configuration.GetConnectionString("MariaDb"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("MariaDb")));
+        });
+        builder.Services.AddScoped<IProduktRepository, EfProduktRepository>();
+        builder.Services.AddScoped<IKundeRepository, EfKundeRepository>();
+        builder.Services.AddScoped<IUserRepository, EfUserRepository>();
+        builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
+
+
+        builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
+        builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
+        builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
+
+    }
+
+    private static void UseAuthentication(WebApplication app)
+    {
+        app.UseAuthentication();
+        app.UseAuthorization();
+    }
+
+    private static void SetupAuthentication(WebApplicationBuilder builder)
+    {
+        //Setup for Authentication
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            // Default Lockout settings.
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            options.Lockout.MaxFailedAccessAttempts = 5;
+            options.Lockout.AllowedForNewUsers = false;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
+            options.SignIn.RequireConfirmedEmail = false;
+            options.SignIn.RequireConfirmedAccount = false;
+            options.User.RequireUniqueEmail = true;
+        });
+
+        builder.Services
+            .AddIdentityCore<IdentityUser>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<DataContext>()
+            .AddSignInManager()
+            .AddDefaultTokenProviders();
+
+        builder.Services.AddAuthentication(o =>
+        {
+            o.DefaultScheme = IdentityConstants.ApplicationScheme;
+            o.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+
+        }).AddIdentityCookies(o => { });
+
+        builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
+    }
+
+    public class AuthMessageSender : IEmailSender
+    {
+        public Task SendEmailAsync(string email, string subject, string htmlMessage)
+        {
+            Console.WriteLine(email);
+            Console.WriteLine(subject);
+            Console.WriteLine(htmlMessage);
+            return Task.CompletedTask;
+        }
     }
 }

@@ -1,11 +1,16 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using nosted_dotnet.MVC.Entites;
 using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Data;
 
-public class DataContext : DbContext
+public class DataContext : IdentityDbContext<IdentityUser>
 {
+    public DataContext()
+    {
+    }
     public DataContext(DbContextOptions options) : base(options)
     {
     }
@@ -22,7 +27,7 @@ public class DataContext : DbContext
         modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
         modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
         
-        modelBuilder.Entity<UserEntity>().ToTable("Ansatt").HasKey(x => x.Id);
+        modelBuilder.Entity<UserEntity>().ToTable("Users").HasKey(x => x.Id);
         modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
         modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
         modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
