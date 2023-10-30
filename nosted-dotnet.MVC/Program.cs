@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using nosted_dotnet.MVC;
 using nosted_dotnet.MVC.Data;
-using Microsoft.AspNetCore.Mvc;
+using nosted_dotnet.MVC.Data.ServiceSkjema;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,14 +18,12 @@ builder.Services.AddScoped<IAdresseRepository, EfAdresseRepository>();
 
 
 builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
+builder.Services.AddScoped<IServiceSkjemaRepository, EfServiceSkjemaRepository>();
 builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
 builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options =>
-{
-    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-});
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -42,7 +40,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
@@ -52,22 +49,9 @@ app.MapControllerRoute(
 //Removing Server Headers 
 //Headers provide information that is better to hide
 
-app.Use(async (context, next) =>
-{
-    context.Response.Headers.Add("X-Xss-Protection", "1");
-    context.Response.Headers.Add("X-Frame-Options", "DENY");
-    context.Response.Headers.Add("Referrer-Policy", "no-referrer");
-    context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-    context.Response.Headers.Add(
-        "Content-Security-Policy",
-        "default-src 'self';" +
-        "img-src 'self';" +
-        "font-src 'self';" +
-        "style-src 'self';" +
-        "script-src 'self';" +
-        "frame-src 'self'; " +
-        "connect-src 'self';");
-    await next();
-});
+WebHost.CreateDefaultBuilder(args)
+.ConfigureKestrel(c => c.AddServerHeader = false)
+.UseStartup<Startup>()
+.Build();
 
 app.Run();

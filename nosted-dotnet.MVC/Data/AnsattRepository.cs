@@ -1,4 +1,4 @@
-using nosted_dotnet.MVC.Entites;
+using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Data;
 

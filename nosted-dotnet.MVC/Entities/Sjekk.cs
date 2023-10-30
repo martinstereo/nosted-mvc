@@ -1,6 +1,6 @@
 using nosted_dotnet.MVC.Enum;
 
-namespace nosted_dotnet.MVC.Entites;
+namespace nosted_dotnet.MVC.Entities;
 
 public class Sjekk
 {

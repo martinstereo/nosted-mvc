@@ -1,4 +1,4 @@
-namespace nosted_dotnet.MVC.Entites;
+namespace nosted_dotnet.MVC.Entities;
 
 public class Sjekkliste
 {

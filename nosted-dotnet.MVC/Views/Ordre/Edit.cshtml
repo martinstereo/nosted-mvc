@@ -9,8 +9,7 @@
     @Html.AntiForgeryToken()
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.OrdreId"></label></div>
-        <input class="input" asp-for="@Model.Ordre.OrdreId" type="text" id="OrdreId" readonly />
+        <input class="input" asp-for="@Model.Ordre.OrdreId" type="hidden" id="OrdreId"  />
     </div>
     <div class="column">
         <div class="label"><label asp-for="@Model.Ordre.ServiceDato"></label></div>
@@ -22,8 +21,7 @@
     </div>
     
     <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.KundeId"></label></div>
-        <input class="input" asp-for="@Model.Kunde.KundeId" type="text" id="KundeId" readonly />
+        @*<input class="input" asp-for="@Model.Kunde.KundeId" type="hidden" id="KundeId"  />*@
     </div>
     <div class="column">
         <div class="label"><label asp-for="@Model.Kunde.Fornavn"></label></div>
@@ -44,8 +42,7 @@
     
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.AdreseeId"></label></div>
-        <input class="input" asp-for="@Model.Adresse.AdreseeId" type="text" id="AdresseId" readonly />
+        @*<input class="input" asp-for="@Model.Adresse.AdreseeId" type="hidden" id="AdresseId" />*@
     </div>
     <div class="column">
         <div class="label"><label asp-for="@Model.Adresse.Postkode"></label></div>
@@ -62,8 +59,7 @@
     
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.ProduktId"></label></div>
-        <input class="input" asp-for="@Model.Produkt.ProduktId" type="text" id="ProduktId" readonly />
+       @* <input class="input" asp-for="@Model.Produkt.ProduktId" type="hidden" id="ProduktId"  />*@
     </div>
     <div class="column">
         <div class="label"><label asp-for="@Model.Produkt.RegNr"></label></div>
