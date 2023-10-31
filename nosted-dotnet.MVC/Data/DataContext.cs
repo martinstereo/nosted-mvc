@@ -47,6 +47,10 @@ public class DataContext : DbContext
             .HasOne(o => o.Ordre)
             .WithMany()
             .HasForeignKey(o => o.OrdreId);
+        modelBuilder.Entity<Sjekkliste>()
+            .HasOne(o => o.Ordre)
+            .WithMany()
+            .HasForeignKey(o => o.OrdreId);
         
         /*modelBuilder.Entity<Entites.Ordre>()
             .HasOne(o => o.Sjekkliste)
@@ -56,10 +60,10 @@ public class DataContext : DbContext
             .HasOne(o => o.ServiceSkjema)
             .WithOne(s => s.Ordre)
             .HasForeignKey<ServiceSkjema>(s => s.OrdreId);*/
-        
+
         modelBuilder.Entity<UtførtSjekk>()
-            .HasOne<Sjekkliste>(s => s.Sjekkliste)
-            .WithMany(sl => sl.UtførteSjekker);
+            .HasOne<Sjekkliste>(s => s.Sjekkliste);
+            //.WithMany(sl => sl.UtførteSjekker);
         modelBuilder.Entity<UtførtSjekk>()
             .HasOne<Sjekk>(s => s.Sjekk)
             .WithMany(sl => sl.UtførteSjekker);

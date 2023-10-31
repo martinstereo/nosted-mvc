@@ -1,5 +1,5 @@
 ﻿using nosted_dotnet.MVC.Controllers;
-using nosted_dotnet.MVC.Models.CheckList;
+using nosted_dotnet.MVC.Models.Sjekkliste;
 using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using System.Net.Http.Headers;

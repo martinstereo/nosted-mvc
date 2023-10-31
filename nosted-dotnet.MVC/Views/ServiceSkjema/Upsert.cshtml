@@ -35,37 +35,45 @@
                 <p>Model: @Model.Produkt.Type</p>
             </div>*@
             
-            
-                <input type="hidden" asp-for="@Model.Id" />
-                <input type="hidden" asp-for="@Model.OrdreId" />
-            
-            <div>
-                <label asp-for="@Model.AvtaltKunde"></label>
-                <input asp-for="@Model.AvtaltKunde" />
-            </div>
-            <div>
-                <label asp-for="@Model.DelerBrukt"></label>
-                <input asp-for="@Model.DelerBrukt" />
-            </div>
-            <div>
-                <label asp-for="@Model.DelerSkiftet"></label>
-                <input asp-for="@Model.DelerSkiftet" />
-            </div>
-            <div>
-                <label asp-for="@Model.RepBeskrivelse"></label>
-                <input asp-for="@Model.RepBeskrivelse" />
-            </div>
-            <div>
-                <label asp-for="@Model.ArbeidsTimer"></label>
-                <input asp-for="@Model.ArbeidsTimer" />
-            </div>
-            <div>
-                <label asp-for="@Model.UtførtAv"></label>
-                <input asp-for="@Model.UtførtAv" />
-            </div>
-                <!-- Add the rest of the ServiceSkjema properties here... -->
-            
-                <button type="submit">Save</button>
+            //mie lag css her 
+                <form>
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <input type="hidden" asp-for="@Model.OrdreId" />
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.AvtaltKunde"></label>
+                        <input asp-for="@Model.AvtaltKunde" class="form-control" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.DelerBrukt"></label>
+                        <input asp-for="@Model.DelerBrukt" class="form-control" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.DelerSkiftet"></label>
+                        <input asp-for="@Model.DelerSkiftet" class="form-control" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.RepBeskrivelse"></label>
+                        <input asp-for="@Model.RepBeskrivelse" class="form-control" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.ArbeidsTimer"></label>
+                        <input asp-for="@Model.ArbeidsTimer" class="form-control" />
+                    </div>
+                
+                    <div class="form-group">
+                        <label asp-for="@Model.UtførtAv"></label>
+                        <input asp-for="@Model.UtførtAv" class="form-control" />
+                    </div>
+                    <!-- Add the rest of the ServiceSkjema properties here... -->
+                
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+
             
             @*<div class="column">
                 <div class="label"><label for="Kunde">Kunde:</label></div>
