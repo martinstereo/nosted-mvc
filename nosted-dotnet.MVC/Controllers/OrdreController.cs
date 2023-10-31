@@ -172,6 +172,8 @@ namespace nosted_dotnet.MVC.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var ordre = _ordreRepository.Get(id);
@@ -179,6 +181,7 @@ namespace nosted_dotnet.MVC.Controllers
             {
                 return NotFound();
             }
+
 
             var kunde = _kundeRepository.Get(ordre.KundeId);
             var adresse = _adresseRepository.Get(kunde.AdresseId);
@@ -222,7 +225,38 @@ namespace nosted_dotnet.MVC.Controllers
 
             return View(model);
         }
-        
+
+
+        public IActionResult Delete(int id)
+        {
+            var ordre = _ordreRepository.Get(id);
+            if (ordre == null)
+            {
+                return NotFound();
+            }
+
+            return View(ordre); // Pass the order to the delete confirmation view
+        }
+
+
+
+        [HttpPost]
+
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var ordre = _ordreRepository.Get(id);
+            if (ordre == null)
+            {
+                return NotFound();
+            }
+
+            // Perform the deletion of the order
+            _ordreRepository.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+
         [HttpPost]
         public IActionResult Edit(OrdreEditViewModel model)
         {

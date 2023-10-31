@@ -7,10 +7,11 @@ namespace nosted_dotnet.MVC.Repositories
     {
         private readonly DataContext _dataContext;
 
-        public EfOrdreRepository(DataContext dataContext) 
+        public EfOrdreRepository(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
+
         public Ordre Get(int id)
         {
             return _dataContext.Ordre.FirstOrDefault(x => x.Id == id);
@@ -24,16 +25,27 @@ namespace nosted_dotnet.MVC.Repositories
         public void Upsert(Ordre ordre)
         {
             var existing = Get(ordre.Id);
-            if(existing != null)
+            if (existing != null)
             {
                 existing.ServiceDato = ordre.ServiceDato;
                 existing.ServiceRep = ordre.ServiceRep;
                 _dataContext.SaveChanges();
                 return;
             }
+
             ordre.Id = 0;
             _dataContext.Add(ordre);
             _dataContext.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var ordreToDelete = Get(id);
+            if (ordreToDelete != null)
+            {
+                _dataContext.Ordre.Remove(ordreToDelete);
+                _dataContext.SaveChanges();
+            }
         }
     }
 }

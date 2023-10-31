@@ -8,30 +8,40 @@
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Fornavn</th>
-            <th>Etternavn</th>
-            <th>Type</th>
-            <th>RegNr</th>
-            <th>ServiceDato</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>Fornavn</th>
+        <th>Etternavn</th>
+        <th>Type</th>
+        <th>RegNr</th>
+        <th>ServiceDato</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var ordre in Model)
-        {
-            <tr>
-                <td>@ordre.Fornavn</td>
-                <td>@ordre.Etternavn</td>
-                <td>@ordre.Type</td>
-                <td>@ordre.RegNr</td>
-                <td>@ordre.ServiceDato</td>
-                <td><a class="btn btn-primary" href="@Url.Action("CreateServiceSkjema", "Ordre", new { id = ordre.OrdreId })">Service Skjema</a></td>
-                <td>
-                    <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Details</a>
-                    <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Edit</a>
-                </td>
-            </tr>
-        }
+    @foreach (var ordre in Model)
+    {
+        <tr>
+            <td>@ordre.Fornavn</td>
+            <td>@ordre.Etternavn</td>
+            <td>@ordre.Type</td>
+            <td>@ordre.RegNr</td>
+            <td>@ordre.ServiceDato</td>
+            <td>
+                <a class="btn btn-primary" href="@Url.Action("CreateServiceSkjema", "Ordre", new { id = ordre.OrdreId })">Service Skjema</a>
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Details</a>
+                <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Edit</a>
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Ordre", new { id = ordre.OrdreId }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Delete" class="btn btn-danger" />
+                }
+
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
