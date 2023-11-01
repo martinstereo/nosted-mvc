@@ -10,6 +10,8 @@ using static nosted_dotnet.MVC.Data.User.EfUserRepository;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
+using nosted_dotnet.MVC.Data.ServiceSkjema;
+using nosted_dotnet.MVC.Entities;
 
 public class Program
 {
@@ -87,6 +89,7 @@ public class Program
 
         builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
         builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
+        builder.Services.AddScoped<IServiceSkjemaRepository, EfServiceSkjemaRepository>();
 
     }
 
