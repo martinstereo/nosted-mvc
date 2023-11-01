@@ -11,8 +11,8 @@ using nosted_dotnet.MVC.Data;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231026200445_serviceskjema")]
-    partial class serviceskjema
+    [Migration("20231031195033_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -212,22 +212,93 @@ namespace nosted_dotnet.MVC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Bremsekraft")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<float>("BremseKraft")
+                        .HasColumnType("float");
 
-                    b.Property<string>("Kommentar")
+                    b.Property<string>("BremserBP")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<decimal?>("Trekkraft")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<string>("BremsesylinderTetninger")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.Property<decimal?>("Trykk")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<string>("ClutchLameller")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
-                    b.Property<bool?>("VinsjTestet")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("FunksjonsTestKommentar")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("HydraulikkblokkTest")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("KjedehjulKile")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Kjedestrammer")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Knappekasse")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Ledningsnett")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OljeskifteGirboks")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("OljeskifteTank")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("OrdreId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PinionLager")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Radio")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("RingsylinderTetninger")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Slanger")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("SylinderLekasje")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<float>("TrekKraft")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TrommelLager")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<float>("TrykkSetting")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Wire")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrdreId");
 
                     b.ToTable("Sjekkliste");
                 });
@@ -308,6 +379,17 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Navigation("Ordre");
                 });
 
+            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Sjekkliste", b =>
+                {
+                    b.HasOne("nosted_dotnet.MVC.Entities.Ordre", "Ordre")
+                        .WithMany()
+                        .HasForeignKey("OrdreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ordre");
+                });
+
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.UtførtSjekk", b =>
                 {
                     b.HasOne("nosted_dotnet.MVC.Entities.Sjekk", "Sjekk")
@@ -317,7 +399,7 @@ namespace nosted_dotnet.MVC.Migrations
                         .IsRequired();
 
                     b.HasOne("nosted_dotnet.MVC.Entities.Sjekkliste", "Sjekkliste")
-                        .WithMany("UtførteSjekker")
+                        .WithMany()
                         .HasForeignKey("SjekklisteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -328,11 +410,6 @@ namespace nosted_dotnet.MVC.Migrations
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.Sjekk", b =>
-                {
-                    b.Navigation("UtførteSjekker");
-                });
-
-            modelBuilder.Entity("nosted_dotnet.MVC.Entities.Sjekkliste", b =>
                 {
                     b.Navigation("UtførteSjekker");
                 });

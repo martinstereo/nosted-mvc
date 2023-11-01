@@ -2,13 +2,14 @@ namespace nosted_dotnet.MVC.Models.Sjekkliste
 {
     public class SjekklisteViewModel
     {
-        public string Mechanic { get; set; }
+        /*public string Mechanic { get; set; }
         public DateTime CreatedDate { get; set; }
-        public decimal ConsumedHours { get; set; }
-        public string MechanicComment { get; set; }
+        public decimal ConsumedHours { get; set; }*/
+        
         
 
-        public int CheckListId { get; set; }
+        public int Id { get; set; } 
+        public int OrdreId { get; set; }
         //public List<SjekklisteCategoryGroupModel> CategoryGroups { get; set; }
         public string ClutchLameller { get; set; }
         public string BremserBP { get; set; }
@@ -42,17 +43,19 @@ namespace nosted_dotnet.MVC.Models.Sjekkliste
         //public string VinsjModel { get; set; }
         //public string VinsjRegNr { get; set; }
 		public float TrykkSetting { get; set; }
-        public string FunksjonsTestKommentar { get; set; }
+        //public string FunksjonsTestKommentar { get; set; }
         public float TrekKraft { get; set; }
         public float BremseKraft { get; set; }
+        public string Resultat { get; set; }
+       public string MechanicComment { get; set; }
 
     }
 
-    public class SjekklisteCategoryGroupModel
+    /*public class SjekklisteCategoryGroupModel
     {
         public string Name { get; set; }
 
         public List<string> Jobs { get; set; }
-    }
+    }*/
 
 }

@@ -1,4 +1,4 @@
-@model nosted_dotnet.MVC.Models.Sjekkliste.SjekklisteViewModel
+﻿@model nosted_dotnet.MVC.Models.Sjekkliste.SjekklisteViewModel
 
 @{
     ViewData["Title"] = "Sjekkliste";
@@ -12,7 +12,8 @@
 
 <form class="form-container" asp-action="Upsert" asp-controller="Sjekkliste" method="post">
     @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
-    <h1>Saksnummer @Model.Id</h1>
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="hidden" asp-for="@Model.OrdreId" />
     @*Trenger en rad for OK, Burde Skiftes og Defekt over hver coloumn for valgene *@
    
     //trenger vi dette nå???
@@ -105,40 +106,40 @@
             </div>
     
             <div class="radio-group">
-                    <label for="HydraulikkblokkTest">Hydraulikkblokk Test</label>
-                    @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "1") Ok
-                    @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "2") Bør skiftes
-                    @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "3") Defekt
-                </div>
-            
-                <div class="radio-group">
-                    <label for="OljeskifteTank">Oljeskifte på Tank</label>
-                    @Html.RadioButtonFor(m => m.OljeskifteTank, "1") Ok
-                    @Html.RadioButtonFor(m => m.OljeskifteTank, "2") Bør skiftes
-                    @Html.RadioButtonFor(m => m.OljeskifteTank, "3") Defekt
-                </div>
-            
-                <div class="radio-group">
-                    <label for="OljeskifteGirboks">Oljeskifte på Girboks</label>
-                    @Html.RadioButtonFor(m => m.OljeskifteGirboks, "1") Ok
-                    @Html.RadioButtonFor(m => m.OljeskifteGirboks, "2") Bør skiftes
-                    @Html.RadioButtonFor(m => m.OljeskifteGirboks, "3") Defekt
-                </div>
-            
-                <div class="radio-group">
-                    <label for="RingsylinderTetninger">Ringsylinder | Skift Tetninger</label>
-                    @Html.RadioButtonFor(m => m.RingsylinderTetninger, "1") Ok
-                    @Html.RadioButtonFor(m => m.RingsylinderTetninger, "2") Bør skiftes
-                    @Html.RadioButtonFor(m => m.RingsylinderTetninger, "3") Defekt
-                </div>
-            
-                <div class="radio-group">
-                    <label for="BremsesylinderTetninger">Bremsesylinder | Skift Tetninger</label>
-                    @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "1") Ok
-                    @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "2") Bør skiftes
-                    @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "3") Defekt
-                </div>
+                <label for="HydraulikkblokkTest">Hydraulikkblokk Test</label>
+                @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "1") Ok
+                @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "2") Bør skiftes
+                @Html.RadioButtonFor(m => m.HydraulikkblokkTest, "3") Defekt
             </div>
+            
+            <div class="radio-group">
+                <label for="OljeskifteTank">Oljeskifte på Tank</label>
+                @Html.RadioButtonFor(m => m.OljeskifteTank, "1") Ok
+                @Html.RadioButtonFor(m => m.OljeskifteTank, "2") Bør skiftes
+                @Html.RadioButtonFor(m => m.OljeskifteTank, "3") Defekt
+            </div>
+            
+            <div class="radio-group">
+                <label for="OljeskifteGirboks">Oljeskifte på Girboks</label>
+                @Html.RadioButtonFor(m => m.OljeskifteGirboks, "1") Ok
+                @Html.RadioButtonFor(m => m.OljeskifteGirboks, "2") Bør skiftes
+                @Html.RadioButtonFor(m => m.OljeskifteGirboks, "3") Defekt
+            </div>
+            
+            <div class="radio-group">
+                <label for="RingsylinderTetninger">Ringsylinder | Skift Tetninger</label>
+                @Html.RadioButtonFor(m => m.RingsylinderTetninger, "1") Ok
+                @Html.RadioButtonFor(m => m.RingsylinderTetninger, "2") Bør skiftes
+                @Html.RadioButtonFor(m => m.RingsylinderTetninger, "3") Defekt
+            </div>
+            
+            <div class="radio-group">
+                <label for="BremsesylinderTetninger">Bremsesylinder | Skift Tetninger</label>
+                @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "1") Ok
+                @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "2") Bør skiftes
+                @Html.RadioButtonFor(m => m.BremsesylinderTetninger, "3") Defekt
+            </div>
+        </div>
     
         <div class="category">
             <h2>Elektrisk</h2>
@@ -189,10 +190,8 @@
     <br/>
     <h3><label for="MechanicComment">Kommentar</label></h3><br/>
     <div>
-        <label asp-for="@Model.MechanicComment"></label>
         <input asp-for="@Model.MechanicComment" class="form-control" />
     </div>
-    
     
     <input type="submit" value="Fullfør Sjekkliste">
 </form>

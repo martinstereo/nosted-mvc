@@ -38,7 +38,7 @@ namespace nosted_dotnet.MVC.Controllers
 
             var model = new SjekklisteViewModel
             {
-                CheckListId = sjekkliste.Id,
+               Id = sjekkliste.Id,
                 ClutchLameller = sjekkliste.ClutchLameller,
                 BremserBP = sjekkliste.BremserBP,
                 TrommelLager = sjekkliste.TrommelLager,
@@ -56,10 +56,13 @@ namespace nosted_dotnet.MVC.Controllers
                 Ledningsnett = sjekkliste.Ledningsnett,
                 Radio = sjekkliste.Radio,
                 Knappekasse = sjekkliste.Knappekasse,
-                TrykkSetting = sjekkliste.TrykkSetting,
-                FunksjonsTestKommentar = sjekkliste.FunksjonsTestKommentar,
-                TrekKraft = sjekkliste.TrekKraft,
-                BremseKraft = sjekkliste.BremseKraft
+                TrykkSetting = sjekkliste.TrykkSetting ?? 0,
+                //FunksjonsTestKommentar = sjekkliste.FunksjonsTestKommentar,
+                TrekKraft = sjekkliste.TrekKraft ?? 0,
+                BremseKraft = sjekkliste.BremseKraft ?? 0,
+                Resultat = sjekkliste.Resultat,
+                MechanicComment = sjekkliste.MechanicComment,
+                OrdreId = sjekkliste.OrdreId
             };
 
             return View(model);
@@ -85,7 +88,7 @@ namespace nosted_dotnet.MVC.Controllers
             // Map properties from SjekklisteViewModel to Sjekkliste
             var sjekkliste = new Sjekkliste
             {
-                Id = model.CheckListId,
+                Id = model.Id,
                 ClutchLameller = model.ClutchLameller,
                 BremserBP = model.BremserBP,
                 TrommelLager = model.TrommelLager,
@@ -104,9 +107,12 @@ namespace nosted_dotnet.MVC.Controllers
                 Radio = model.Radio,
                 Knappekasse = model.Knappekasse,
                 TrykkSetting = model.TrykkSetting,
-                FunksjonsTestKommentar = model.FunksjonsTestKommentar,
+                //FunksjonsTestKommentar = model.FunksjonsTestKommentar,
                 TrekKraft = model.TrekKraft,
-                BremseKraft = model.BremseKraft
+                BremseKraft = model.BremseKraft,
+                Resultat = model.Resultat,
+                MechanicComment = model.MechanicComment,
+                OrdreId = model.OrdreId
                 // Map other properties from SjekklisteViewModel to Sjekkliste
             };
 

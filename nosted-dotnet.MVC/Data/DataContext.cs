@@ -17,17 +17,20 @@ public class DataContext : DbContext
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Entities.ServiceSkjema>().HasKey(x => x.Id);
+        /*modelBuilder.Entity<Entities.ServiceSkjema>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekkliste>().HasKey(x => x.Id);
         modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
-        modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
+        modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);*/
         
         modelBuilder.Entity<Ansatt>().ToTable("Ansatt").HasKey(x => x.Id);
         modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
         modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
         modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
+        
         modelBuilder.Entity<Ordre>().ToTable("Ordre").HasKey(x => x.Id);
-            
+        modelBuilder.Entity<Sjekkliste>().ToTable("Sjekkliste").HasKey(x => x.Id);
+        modelBuilder.Entity<Entities.ServiceSkjema>().ToTable("ServiceSkjema").HasKey(x => x.Id);
+        
         modelBuilder.Entity<Kunde>()
             .HasOne(k => k.Adresse)
             .WithMany()
@@ -47,6 +50,7 @@ public class DataContext : DbContext
             .HasOne(o => o.Ordre)
             .WithMany()
             .HasForeignKey(o => o.OrdreId);
+        
         modelBuilder.Entity<Sjekkliste>()
             .HasOne(o => o.Ordre)
             .WithMany()
@@ -61,12 +65,12 @@ public class DataContext : DbContext
             .WithOne(s => s.Ordre)
             .HasForeignKey<ServiceSkjema>(s => s.OrdreId);*/
 
-        modelBuilder.Entity<UtførtSjekk>()
+        /*modelBuilder.Entity<UtførtSjekk>()
             .HasOne<Sjekkliste>(s => s.Sjekkliste);
             //.WithMany(sl => sl.UtførteSjekker);
         modelBuilder.Entity<UtførtSjekk>()
             .HasOne<Sjekk>(s => s.Sjekk)
-            .WithMany(sl => sl.UtførteSjekker);
+            .WithMany(sl => sl.UtførteSjekker);*/
         
         base.OnModelCreating(modelBuilder);
     }

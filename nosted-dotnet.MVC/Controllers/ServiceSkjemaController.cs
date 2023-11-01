@@ -90,9 +90,6 @@ namespace nosted_dotnet.MVC.Controllers
         
     }
     
-
-    
-    
     /*public class ServiceSkjemaController : Controller
     {
         private readonly HtmlEncoder _htmlEncoder;

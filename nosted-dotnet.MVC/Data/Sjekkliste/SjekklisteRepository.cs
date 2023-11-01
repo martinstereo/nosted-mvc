@@ -17,7 +17,12 @@ public class SjekklisteRepository : ISjekklisteRepository
             return _dataContext.Sjekkliste
                 .FirstOrDefault(x => x.Id == id);
         }
-
+        
+        public Sjekkliste GetByOrderId(int id)
+        {
+            return _dataContext.Sjekkliste.FirstOrDefault(x => x.OrdreId == id);
+        }
+        
         public void Create(Sjekkliste sjekkliste)
         {
             if (sjekkliste == null)

@@ -8,6 +8,8 @@ public interface ISjekklisteRepository
     public void Create(Sjekkliste sjekkliste);
     public void Update(Sjekkliste sjekkliste);
     public void Upsert(Sjekkliste sjekkliste);
+
+    public Sjekkliste GetByOrderId(int id);
 }
 
 

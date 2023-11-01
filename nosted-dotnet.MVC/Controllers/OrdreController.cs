@@ -16,14 +16,16 @@ namespace nosted_dotnet.MVC.Controllers
         private readonly IProduktRepository _produktRepository;
         private readonly IOrdreRepository _ordreRepository;
         private readonly IServiceSkjemaRepository _serviceSkjemaRepository;
+        private readonly ISjekklisteRepository _sjekklisteRepository;
         
-        public OrdreController(IAdresseRepository adresseRepository, IKundeRepository kundeRepository, IProduktRepository produktRepository, IOrdreRepository ordreRepository, IServiceSkjemaRepository serviceSkjemaRepository)
+        public OrdreController(IAdresseRepository adresseRepository, IKundeRepository kundeRepository, IProduktRepository produktRepository, IOrdreRepository ordreRepository, IServiceSkjemaRepository serviceSkjemaRepository, ISjekklisteRepository sjekklisteRepository)
         {
             _adresseRepository = adresseRepository;
             _produktRepository = produktRepository;
             _kundeRepository = kundeRepository;
             _ordreRepository = ordreRepository;
             _serviceSkjemaRepository = serviceSkjemaRepository;
+            _sjekklisteRepository = sjekklisteRepository;
         }
 
         public IActionResult Index()
@@ -327,7 +329,25 @@ namespace nosted_dotnet.MVC.Controllers
             // Redirect to the ServiceSkjema index page with the ServiceSkjema id
             return RedirectToAction("Upsert", "ServiceSkjema", new { id = serviceSkjema.Id });
         }
+        
+        public IActionResult CreateSjekkliste(int id)
+        {
+            // Try to get the existing ServiceSkjema for the order
+            var sjekkliste = _sjekklisteRepository.GetByOrderId(id);
 
+            if (sjekkliste == null)
+            {
+                // If there's no existing ServiceSkjema for the order, create a new one
+                sjekkliste = new Sjekkliste
+                {
+                    OrdreId = id
+                };
+                _sjekklisteRepository.Upsert(sjekkliste);
+            }
+
+            // Redirect to the ServiceSkjema index page with the ServiceSkjema id
+            return RedirectToAction("Upsert", "Sjekkliste", new { id = sjekkliste.Id });
+        }
         
 
         [HttpPost]

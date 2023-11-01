@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using nosted_dotnet.MVC.Data;
 
@@ -10,9 +11,11 @@ using nosted_dotnet.MVC.Data;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231031232953_missingSjekkliste")]
+    partial class missingSjekkliste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,6 +222,9 @@ namespace nosted_dotnet.MVC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ClutchLameller")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("FunksjonsTestKommentar")
                         .HasColumnType("longtext");
 
                     b.Property<string>("HydraulikkblokkTest")
