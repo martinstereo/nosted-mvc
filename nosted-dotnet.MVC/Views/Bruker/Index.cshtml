@@ -1,4 +1,4 @@
-﻿@model List<nosted_dotnet.MVC.Models.Bruker.BrukerRad>
+﻿@model List<nosted_dotnet.MVC.Models.Users.UserViewModel>
 
 @{
     ViewData["Title"] = "Bruker";
@@ -22,18 +22,11 @@
     <form action="/Bruker/AddRow" method="post">
         <!-- Form fields for new attributes -->
         <input type="number" name="BrukerID" placeholder="Bruker ID">
-        <input type="text" name="Navn" placeholder="Navn">
+        <input type="text" name="Fornavn" placeholder="Fornavn">
         <input type="text" name="Etternavn" placeholder="Etternavn">
-        <input type="text" name="Adresse" placeholder="Adresse">
-        <input type="text" name="Telefonnummer" placeholder="Telefonnummer">
-       
-  
-        <select name="Stilling" id="Stilling" placeholder="Stilling">
-            <option value="" >Stilling</option>
-            <option value="Mekaniker">Mekaniker</option>
-            <option value="Kundesenter">Kundesenter</option>
-            <option value="Administrator">Administrator</option>
-        </select>
+               
+        <input type="checkbox" name="Admin" id="isAdmin" placeholder="Administrator">
+            
 
         <input type="submit" value="Add">
     </form>
@@ -43,29 +36,25 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Bruker ID:</th>
-                <th>Navn:</th>
+                <th>Bruker-ID:</th>
+                <th>Fornavn:</th>
                 <th>Etternavn:</th>
-                <th>Adresse:</th>
-                <th>Telefonnummer:</th>
                 <th>Stilling:</th>
                 <th>Action:</th> <!-- Add a new column for the delete button -->
             </tr>
         </thead>
         <tbody>
-            @foreach (var row in Model)
+            @foreach (var user in Model)
             {
                 <tr>
-                    <td>@row.BrukerID</td>
-                    <td>@row.Navn</td>
-                    <td>@row.Etternavn</td>
-                    <td>@row.Adresse</td>
-                    <td>@row.Telefonnummer</td>
-                    <td>@row.Stilling</td>
+                    <td>@user.Id</td>
+                    <td>@user.Fornavn</td>
+                    <td>@user.Etternavn</td>
+                    <td>@user.Email</td>
                     <td>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->
                         <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="brukerId" value="@row.BrukerID" />
+                            <input type="hidden" name="brukerId" value="@user.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
