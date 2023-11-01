@@ -14,8 +14,7 @@ namespace nosted_dotnet.MVC.Data
         public DataContext(DbContextOptions options) : base(options)
         {
         }
-
-<<<<<<< HEAD
+        
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseLazyLoadingProxies();
@@ -23,12 +22,8 @@ namespace nosted_dotnet.MVC.Data
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        /*modelBuilder.Entity<Entities.ServiceSkjema>().HasKey(x => x.Id);
-        modelBuilder.Entity<Sjekkliste>().HasKey(x => x.Id);
-        modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
-        modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);*/
         
-        modelBuilder.Entity<Ansatt>().ToTable("Ansatt").HasKey(x => x.Id);
+        modelBuilder.Entity<UserEntity>().ToTable("Users").HasKey(x => x.Id);
         modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
         modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
         modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
@@ -41,21 +36,7 @@ namespace nosted_dotnet.MVC.Data
             .HasOne(k => k.Adresse)
             .WithMany()
             .HasForeignKey(k => k.AdresseId);
-=======
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseLazyLoadingProxies();
-        }
->>>>>>> 7d2e5023ef297e2d97c87ad656c43d96989cbcac
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Entities.ServiceSkjema>().HasKey(x => x.Id);
-            modelBuilder.Entity<Sjekkliste>().HasKey(x => x.Id);
-            modelBuilder.Entity<Sjekk>().HasKey(x => x.Id);
-            modelBuilder.Entity<UtførtSjekk>().HasKey(x => x.Id);
-
-<<<<<<< HEAD
+        
         modelBuilder.Entity<Ordre>()
             .HasOne(o => o.Produkt)
             .WithMany()
@@ -71,61 +52,6 @@ namespace nosted_dotnet.MVC.Data
             .WithMany()
             .HasForeignKey(o => o.OrdreId);
         
-        /*modelBuilder.Entity<Entites.Ordre>()
-            .HasOne(o => o.Sjekkliste)
-            .WithOne(s => s.Ordre)
-            .HasForeignKey<Sjekkliste>(s => s.OrdreId);
-        modelBuilder.Entity<Entites.Ordre>()
-            .HasOne(o => o.ServiceSkjema)
-            .WithOne(s => s.Ordre)
-            .HasForeignKey<ServiceSkjema>(s => s.OrdreId);*/
-
-        /*modelBuilder.Entity<UtførtSjekk>()
-            .HasOne<Sjekkliste>(s => s.Sjekkliste);
-            //.WithMany(sl => sl.UtførteSjekker);
-        modelBuilder.Entity<UtførtSjekk>()
-            .HasOne<Sjekk>(s => s.Sjekk)
-            .WithMany(sl => sl.UtførteSjekker);*/
-        
-        base.OnModelCreating(modelBuilder);
-=======
-            modelBuilder.Entity<UserEntity>().ToTable("Users").HasKey(x => x.Id);
-            modelBuilder.Entity<Adresse>().ToTable("Adresse").HasKey(x => x.Id);
-            modelBuilder.Entity<Kunde>().ToTable("Kunde").HasKey(x => x.Id);
-            modelBuilder.Entity<Produkt>().ToTable("Produkt").HasKey(x => x.Id);
-            modelBuilder.Entity<Ordre>().ToTable("Ordre").HasKey(x => x.Id);
-
-            modelBuilder.Entity<Kunde>()
-                .HasOne(k => k.Adresse)
-                .WithMany()
-                .HasForeignKey(k => k.AdresseId);
-
-            modelBuilder.Entity<Ordre>()
-                .HasOne(o => o.Kunde)
-                .WithMany()
-                .HasForeignKey(o => o.KundeId);
-
-            modelBuilder.Entity<Ordre>()
-                .HasOne(o => o.Produkt)
-                .WithMany()
-                .HasForeignKey(o => o.ProduktId);
-
-            /*modelBuilder.Entity<Entites.Ordre>()
-                .HasOne(o => o.Sjekkliste)
-                .WithOne(s => s.Ordre)
-                .HasForeignKey<Sjekkliste>(s => s.OrdreId);
-            modelBuilder.Entity<Entites.Ordre>()
-                .HasOne(o => o.ServiceSkjema)
-                .WithOne(s => s.Ordre)
-                .HasForeignKey<ServiceSkjema>(s => s.OrdreId);*/
-
-            modelBuilder.Entity<UtførtSjekk>()
-                .HasOne<Sjekkliste>(s => s.Sjekkliste)
-                .WithMany(sl => sl.UtførteSjekker);
-            modelBuilder.Entity<UtførtSjekk>()
-                .HasOne<Sjekk>(s => s.Sjekk)
-                .WithMany(sl => sl.UtførteSjekker);
-
             base.OnModelCreating(modelBuilder);
         }
 
@@ -137,8 +63,5 @@ namespace nosted_dotnet.MVC.Data
         public required DbSet<Ordre> Ordre { get; set; }
         public required DbSet<Entities.ServiceSkjema> ServiceSkjema { get; set; }
         public required DbSet<Sjekkliste> Sjekkliste { get; set; }
-        public required DbSet<Sjekk> Sjekk { get; set; }
-        public required DbSet<UtførtSjekk> UtførtSjekk { get; set; }
->>>>>>> 7d2e5023ef297e2d97c87ad656c43d96989cbcac
     }
 }
