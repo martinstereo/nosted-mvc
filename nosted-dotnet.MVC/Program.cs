@@ -87,7 +87,6 @@ public class Program
 
         builder.Services.AddScoped<IOrdreRepository, EfOrdreRepository>();
         builder.Services.AddScoped<ISjekklisteRepository, SjekklisteRepository>();
-        builder.Services.AddScoped<ISjekkRepository, SjekkRepository>();
 
     }
 
