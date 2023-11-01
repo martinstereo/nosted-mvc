@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using nosted_dotnet.MVC.Data;
 
@@ -10,9 +11,11 @@ using nosted_dotnet.MVC.Data;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231031200937_mechanicComment")]
+    partial class mechanicComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,7 +185,7 @@ namespace nosted_dotnet.MVC.Migrations
 
                     b.HasIndex("OrdreId");
 
-                    b.ToTable("ServiceSkjema", (string)null);
+                    b.ToTable("ServiceSkjema");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.Sjekk", b =>
@@ -221,6 +224,9 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Property<string>("ClutchLameller")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("FunksjonsTestKommentar")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("HydraulikkblokkTest")
                         .HasColumnType("longtext");
 
@@ -254,9 +260,6 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Property<string>("Radio")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Resultat")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("RingsylinderTetninger")
                         .HasColumnType("longtext");
 
@@ -282,7 +285,7 @@ namespace nosted_dotnet.MVC.Migrations
 
                     b.HasIndex("OrdreId");
 
-                    b.ToTable("Sjekkliste", (string)null);
+                    b.ToTable("Sjekkliste");
                 });
 
             modelBuilder.Entity("nosted_dotnet.MVC.Entities.UtførtSjekk", b =>

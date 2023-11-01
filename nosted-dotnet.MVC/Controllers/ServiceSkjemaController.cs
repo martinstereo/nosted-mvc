@@ -1,8 +1,6 @@
 using nosted_dotnet.MVC.Models.ServiceSkjema;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Reflection;
-using System.Text.Encodings.Web;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
@@ -91,9 +89,6 @@ namespace nosted_dotnet.MVC.Controllers
         
         
     }
-    
-
-    
     
     /*public class ServiceSkjemaController : Controller
     {
