@@ -4,7 +4,7 @@
 
 <h1>Ordrelinje</h1>
 
-<a href="@Url.Action("Create", "Ordre")" class="btn btn-primary">Create New Ordre</a>
+<a href="@Url.Action("Create", "Ordre")" class="btn btn-primary">Opprett ny ordre</a>
 
 <table class="table">
     <thead>
@@ -33,14 +33,14 @@
                 <a class="btn btn-primary" href="@Url.Action("CreateSjekkliste", "Ordre", new { id = ordre.OrdreId })">Sjekkliste</a>
             </td>
             <td>
-                <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Details</a>
-                <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Detaljer</a>
+                    <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Redigere</a>
             </td>
             <td>
                 @using (Html.BeginForm("Delete", "Ordre", new { id = ordre.OrdreId }, FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
-                    <input type="submit" value="Delete" class="btn btn-danger" />
+                    <input type="submit" value="Slett" class="btn btn-danger" />
                 }
 
             </td>
