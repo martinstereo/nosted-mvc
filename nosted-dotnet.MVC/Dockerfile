@@ -19,4 +19,4 @@ RUN dotnet publish "nosted-dotnet.MVC.csproj" -c Release -o /app/publish /p:UseA
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "nosted-dotnet.MVC.dll", "--environment=Development"]
+ENTRYPOINT ["dotnet", "nosted-dotnet.MVC.dll"]

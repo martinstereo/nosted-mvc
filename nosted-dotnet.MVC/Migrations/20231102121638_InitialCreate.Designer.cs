@@ -11,8 +11,8 @@ using nosted_dotnet.MVC.Data;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231101144005_Initial")]
-    partial class Initial
+    [Migration("20231102121638_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
