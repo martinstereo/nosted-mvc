@@ -15,13 +15,13 @@
     <title>Serviceskjema</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Serviceskjema</h1>
+<div class="container">
+    <h1>Serviceskjema</h1>
         
-        <form asp-controller="ServiceSkjema" asp-action="Upsert" method="post">
-            @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
+<form asp-controller="ServiceSkjema" asp-action="Upsert" method="post">
+    @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
     
-            @* <div>
+    @* <div>
                 <h2>Kunde:</h2>
                 <p>KundeId: @Model.Kunde.KundeId</p>
                 <p>Fornavn: @Model.Kunde.Fornavn</p>
@@ -35,43 +35,59 @@
                 <p>Model: @Model.Produkt.Type</p>
             </div>*@
             
-            //mie lag css her 
-                
-            <input type="hidden" asp-for="@Model.Id" />
-            <input type="hidden" asp-for="@Model.OrdreId" />
-                
-            <div class="form-group">
-                <label asp-for="@Model.AvtaltKunde"></label>
-                <input asp-for="@Model.AvtaltKunde" class="form-control" />
+    
+    <input type="hidden" asp-for="@Model.Id" class="col-4" />
+    <input type="hidden" asp-for="@Model.OrdreId" class="col-4" />
+            
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.AvtaltKunde">Avtalt Kunde</label>
+                    <input asp-for="@Model.AvtaltKunde" class="form-control" />
+                </div>
             </div>
-                
-            <div class="form-group">
-                <label asp-for="@Model.DelerBrukt"></label>
-                <input asp-for="@Model.DelerBrukt" class="form-control" />
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.DelerBrukt">Deler Brukt</label>
+                    <input asp-for="@Model.DelerBrukt" class="form-control" />
+                </div>
             </div>
+        </div>
                 
-            <div class="form-group">
-                <label asp-for="@Model.DelerSkiftet"></label>
-                <input asp-for="@Model.DelerSkiftet" class="form-control" />
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.DelerSkiftet">Deler Skiftet</label>
+                    <input asp-for="@Model.DelerSkiftet" class="form-control" />
+                </div>
             </div>
-                
-            <div class="form-group">
-                <label asp-for="@Model.RepBeskrivelse"></label>
-                <input asp-for="@Model.RepBeskrivelse" class="form-control" />
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.RepBeskrivelse">Rep Beskrivelse</label>
+                    <input asp-for="@Model.RepBeskrivelse" class="form-control" />
+                </div>
             </div>
+        </div>
                 
-            <div class="form-group">
-                <label asp-for="@Model.ArbeidsTimer"></label>
-                <input asp-for="@Model.ArbeidsTimer" class="form-control" />
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.ArbeidsTimer">Arbeids Timer</label>
+                    <input asp-for="@Model.ArbeidsTimer" class="form-control" />
+                </div>
             </div>
-                
-            <div class="form-group">
-                <label asp-for="@Model.UtførtAv"></label>
-                <input asp-for="@Model.UtførtAv" class="form-control" />
+            <div class="col-4">
+                <div class="form-group mb-3">
+                    <label asp-for="@Model.UtførtAv">Utført Av</label>
+                    <input asp-for="@Model.UtførtAv" class="form-control" />
+                </div>
             </div>
-            <!-- Add the rest of the ServiceSkjema properties here... -->
-                
-            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Save</button>
+            
         </form>
     </div>
 </body>
