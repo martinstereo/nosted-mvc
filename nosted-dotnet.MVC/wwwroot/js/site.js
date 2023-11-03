@@ -19,3 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+//Ordre sley
+
+    function cancelAction() {
+        // Redirect to the "Ordre" page
+        window.location.href = '/Ordre';
+    }
+
+    // Attach the cancelAction function to the "Avbryt" button's click event
+    document.getElementById('DeleteButton').addEventListener('click', cancelAction);
+
+
+
+
