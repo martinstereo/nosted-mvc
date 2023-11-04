@@ -66,13 +66,14 @@ namespace nosted_dotnet.MVC.Controllers
                 ProduktId = x.Id, 
                 Model = x.Model, 
                 RegNr = x.RegNr, 
-                Type = x.Type
+                Type = x.Type,
+                Garanti = x.Garanti,
             }).ToList();
             model.OrdreList = _ordreRepository.GetAll().Select(x => new OrdreViewModel
             {
                 OrdreId = x.Id, 
                 ServiceDato = x.ServiceDato, 
-                ServiceRep = x.ServiceRep
+                ServiceRep = x.ServiceRep,
             }).ToList();
             return View("Create",model);
         }
@@ -107,6 +108,7 @@ namespace nosted_dotnet.MVC.Controllers
                 RegNr = produkt.UpsertModel.RegNr,
                 Model = produkt.UpsertModel.Model,
                 Type = produkt.UpsertModel.Type,
+                Garanti = produkt.UpsertModel.Garanti,
             };
             _produktRepository.Upsert(pentity);
             
@@ -120,8 +122,9 @@ namespace nosted_dotnet.MVC.Controllers
                 
             };
             _ordreRepository.Upsert(oentity);
-            
-            return Create();
+
+
+            return RedirectToAction("Index");
         }
         
         public IActionResult Details(int id)
@@ -168,6 +171,7 @@ namespace nosted_dotnet.MVC.Controllers
                     RegNr = produkt.RegNr,
                     Model = produkt.Model,
                     Type = produkt.Type,
+                    Garanti = produkt.Garanti,
                     // Add the rest of the properties here...
                 }
             };
@@ -221,12 +225,14 @@ namespace nosted_dotnet.MVC.Controllers
                     RegNr = produkt.RegNr,
                     Model = produkt.Model,
                     Type = produkt.Type,
+                    Garanti = produkt.Garanti,
                     // Add the rest of the properties here...
                 }
             };
 
             return View(model);
         }
+
 
 
         public IActionResult Delete(int id)
@@ -299,7 +305,8 @@ namespace nosted_dotnet.MVC.Controllers
                     //Id = model.Produkt.ProduktId,
                     RegNr = model.Produkt.RegNr,
                     Model = model.Produkt.Model,
-                    Type = model.Produkt.Type
+                    Type = model.Produkt.Type,
+                    Garanti = model.Produkt.Garanti,
                 };
                 _produktRepository.Upsert(produkt);
 

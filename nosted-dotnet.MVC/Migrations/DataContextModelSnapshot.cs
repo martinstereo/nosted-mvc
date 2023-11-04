@@ -319,6 +319,10 @@ namespace nosted_dotnet.MVC.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Garanti")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Model")
                         .HasColumnType("longtext");
 

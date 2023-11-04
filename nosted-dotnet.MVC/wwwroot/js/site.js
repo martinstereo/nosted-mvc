@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-//Ordre sley
+//Ordre slett
 
     function cancelAction() {
         // Redirect to the "Ordre" page

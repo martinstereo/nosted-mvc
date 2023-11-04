@@ -41,8 +41,14 @@ namespace nosted_dotnet.MVC.Data
             .HasOne(o => o.Produkt)
             .WithMany()
             .HasForeignKey(o => o.ProduktId);
-        
-        modelBuilder.Entity<Entities.ServiceSkjema>()
+
+        modelBuilder.Entity<Produkt>()
+            .Property(o => o.Garanti)
+            .IsRequired(); // You can set other constraints here if needed
+
+        base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Entities.ServiceSkjema>()
             .HasOne(o => o.Ordre)
             .WithMany()
             .HasForeignKey(o => o.OrdreId);

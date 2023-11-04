@@ -11,8 +11,8 @@ using nosted_dotnet.MVC.Data;
 namespace nosted_dotnet.MVC.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231102170129_Initial")]
-    partial class Initial
+    [Migration("20231104171200_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -321,6 +321,10 @@ namespace nosted_dotnet.MVC.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("Garanti")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Model")
                         .HasColumnType("longtext");

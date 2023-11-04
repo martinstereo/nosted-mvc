@@ -3,7 +3,7 @@
 @model List<nosted_dotnet.MVC.Models.Ordre.OrdreIndexViewModel>
 
 <h1>Ordrelinje</h1>
-
+<script src="js/site.js" defer></script>
 <a href="@Url.Action("Create", "Ordre")" class="btn btn-primary">Opprett ny ordre</a>
 
 <table class="table">
@@ -12,7 +12,7 @@
         <th>Fornavn</th>
         <th>Etternavn</th>
         <th>Type</th>
-            <th>Registreringsnummer</th>
+        <th>Registreringsnummer</th>
         <th>Service Dato</th>
         <th></th>
     </tr>
@@ -33,8 +33,8 @@
                 <a class="btn btn-primary" href="@Url.Action("CreateSjekkliste", "Ordre", new { id = ordre.OrdreId })">Sjekkliste</a>
             </td>
             <td>
-                    <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Detaljer</a>
-                    <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Redigere</a>
+                <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Detaljer</a>
+                <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Redigere</a>
             </td>
             <td>
                 @using (Html.BeginForm("Delete", "Ordre", new { id = ordre.OrdreId }, FormMethod.Post))
