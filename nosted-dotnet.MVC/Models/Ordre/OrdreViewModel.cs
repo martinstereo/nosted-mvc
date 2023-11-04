@@ -26,7 +26,9 @@ namespace nosted_dotnet.MVC.Models.Ordre
         public DateTime ServiceDato { get; set; }
         [Required(ErrorMessage = "Vennligst fyll ut service / rep garanti.")]
         public string ServiceRep { get; set; }
-        
+
+ 
+      
         //KUNDE
         public int KundeId { get; set; }
         [Required(ErrorMessage = "Vennligst oppgi kundenavn.")]
@@ -53,7 +55,9 @@ namespace nosted_dotnet.MVC.Models.Ordre
 
         [Required(ErrorMessage = "Vennligst oppgi årsmodell.")]
         public string Model { get; set; }
-        
+        public string Garanti { get; set; }
+
+
         //ADRESSE
         public int AdreseeId { get; set; }
         [Required(ErrorMessage = "Vennligst oppgi Postkode.")]

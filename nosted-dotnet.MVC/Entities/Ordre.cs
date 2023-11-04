@@ -10,7 +10,9 @@ namespace nosted_dotnet.MVC.Entities
         //public string Status { get; set; }
         //public DateTime Opprettet { get; set; }
         public DateTime ServiceDato { get; set; }
-        public string ServiceRep { get; set; }
+        public string ServiceRep{ get; set; }
+        
+       
 
         public virtual Kunde Kunde { get; set; }
         public int KundeId { get; set; }
