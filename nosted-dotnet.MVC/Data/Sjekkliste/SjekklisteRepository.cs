@@ -14,8 +14,7 @@ public class SjekklisteRepository : ISjekklisteRepository
     }
         public Sjekkliste Get(int id)
         {
-            return _dataContext.Sjekkliste
-                .FirstOrDefault(x => x.Id == id);
+            return _dataContext.Sjekkliste.FirstOrDefault(x => x.Id == id);
         }
         
         public Sjekkliste GetByOrderId(int id)
@@ -62,6 +61,12 @@ public class SjekklisteRepository : ISjekklisteRepository
             }
 
             _dataContext.SaveChanges();
+        }
+        
+        public List<Sjekkliste> GetAllSjekklister()
+        {
+            // Retrieve all Sjekkliste entities from the database
+            return _dataContext.Sjekkliste.ToList();
         }
         
     }

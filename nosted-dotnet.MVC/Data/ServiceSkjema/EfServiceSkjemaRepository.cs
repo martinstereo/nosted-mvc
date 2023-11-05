@@ -43,4 +43,10 @@ public class EfServiceSkjemaRepository : IServiceSkjemaRepository
         _dataContext.Add(serviceSkjema);
         _dataContext.SaveChanges();
     }
+    
+    public List<Entities.ServiceSkjema> GetAllServiceSchemas()
+    {
+        return _dataContext.ServiceSkjema.ToList();
+    }
+    
 }
