@@ -85,8 +85,6 @@ namespace nosted_dotnet.MVC.Controllers
             _serviceSkjemaRepository.Upsert(serviceSkjema);
             return RedirectToAction("Index", "Ordre");
         }
-
-        
         
     }
     
