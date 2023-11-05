@@ -1,6 +1,8 @@
 ﻿using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Entities;
 using Microsoft.AspNetCore.Mvc;
+using nosted_dotnet.MVC.Data;
+using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
 
@@ -13,13 +15,17 @@ namespace nosted_dotnet.MVC.Controllers
         private readonly IKundeRepository _kundeRepository;
         private readonly IProduktRepository _produktRepository;
         private readonly IOrdreRepository _ordreRepository;
+        private readonly IServiceSkjemaRepository _serviceSkjemaRepository;
+        private readonly ISjekklisteRepository _sjekklisteRepository;
         
-        public OrdreController(IAdresseRepository adresseRepository, IKundeRepository kundeRepository, IProduktRepository produktRepository, IOrdreRepository ordreRepository)
+        public OrdreController(IAdresseRepository adresseRepository, IKundeRepository kundeRepository, IProduktRepository produktRepository, IOrdreRepository ordreRepository, IServiceSkjemaRepository serviceSkjemaRepository, ISjekklisteRepository sjekklisteRepository)
         {
             _adresseRepository = adresseRepository;
             _produktRepository = produktRepository;
             _kundeRepository = kundeRepository;
             _ordreRepository = ordreRepository;
+            _serviceSkjemaRepository = serviceSkjemaRepository;
+            _sjekklisteRepository = sjekklisteRepository;
         }
 
         public IActionResult Index()
@@ -60,13 +66,14 @@ namespace nosted_dotnet.MVC.Controllers
                 ProduktId = x.Id, 
                 Model = x.Model, 
                 RegNr = x.RegNr, 
-                Type = x.Type
+                Type = x.Type,
+                Garanti = x.Garanti,
             }).ToList();
             model.OrdreList = _ordreRepository.GetAll().Select(x => new OrdreViewModel
             {
                 OrdreId = x.Id, 
                 ServiceDato = x.ServiceDato, 
-                ServiceRep = x.ServiceRep
+                ServiceRep = x.ServiceRep,
             }).ToList();
             return View("Create",model);
         }
@@ -101,6 +108,7 @@ namespace nosted_dotnet.MVC.Controllers
                 RegNr = produkt.UpsertModel.RegNr,
                 Model = produkt.UpsertModel.Model,
                 Type = produkt.UpsertModel.Type,
+                Garanti = produkt.UpsertModel.Garanti,
             };
             _produktRepository.Upsert(pentity);
             
@@ -114,8 +122,9 @@ namespace nosted_dotnet.MVC.Controllers
                 
             };
             _ordreRepository.Upsert(oentity);
-            
-            return Create();
+
+
+            return RedirectToAction("Index");
         }
         
         public IActionResult Details(int id)
@@ -162,12 +171,15 @@ namespace nosted_dotnet.MVC.Controllers
                     RegNr = produkt.RegNr,
                     Model = produkt.Model,
                     Type = produkt.Type,
+                    Garanti = produkt.Garanti,
                     // Add the rest of the properties here...
                 }
             };
 
             return View(model);
         }
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             var ordre = _ordreRepository.Get(id);
@@ -175,6 +187,7 @@ namespace nosted_dotnet.MVC.Controllers
             {
                 return NotFound();
             }
+
 
             var kunde = _kundeRepository.Get(ordre.KundeId);
             var adresse = _adresseRepository.Get(kunde.AdresseId);
@@ -191,7 +204,7 @@ namespace nosted_dotnet.MVC.Controllers
                 },
                 Kunde = new OrdreViewModel()
                 {
-                    KundeId = kunde.Id,
+                    //KundeId = kunde.Id,
                     Fornavn = kunde.Navn,
                     Etternavn = kunde.Etternavn,
                     Email = kunde.Email,
@@ -200,7 +213,7 @@ namespace nosted_dotnet.MVC.Controllers
                 },
                 Adresse = new OrdreViewModel()
                 {
-                    AdreseeId = adresse.Id,
+                    //AdreseeId = adresse.Id,
                     Postkode = adresse.Postkode,
                     Poststed = adresse.Poststed,
                     Gate = adresse.Gate,
@@ -208,17 +221,50 @@ namespace nosted_dotnet.MVC.Controllers
                 },
                 Produkt = new OrdreViewModel()
                 {
-                    ProduktId = produkt.Id,
+                    //ProduktId = produkt.Id,
                     RegNr = produkt.RegNr,
                     Model = produkt.Model,
                     Type = produkt.Type,
+                    Garanti = produkt.Garanti,
                     // Add the rest of the properties here...
                 }
             };
 
             return View(model);
         }
-        
+
+
+
+        public IActionResult Delete(int id)
+        {
+            var ordre = _ordreRepository.Get(id);
+            if (ordre == null)
+            {
+                return NotFound();
+            }
+
+            return View(ordre); // Pass the order to the delete confirmation view
+        }
+
+
+
+        [HttpPost]
+
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var ordre = _ordreRepository.Get(id);
+            if (ordre == null)
+            {
+                return NotFound();
+            }
+
+            // Perform the deletion of the order
+            _ordreRepository.Delete(id);
+
+            return RedirectToAction("Index");
+        }
+
+
         [HttpPost]
         public IActionResult Edit(OrdreEditViewModel model)
         {
@@ -229,9 +275,8 @@ namespace nosted_dotnet.MVC.Controllers
                     Id = model.Ordre.OrdreId,
                     ServiceDato = model.Ordre.ServiceDato,
                     ServiceRep = model.Ordre.ServiceRep,
-                    // Add the rest of the Ordre properties here...
-                    KundeId = model.Kunde.KundeId,
-                    ProduktId = model.Produkt.ProduktId
+                    //KundeId = model.Kunde.KundeId,
+                    //ProduktId = model.Produkt.ProduktId
                 };
                 _ordreRepository.Upsert(ordre);
 
@@ -242,8 +287,7 @@ namespace nosted_dotnet.MVC.Controllers
                     Etternavn = model.Kunde.Etternavn,
                     Email = model.Kunde.Email,
                     TelefonNr = model.Kunde.TelefonNr,
-                    AdresseId = model.Adresse.AdreseeId
-                    // Add the rest of the Kunde properties here...
+                    //AdresseId = model.Adresse.AdreseeId
                 };
                 _kundeRepository.Upsert(kunde);
 
@@ -253,17 +297,16 @@ namespace nosted_dotnet.MVC.Controllers
                     Postkode = model.Adresse.Postkode,
                     Poststed = model.Adresse.Poststed,
                     Gate = model.Adresse.Gate
-                    // Add the rest of the Adresse properties here...
                 };
                 _adresseRepository.Upsert(adresse);
 
                 var produkt = new Produkt
                 {
-                    Id = model.Produkt.ProduktId,
+                    //Id = model.Produkt.ProduktId,
                     RegNr = model.Produkt.RegNr,
                     Model = model.Produkt.Model,
-                    Type = model.Produkt.Type
-                    // Add the rest of the Produkt properties here...
+                    Type = model.Produkt.Type,
+                    Garanti = model.Produkt.Garanti,
                 };
                 _produktRepository.Upsert(produkt);
 
@@ -273,7 +316,46 @@ namespace nosted_dotnet.MVC.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        
+        // Service Skjema
+        public IActionResult CreateServiceSkjema(int id)
+        {
+            // Try to get the existing ServiceSkjema for the order
+            var serviceSkjema = _serviceSkjemaRepository.GetByOrderId(id);
 
+            if (serviceSkjema == null)
+            {
+                // If there's no existing ServiceSkjema for the order, create a new one
+                serviceSkjema = new ServiceSkjema
+                {
+                    OrdreId = id
+                };
+                _serviceSkjemaRepository.Upsert(serviceSkjema);
+            }
+
+            // Redirect to the ServiceSkjema index page with the ServiceSkjema id
+            return RedirectToAction("Upsert", "ServiceSkjema", new { id = serviceSkjema.Id });
+        }
+        
+        public IActionResult CreateSjekkliste(int id)
+        {
+            // Try to get the existing ServiceSkjema for the order
+            var sjekkliste = _sjekklisteRepository.GetByOrderId(id);
+
+            if (sjekkliste == null)
+            {
+                // If there's no existing ServiceSkjema for the order, create a new one
+                sjekkliste = new Sjekkliste
+                {
+                    OrdreId = id
+                };
+                _sjekklisteRepository.Upsert(sjekkliste);
+            }
+
+            // Redirect to the ServiceSkjema index page with the ServiceSkjema id
+            return RedirectToAction("Upsert", "Sjekkliste", new { id = sjekkliste.Id });
+        }
+        
 
         [HttpPost]
         public IActionResult Create(OrderFullViewModel model)

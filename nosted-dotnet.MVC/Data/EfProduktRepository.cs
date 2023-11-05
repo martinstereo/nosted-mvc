@@ -1,7 +1,7 @@
 ﻿using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Entities;
 
-namespace nosted_dotnet.MVC.Repositories
+namespace nosted_dotnet.MVC.Data
 {
     public class EfProduktRepository : IProduktRepository
     {
@@ -24,11 +24,13 @@ namespace nosted_dotnet.MVC.Repositories
         public void Upsert(Produkt produkt)
         {
             var existing = Get(produkt.Id);
-            if(existing != null)
+            if (existing != null)
             {
                 existing.RegNr = produkt.RegNr;
                 existing.Model = produkt.Model;
                 existing.Type = produkt.Type;
+                existing.Garanti = produkt.Garanti; // Set the 'Garanti' property
+
                 _dataContext.SaveChanges();
                 return;
             }

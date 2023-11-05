@@ -9,8 +9,7 @@ namespace nosted_dotnet.MVC.Entities
         public string? RegNr { get; set; }
         public string? Model { get; set; }
         public string? Type { get; set; }
+        public string? Garanti { get; set; }
 
-        //public virtual Kunde Kunde { get; set; }
-        //public int KundeId { get; set; }
     }
 }

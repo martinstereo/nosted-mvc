@@ -1,0 +1,94 @@
+@model nosted_dotnet.MVC.Models.ServiceSkjema.ServiceSkjemaViewModel
+@*@model nosted_dotnet.MVC.Models.Ordre.OrdreEditViewModel*@
+
+@{
+    ViewData["Title"] = "Serviceskjema";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/ServiceSkjema.css">
+
+    <title>Serviceskjema</title>
+</head>
+<body>
+<div class="container">
+    <h1>Serviceskjema</h1>
+        
+<form asp-controller="ServiceSkjema" asp-action="Upsert" method="post">
+    @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
+    
+    @* <div>
+                <h2>Kunde:</h2>
+                <p>KundeId: @Model.Kunde.KundeId</p>
+                <p>Fornavn: @Model.Kunde.Fornavn</p>
+                <p>Etternavn: @Model.Kunde.Etternavn</p>
+            </div>
+            <div>
+                <h2>Produkt:</h2>
+                <p>ProduktId: @Model.Produkt.ProduktId</p>
+                <p>RegNr: @Model.Produkt.RegNr</p>
+                <p>Model: @Model.Produkt.Model</p>
+                <p>Model: @Model.Produkt.Type</p>
+            </div>*@
+            
+    
+    <input type="hidden" asp-for="@Model.Id" class="col-4" />
+    <input type="hidden" asp-for="@Model.OrdreId" class="col-4" />
+            
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.AvtaltKunde">Avtalt Kunde</label>
+                    <input asp-for="@Model.AvtaltKunde" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.DelerBrukt">Deler Brukt</label>
+                    <input asp-for="@Model.DelerBrukt" class="form-control" />
+                </div>
+            </div>
+        </div>
+                
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.DelerSkiftet">Deler Skiftet</label>
+                    <input asp-for="@Model.DelerSkiftet" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.RepBeskrivelse">Rep Beskrivelse</label>
+                    <input asp-for="@Model.RepBeskrivelse" class="form-control" />
+                </div>
+            </div>
+        </div>
+                
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label asp-for="@Model.ArbeidsTimer">Arbeids Timer</label>
+                    <input asp-for="@Model.ArbeidsTimer" class="form-control" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group mb-3">
+                    <label asp-for="@Model.UtførtAv">Utført Av</label>
+                    <input asp-for="@Model.UtførtAv" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="btn btn-primary" type="submit">Save</button>
+            
+        </form>
+    </div>
+</body>
+</html>

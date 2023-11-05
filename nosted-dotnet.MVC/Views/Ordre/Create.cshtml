@@ -16,81 +16,102 @@
 </head>
 <body>
  
-    <div class="container">
+<div class="container">
     <h1>Ny ordre</h1>
-        <p>Fyll ut kundeinformasjon</p>
-        <form asp-controller="Ordre" asp-action="Post" method="post">
-            @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
+    <p>Fyll ut kundeinformasjon</p>
+    <form asp-controller="Ordre" asp-action="Post" method="post">
+        @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
+        <div class="column">
+            <div class="label"><label asp-for="@Model.UpsertModel.Fornavn">Navn</label></div>
+            <!-- Razor will automatically HTML-encode alfakrollModel.Fornavn osv -->
+            <input class="input" asp-for="@Model.UpsertModel.Fornavn"  type="text" id="Fornavn" />
+        </div>
+        <div class="column">
+            <div class="label"><label asp-for="@Model.UpsertModel.Etternavn">Etternavn</label></div>
+            <!-- Razor will automatically HTML-encode alfakrollModel.Etternavn osv -->
+            <input class="input" asp-for="@Model.UpsertModel.Etternavn"  type="text" id="Etternavn" />
+            
             <div class="column">
-                <div class="label"><label asp-for="@Model.UpsertModel.Fornavn"></label></div>
-                <!-- Razor will automatically HTML-encode alfakrollModel.Fornavn osv -->
-                <input class="input" asp-for="@Model.UpsertModel.Fornavn"  type="text" id="Fornavn" />
+                <div class="label"><label asp-for="@Model.UpsertModel.Email">Email</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Email"  type="text" id="Email" />
             </div>
             <div class="column">
-                <div class="label"><label asp-for="@Model.UpsertModel.Etternavn"></label></div>
-                <!-- Razor will automatically HTML-encode alfakrollModel.Etternavn osv -->
-                <input class="input" asp-for="@Model.UpsertModel.Etternavn"  type="text" id="Etternavn" />
-            
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Email"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Email"  type="text" id="Email" />
-                </div>
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.TelefonNr"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.TelefonNr"  type="text" id="TelefonNr"  />
-                </div>
-            
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Postkode"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Postkode"  type="number" id="Postkode" />
-                </div>
-                <div class="clear"></div>
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Poststed"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Poststed"  type="text" id="Poststed" />
-                </div>
-                <div class="clear"></div>
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Gate"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Gate"  type="text" id="Gate"  />
-                </div>
-                <div class="clear"></div>
-            
-
-            
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.RegNr"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.RegNr"  type="text" id="RegNr" />
-                </div>
-                <div class="clear"></div>
-
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Type"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Type"  type="text" id="Type" />
-                </div>
-                <div class="column">
-                    <div class="label"><label asp-for="@Model.UpsertModel.Model"></label></div>
-                    <input class="input" asp-for="@Model.UpsertModel.Model"  type="text" id="Model" />
-                </div>
-                <div class="clear"></div>
+                <div class="label"><label asp-for="@Model.UpsertModel.TelefonNr">Telefonnummer</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.TelefonNr"  type="text" id="TelefonNr"  />
             </div>
+                
             
             <div class="column">
-                <div class="label"><label asp-for="@Model.UpsertModel.ServiceDato"></label></div>
-                <input class="input" asp-for="@Model.UpsertModel.ServiceDato" type="datetime-local" id="ServiceDato"  />
+                <div class="label"><label asp-for="@Model.UpsertModel.Postkode">Postkode</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Postkode"  type="number" id="Postkode" />
             </div>
             <div class="clear"></div>
-            
             <div class="column">
-                <div class="label"><label asp-for="@Model.UpsertModel.ServiceRep"></label></div>
-                <input class="input" asp-for="@Model.UpsertModel.ServiceRep"  type="text" id="ServiceRep" />
+                <div class="label"><label asp-for="@Model.UpsertModel.Poststed">Poststed</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Poststed"  type="text" id="Poststed" />
             </div>
             <div class="clear"></div>
-            <div>
-                <button class="button" type="submit">Opprett ny ordre</button>
-                <a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Ordrelinje</a>
+            <div class="column">
+                <div class="label"><label asp-for="@Model.UpsertModel.Gate">Gate</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Gate"  type="text" id="Gate"  />
             </div>
+            <div class="clear"></div>
+                
+            
+            <div class="column">
+                <div class="label"><label asp-for="@Model.UpsertModel.RegNr">Registreringsnummer</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.RegNr"  type="text" id="RegNr" />
+            </div>
+            <div class="clear"></div>
+
+            <div class="column">
+                <div class="label"><label asp-for="@Model.UpsertModel.Type">Type</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Type"  type="text" id="Type" />
+            </div>
+            <div class="column">
+                <div class="label"><label asp-for="@Model.UpsertModel.Model">Modell</label></div>
+                <input class="input" asp-for="@Model.UpsertModel.Model"  type="text" id="Model" />
+            </div>
+            <div class="clear"></div>
+        </div>
+            
+        <div class="column">
+            <div class="label">
+                <label asp-for="@Model.UpsertModel.ServiceDato">Service Dato</label>
+            </div>
+            <input class="input" asp-for="@Model.UpsertModel.ServiceDato" type="date" id="ServiceDato" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="clear"></div>
+
+            
+        <div class="column">
+            <div class="label"><label asp-for="@Model.UpsertModel.ServiceRep">Service eller Reparasjon</label></div>
+            <input class="input" asp-for="@Model.UpsertModel.ServiceRep"  type="text" id="ServiceRep" />
+        </div>
+        <div class="clear"></div>
+        
+        
+        <div class="column">
+            <label>
+                <input type="radio" asp-for="@Model.UpsertModel.Garanti" value="Yes" />
+                Garanti: JA
+            </label>
+        </div>
+        <div class="column">
+            <label>
+                <input type="radio" asp-for="@Model.UpsertModel.Garanti" value="No" />
+                Garanti: NEI
+            </label>
+        </div>
+
+
+        <div>
+            <button class="button" type="submit">Opprett ny ordre</button>
+            <a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Ordrelinje</a>
+        </div>
     </form>
-    </div>
+</div>
+   
+
 </body>
 </html>

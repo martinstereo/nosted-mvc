@@ -3,4 +3,34 @@
 
 // Write your JavaScript code.
 
+// checklist js
+// Venter på at HTML dokumentet blir ferdig loada
+document.addEventListener("DOMContentLoaded", function () {
+    // får en referanse til "Alle ok" knappen 
+    const selectAllOkButton = document.getElementById("selectAllOkButton");
+    // legger til en click event listener til knappen 
+    selectAllOkButton.addEventListener("click", function () {
+      //her blir alle ok knappene trykka
+        const okRadioButtons = document.querySelectorAll('input[type="radio"][value="1"]');
+        // for løkke som går gjennom alle ok knappene 
+        okRadioButtons.forEach(function (radioButton) {
+            // sjekker at alle er selecta 
+            radioButton.checked = true;
+        });
+    });
+});
+
+
+//Ordre slett
+
+    function cancelAction() {
+        // Redirect to the "Ordre" page
+        window.location.href = '/Ordre';
+    }
+
+    // Attach the cancelAction function to the "Avbryt" button's click event
+    document.getElementById('DeleteButton').addEventListener('click', cancelAction);
+
+
+
 

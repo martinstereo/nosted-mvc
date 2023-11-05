@@ -3,81 +3,63 @@
 
 <h1>Edit Ordre</h1>
 
-<a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Back to List</a>
+<a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Tilbake til ordrelinje</a>
 
 <form asp-controller="Ordre" asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.OrdreId"></label></div>
-        <input class="input" asp-for="@Model.Ordre.OrdreId" type="text" id="OrdreId" readonly />
+        <div class="label"><label asp-for="@Model.Ordre.ServiceDato">Service dato</label></div>
+        <input class="input" asp-for="@Model.Ordre.ServiceDato" type="date" id="ServiceDato" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.ServiceDato"></label></div>
-        <input class="input" asp-for="@Model.Ordre.ServiceDato" type="datetime-local" id="ServiceDato"  />
+        <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
+        <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
     </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.ServiceRep"></label></div>
-        <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep"  />
-    </div>
-    
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.KundeId"></label></div>
-        <input class="input" asp-for="@Model.Kunde.KundeId" type="text" id="KundeId" readonly />
-    </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Fornavn"></label></div>
-        <input class="input" asp-for="@Model.Kunde.Fornavn" type="text" id="Fornavn"  />
-    </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Etternavn"></label></div>
-        <input class="input" asp-for="@Model.Kunde.Etternavn" type="text" id="Etternavn"  />
-    </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Email"></label></div>
-        <input class="input" asp-for="@Model.Kunde.Email" type="text" id="Email"  />
-    </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.TelefonNr"></label></div>
-        <input class="input" asp-for="@Model.Kunde.TelefonNr" type="text" id="TelefonNr"  />
-    </div>
-    
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.AdreseeId"></label></div>
-        <input class="input" asp-for="@Model.Adresse.AdreseeId" type="text" id="AdresseId" readonly />
+        <div class="label"><label asp-for="@Model.Kunde.Fornavn">Fornavn</label></div>
+        <input class="input" asp-for="@Model.Kunde.Fornavn" type="text" id="Fornavn" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Postkode"></label></div>
-        <input class="input" asp-for="@Model.Adresse.Postkode" type="text" id="Postkode"  />
+        <div class="label"><label asp-for="@Model.Kunde.Etternavn">Etternavn</label></div>
+        <input class="input" asp-for="@Model.Kunde.Etternavn" type="text" id="Etternavn" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Poststed"></label></div>
-        <input class="input" asp-for="@Model.Adresse.Poststed" type="text" id="Poststed"  />
+        <div class="label"><label asp-for="@Model.Kunde.Email">E-post</label></div>
+        <input class="input" asp-for="@Model.Kunde.Email" type="text" id="Email" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Gate"></label></div>
-        <input class="input" asp-for="@Model.Adresse.Gate" type="text" id="Gate"  />
+        <div class="label"><label asp-for="@Model.Kunde.TelefonNr">Telefonnummer</label></div>
+        <input class="input" asp-for="@Model.Kunde.TelefonNr" type="text" id="TelefonNr" />
     </div>
-    
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.ProduktId"></label></div>
-        <input class="input" asp-for="@Model.Produkt.ProduktId" type="text" id="ProduktId" readonly />
+        <div class="label"><label asp-for="@Model.Adresse.Postkode">Postnummer</label></div>
+        <input class="input" asp-for="@Model.Adresse.Postkode" type="text" id="Postkode" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.RegNr"></label></div>
-        <input class="input" asp-for="@Model.Produkt.RegNr" type="text" id="RegNr"  />
+        <div class="label"><label asp-for="@Model.Adresse.Poststed">Poststed</label></div>
+        <input class="input" asp-for="@Model.Adresse.Poststed" type="text" id="Poststed" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.Model"></label></div>
-        <input class="input" asp-for="@Model.Produkt.Model" type="text" id="Model"  />
+        <div class="label"><label asp-for="@Model.Adresse.Gate">Gate</label></div>
+        <input class="input" asp-for="@Model.Adresse.Gate" type="text" id="Gate" />
     </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.Type"></label></div>
-        <input class="input" asp-for="@Model.Produkt.Type" type="text" id="Type"  />
-    </div>
-    
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Produkt.RegNr">Registreringsnummer</label></div>
+        <input class="input" asp-for="@Model.Produkt.RegNr" type="text" id="RegNr" />
+    </div>
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Produkt.Model">Modell</label></div>
+        <input class="input" asp-for="@Model.Produkt.Model" type="text" id="Model" />
+    </div>
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Produkt.Type">Type</label></div>
+        <input class="input" asp-for="@Model.Produkt.Type" type="text" id="Type" />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Lagre endringer</button>
 </form>
