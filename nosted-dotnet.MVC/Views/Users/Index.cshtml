@@ -5,38 +5,33 @@
 }
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="~/js/site.js"></script>
-        <script>
-            function confirmDelete() {
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/site.js"></script>
+    <script>
+        function confirmDelete() {
             return confirm("Er du sikker på at du vil slette denne brukeren?");
-            }
-        </script>
-    </head>
+        }
+ 
+            document.getElementById("submitFormBtn").addEventListener("click", function (event) {
+                event.preventDefault(); // For å hindre standard lenkeoppførsel
+                document.querySelector("form").submit(); // Sender skjemaet
+            });
 
-<body>
+    </script>
+</head>
 
-    <h1>Bruker</h1>
-    
-    <!-- Skjema som skal lage nye rader (Bruker) -->
-    <form action="/Bruker/AddRow" method="post">
-        <!-- Form fields for new attributes -->
-        <input type="number" name="BrukerID" placeholder="Bruker ID">
-        <input type="text" name="Fornavn" placeholder="Fornavn">
-        <input type="text" name="Etternavn" placeholder="Etternavn">
-               
-        <input type="checkbox" name="Admin" id="isAdmin" placeholder="Administrator">
-            
+<body class="container">
 
-        <input type="submit" value="Add">
-    </form>
-
-
+    <h1>Brukere</h1>
+    <a href="@Url.Action("Add", "Users")" class="btn btn-primary">Legg til bruker</a>
     <!-- Table for Bruker -->
-    <table class="table table-bordered">
+    <table class="table table-bordered mt-4">
         <thead>
             <tr>
                 <th>Bruker-ID:</th>
+                <th>E-post:</th>
                 <th>Fornavn:</th>
                 <th>Etternavn:</th>
                 <th>Stilling:</th>
@@ -51,9 +46,11 @@
                     <td>@user.Fornavn</td>
                     <td>@user.Etternavn</td>
                     <td>@user.Email</td>
+                    <td>@user.IsAdmin</td>
                     <td>
+                        <a href="@Url.Action("Edit", "Users", new { id = user.Id })">Rediger</a>
                         <!-- Add a delete button that sends a POST request to DeleteUser action -->
-                        <form method="post" action="/Bruker/DeleteUser" onsubmit="return confirmDelete()">
+                        <form method="post" action="/Users/Delete" onsubmit="return confirmDelete()">
                             <input type="hidden" name="brukerId" value="@user.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
