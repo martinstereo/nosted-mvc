@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nosted_dotnet.MVC.Tests.Controller
+namespace nosted_dotnet.MVC.Tests.Controllers
 {
-    public class HomeControllerTest
+    public class HomeControllerUnitTest
     {
     }
 }
