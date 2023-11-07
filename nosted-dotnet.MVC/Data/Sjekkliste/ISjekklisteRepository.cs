@@ -10,6 +10,7 @@ public interface ISjekklisteRepository
     public void Upsert(Sjekkliste sjekkliste);
 
     public Sjekkliste GetByOrderId(int id);
+    List<Sjekkliste> GetAllSjekklister();
 }
 
 

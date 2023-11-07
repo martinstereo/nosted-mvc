@@ -1,0 +1,28 @@
+@model List<nosted_dotnet.MVC.Entities.ServiceSkjema>
+
+<h1>Serviceskjema oversikt:</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Serviceskjema ID</th>
+        <th>Kunde navn</th>
+        <th>Ordre ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var schema in Model)
+    {
+        <tr>
+            <td>@schema.Id</td>
+            <td>@schema.AvtaltKunde</td>
+            <td>@schema.OrdreId</td>
+            <td>
+                <td>
+                <a href="@Url.Action("GeneratePdf", "PdfGeneration", new { orderType = "serviceSkjema", orderId = schema.Id })">Opprett PDF</a>
+                </td>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
