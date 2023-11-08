@@ -17,9 +17,9 @@ public class ServiceSkjemaOversiktController : Controller
     public IActionResult Index()
     {
         // Retrieve a list of service schemas from the repository
-        var serviceSkjemas = _serviceSkjemaRepository.GetAllServiceSchemas();
+        var serviceSkjema = _serviceSkjemaRepository.GetAllServiceSchemas();
 
         // You can pass this list to a view to display the overview
-        return View(serviceSkjemas);
+        return View(serviceSkjema);
     }
 }

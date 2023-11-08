@@ -40,4 +40,8 @@
     <ProjectReference Include="..\nosted-dotnet.MVC\nosted-dotnet.MVC.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
 </Project>
