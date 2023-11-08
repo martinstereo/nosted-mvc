@@ -1,6 +1,9 @@
 ﻿@using nosted_dotnet.MVC.Models.Ordre
 @model OrdreEditViewModel
 
+<link rel="stylesheet" type="text/css" href="~/css/OrdreSkjema.css">
+
+
 <h1>Edit Ordre</h1>
 
 <a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Tilbake til ordrelinje</a>
@@ -43,7 +46,7 @@
         <input class="input" asp-for="@Model.Adresse.Poststed" type="text" id="Poststed" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Gate">Gate</label></div>
+        <div class="label"><label asp-for="@Model.Adresse.Gate">Gatenavn</label></div>
         <input class="input" asp-for="@Model.Adresse.Gate" type="text" id="Gate" />
     </div>
 
@@ -59,7 +62,8 @@
         <div class="label"><label asp-for="@Model.Produkt.Type">Type</label></div>
         <input class="input" asp-for="@Model.Produkt.Type" type="text" id="Type" />
     </div>
-
-
-    <button type="submit" class="btn btn-primary">Lagre endringer</button>
 </form>
+
+<button type="submit" class="btn btn-primary">Lagre endringer</button>
+
+

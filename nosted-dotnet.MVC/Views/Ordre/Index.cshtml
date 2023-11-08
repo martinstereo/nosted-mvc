@@ -2,7 +2,7 @@
 
 @model List<nosted_dotnet.MVC.Models.Ordre.OrdreIndexViewModel>
 
-<h1>Ordrelinje</h1>
+<h1>Ordre Oversikt</h1>
 <script src="js/site.js" defer></script>
 <a href="@Url.Action("Create", "Ordre")" class="btn btn-primary">Opprett ny ordre</a>
 
@@ -27,14 +27,14 @@
             <td>@ordre.RegNr</td>
             <td>@ordre.ServiceDato</td>
             <td>
-                <a class="btn btn-primary" href="@Url.Action("CreateServiceSkjema", "Ordre", new { id = ordre.OrdreId })">Service Skjema</a>
+                <a class="btn btn-primary" href="@Url.Action("CreateServiceSkjema", "Ordre", new { id = ordre.OrdreId })">Serviceskjema</a>
             </td>
             <td>
                 <a class="btn btn-primary" href="@Url.Action("CreateSjekkliste", "Ordre", new { id = ordre.OrdreId })">Sjekkliste</a>
             </td>
             <td>
                 <a href="@Url.Action("Details", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Detaljer</a>
-                <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Redigere</a>
+                <a href="@Url.Action("Edit", "Ordre", new { id = ordre.OrdreId })" class="btn btn-primary">Rediger</a>
             </td>
             <td>
                 @using (Html.BeginForm("Delete", "Ordre", new { id = ordre.OrdreId }, FormMethod.Post))

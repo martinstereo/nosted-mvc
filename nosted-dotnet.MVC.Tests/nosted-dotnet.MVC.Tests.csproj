@@ -41,5 +41,4 @@
     <ProjectReference Include="..\nosted-dotnet.MVC\nosted-dotnet.MVC.csproj" />
   </ItemGroup>
 
-
 </Project>
