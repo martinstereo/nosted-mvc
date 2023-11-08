@@ -12,13 +12,3 @@ public interface ISjekklisteRepository
     public Sjekkliste GetByOrderId(int id);
     List<Sjekkliste> GetAllSjekklister();
 }
-
-
-/*
-public interface ISjekklisteRepository
-{
-    List<Sjekkliste> HentAlle();
-    int Opprett(Sjekkliste sjekkliste);
-    Sjekkliste? Hent(int id);
-}
-*/

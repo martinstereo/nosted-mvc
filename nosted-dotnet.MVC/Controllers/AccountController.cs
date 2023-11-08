@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Security.Claims;
 using nosted_dotnet.MVC.Models.Account;
 using nosted_dotnet.MVC.Data;
-using nosted_dotnet.MVC.Entites;
+using nosted_dotnet.MVC.Entities;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using nosted_dotnet.MVC.Data.User;
 

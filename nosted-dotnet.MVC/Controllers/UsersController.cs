@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Data.User;
-using nosted_dotnet.MVC.Entites;
+using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Users;
 
 namespace nosted_dotnet.MVC.Controllers
