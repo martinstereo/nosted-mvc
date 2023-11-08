@@ -1,5 +1,5 @@
 ﻿
-using nosted_dotnet.MVC.Entites;
+using nosted_dotnet.MVC.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace nosted_dotnet.MVC.Models.Users

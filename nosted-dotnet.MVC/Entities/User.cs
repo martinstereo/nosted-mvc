@@ -1,7 +1,7 @@
 using nosted_dotnet.MVC.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace nosted_dotnet.MVC.Entites;
+namespace nosted_dotnet.MVC.Entities;
 
 [Table("Users")]
 public class UserEntity

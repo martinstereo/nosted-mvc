@@ -11,6 +11,25 @@ public class SjekklisteControllerUnitTest
 {
 
     [Fact]
+    public void Index_ActionExecutes_ReturnsViewWithSjekklisteList()
+    {
+        // Arrange
+        var mockRepo = new Mock<ISjekklisteRepository>();
+        var sjekklisteList = new List<Sjekkliste> { new Sjekkliste(), new Sjekkliste() };
+        mockRepo.Setup(repo => repo.GetAllSjekklister()).Returns(sjekklisteList);
+        var controller = new SjekklisteController(mockRepo.Object);
+
+        // Act
+        var result = controller.Index();
+
+        // Assert
+        var viewResult = Assert.IsType<ViewResult>(result);
+        var model = Assert.IsType<List<Sjekkliste>>(viewResult.Model);
+        Assert.Equal(sjekklisteList, model);
+    }
+
+
+    [Fact]
     public void Create_ActionExecutes_RedirectsToUpsertView()
     {
         // Arrange

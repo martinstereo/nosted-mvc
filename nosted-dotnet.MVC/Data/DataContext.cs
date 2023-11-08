@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using nosted_dotnet.MVC.Entites;
 using nosted_dotnet.MVC.Entities;
 
 namespace nosted_dotnet.MVC.Data
