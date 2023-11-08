@@ -19,7 +19,7 @@ namespace nosted_dotnet.MVC.Tests.Repository
         public SjekklisteRepositoryUnitTest()
         {
 
-            _context = new TestDataContext
+            //_context = new TestDataContext
             {
                 // Kan ikke være null?
                 /*Users = null,
