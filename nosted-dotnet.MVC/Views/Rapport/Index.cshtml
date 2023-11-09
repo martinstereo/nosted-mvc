@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+        <!-- Add more headers as needed -->
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.DataList)
+    {
+        <tr>
+            <td>@item.Property1</td>
+            <td>@item.Property2</td>
+            <!-- Add more columns as needed -->
+        </tr>
+    }
+    </tbody>
+</table>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(Json.Serialize(Model.ChartLabels)),
+            datasets: [{
+                label: 'Data',
+                data: @Html.Raw(Json.Serialize(Model.ChartData)),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            // Customize chart options
+        }
+    });
+</script>
