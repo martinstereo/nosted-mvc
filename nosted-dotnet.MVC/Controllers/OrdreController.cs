@@ -201,27 +201,21 @@ namespace nosted_dotnet.MVC.Controllers
                     ServiceDato = ordre.ServiceDato,
                     ServiceRep = ordre.ServiceRep,
                     // Add the rest of the properties here...
-                },
-                Kunde = new OrdreViewModel()
-                {
-                    //KundeId = kunde.Id,
+               
+                    KundeId = kunde.Id,
                     Fornavn = kunde.Navn,
                     Etternavn = kunde.Etternavn,
                     Email = kunde.Email,
                     TelefonNr = kunde.TelefonNr,
                     // Add the rest of the properties here...
-                },
-                Adresse = new OrdreViewModel()
-                {
-                    //AdreseeId = adresse.Id,
+           
+                    AdreseeId = adresse.Id,
                     Postkode = adresse.Postkode,
                     Poststed = adresse.Poststed,
                     Gate = adresse.Gate,
                     // Add the rest of the properties here...
-                },
-                Produkt = new OrdreViewModel()
-                {
-                    //ProduktId = produkt.Id,
+             
+                    ProduktId = produkt.Id,
                     RegNr = produkt.RegNr,
                     Model = produkt.Model,
                     Type = produkt.Type,
@@ -282,31 +276,31 @@ namespace nosted_dotnet.MVC.Controllers
 
                 var kunde = new Kunde
                 {
-                    Id = model.Kunde.KundeId,
-                    Navn = model.Kunde.Fornavn,
-                    Etternavn = model.Kunde.Etternavn,
-                    Email = model.Kunde.Email,
-                    TelefonNr = model.Kunde.TelefonNr,
+                    Id = model.Ordre.KundeId,
+                    Navn = model.Ordre.Fornavn,
+                    Etternavn = model.Ordre.Etternavn,
+                    Email = model.Ordre.Email,
+                    TelefonNr = model.Ordre.TelefonNr,
                     //AdresseId = model.Adresse.AdreseeId
                 };
                 _kundeRepository.Upsert(kunde);
 
                 var adresse = new Adresse
                 {
-                    Id = model.Adresse.AdreseeId,
-                    Postkode = model.Adresse.Postkode,
-                    Poststed = model.Adresse.Poststed,
-                    Gate = model.Adresse.Gate
+                    Id = model.Ordre.AdreseeId,
+                    Postkode = model.Ordre.Postkode,
+                    Poststed = model.Ordre.Poststed,
+                    Gate = model.Ordre.Gate
                 };
                 _adresseRepository.Upsert(adresse);
 
                 var produkt = new Produkt
                 {
-                    //Id = model.Produkt.ProduktId,
-                    RegNr = model.Produkt.RegNr,
-                    Model = model.Produkt.Model,
-                    Type = model.Produkt.Type,
-                    Garanti = model.Produkt.Garanti,
+                    Id = model.Ordre.ProduktId,
+                    RegNr = model.Ordre.RegNr,
+                    Model = model.Ordre.Model,
+                    Type = model.Ordre.Type,
+                    Garanti = model.Ordre.Garanti,
                 };
                 _produktRepository.Upsert(produkt);
 
