@@ -44,3 +44,20 @@
 }
 
 
+
+
+
+/* Add spacing between form elements and buttons */
+.column, .label, .input, .btn {
+    margin-right: 10px; /* Adjust the value as needed */
+}
+
+.clear {
+    clear: both;
+}
+
+/* Additional styles for the buttons */
+.btn {
+    margin-top: 10px; /* Adjust the value as needed */
+    margin-bottom: 10px;
+}

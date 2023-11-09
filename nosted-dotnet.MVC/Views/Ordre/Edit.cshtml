@@ -6,19 +6,12 @@
 
 <h1>Edit Ordre</h1>
 
-<a href="@Url.Action("Index", "Ordre")" class="btn btn-primary">Tilbake til ordrelinje</a>
+<a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Tilbake til ordrelinje</a>
 
 <form asp-controller="Ordre" asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
 
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.ServiceDato">Service dato</label></div>
-        <input class="input" asp-for="@Model.Ordre.ServiceDato" type="date" id="ServiceDato" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
-    </div>
-    <div class="column">
-        <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
-        <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
-    </div>
+   
 
     <div class="column">
         <div class="label"><label asp-for="@Model.Kunde.Fornavn">Fornavn</label></div>
@@ -28,6 +21,9 @@
         <div class="label"><label asp-for="@Model.Kunde.Etternavn">Etternavn</label></div>
         <input class="input" asp-for="@Model.Kunde.Etternavn" type="text" id="Etternavn" />
     </div>
+    
+    <div class="clear"></div>
+
     <div class="column">
         <div class="label"><label asp-for="@Model.Kunde.Email">E-post</label></div>
         <input class="input" asp-for="@Model.Kunde.Email" type="text" id="Email" />
@@ -36,6 +32,7 @@
         <div class="label"><label asp-for="@Model.Kunde.TelefonNr">Telefonnummer</label></div>
         <input class="input" asp-for="@Model.Kunde.TelefonNr" type="text" id="TelefonNr" />
     </div>
+    <div class="clear"></div>
 
     <div class="column">
         <div class="label"><label asp-for="@Model.Adresse.Postkode">Postnummer</label></div>
@@ -49,6 +46,8 @@
         <div class="label"><label asp-for="@Model.Adresse.Gate">Gatenavn</label></div>
         <input class="input" asp-for="@Model.Adresse.Gate" type="text" id="Gate" />
     </div>
+    
+    <div class="clear"></div>
 
     <div class="column">
         <div class="label"><label asp-for="@Model.Produkt.RegNr">Registreringsnummer</label></div>
@@ -62,8 +61,20 @@
         <div class="label"><label asp-for="@Model.Produkt.Type">Type</label></div>
         <input class="input" asp-for="@Model.Produkt.Type" type="text" id="Type" />
     </div>
+    
+    <div class="clear"></div>
+
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Ordre.ServiceDato">Service dato</label></div>
+        <input class="input" asp-for="@Model.Ordre.ServiceDato" type="date" id="ServiceDato" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+    </div>
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
+        <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
+    </div>
+
 </form>
 
-<button type="submit" class="btn btn-primary">Lagre endringer</button>
+<button type="submit" class="btn btn-warning">Lagre endringer</button>
 
 
