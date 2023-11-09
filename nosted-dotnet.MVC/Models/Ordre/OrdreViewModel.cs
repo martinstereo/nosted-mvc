@@ -32,7 +32,7 @@ namespace nosted_dotnet.MVC.Models.Ordre
         //KUNDE
         public int KundeId { get; set; }
         [Required(ErrorMessage = "Vennligst oppgi kundenavn.")]
-        public string Fornavn { get; set; }
+        public string? Fornavn { get; set; }
         
         [Required(ErrorMessage = "Vennligst oppgi kundenavn.")]
         public string Etternavn { get; set; }

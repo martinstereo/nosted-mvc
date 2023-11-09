@@ -1,4 +1,5 @@
 ﻿@using nosted_dotnet.MVC.Models.Ordre
+@using nosted_dotnet.MVC.Entities
 @model OrdreEditViewModel
 
 <link rel="stylesheet" type="text/css" href="~/css/OrdreSkjema.css">
@@ -10,57 +11,63 @@
 
 <form asp-controller="Ordre" asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
-
-   
+    <input type="hidden" asp-for="@Model.Ordre.OrdreId"/>
+    <input type="hidden" asp-for="@Model.Ordre.ProduktId"/>
+    <input type="hidden" asp-for="@Model.Ordre.KundeId"/>
+    <input type="hidden" asp-for="@Model.Ordre.AdreseeId"/>
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Fornavn">Fornavn</label></div>
-        <input class="input" asp-for="@Model.Kunde.Fornavn" type="text" id="Fornavn" />
+        <div class="label"><label asp-for="@Model.Ordre.Fornavn">Fornavn</label></div>
+        <input class="input" asp-for="@Model.Ordre.Fornavn" type="text" id="Fornavn" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Etternavn">Etternavn</label></div>
-        <input class="input" asp-for="@Model.Kunde.Etternavn" type="text" id="Etternavn" />
+        <div class="label"><label asp-for="@Model.Ordre.Etternavn">Etternavn</label></div>
+        <input class="input" asp-for="@Model.Ordre.Etternavn" type="text" id="Etternavn" />
     </div>
     
     <div class="clear"></div>
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.Email">E-post</label></div>
-        <input class="input" asp-for="@Model.Kunde.Email" type="text" id="Email" />
+        <div class="label"><label asp-for="@Model.Ordre.Email">E-post</label></div>
+        <input class="input" asp-for="@Model.Ordre.Email" type="text" id="Email" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Kunde.TelefonNr">Telefonnummer</label></div>
-        <input class="input" asp-for="@Model.Kunde.TelefonNr" type="text" id="TelefonNr" />
+        <div class="label"><label asp-for="@Model.Ordre.TelefonNr">Telefonnummer</label></div>
+        <input class="input" asp-for="@Model.Ordre.TelefonNr" type="text" id="TelefonNr" />
     </div>
     <div class="clear"></div>
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Postkode">Postnummer</label></div>
-        <input class="input" asp-for="@Model.Adresse.Postkode" type="text" id="Postkode" />
+        <div class="label"><label asp-for="@Model.Ordre.Postkode">Postnummer</label></div>
+        <input class="input" asp-for="@Model.Ordre.Postkode" type="text" id="Postkode" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Poststed">Poststed</label></div>
-        <input class="input" asp-for="@Model.Adresse.Poststed" type="text" id="Poststed" />
+        <div class="label"><label asp-for="@Model.Ordre.Poststed">Poststed</label></div>
+        <input class="input" asp-for="@Model.Ordre.Poststed" type="text" id="Poststed" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Adresse.Gate">Gatenavn</label></div>
-        <input class="input" asp-for="@Model.Adresse.Gate" type="text" id="Gate" />
+        <div class="label"><label asp-for="@Model.Ordre.Gate">Gatenavn</label></div>
+        <input class="input" asp-for="@Model.Ordre.Gate" type="text" id="Gate" />
     </div>
     
     <div class="clear"></div>
 
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.RegNr">Registreringsnummer</label></div>
-        <input class="input" asp-for="@Model.Produkt.RegNr" type="text" id="RegNr" />
+        <div class="label"><label asp-for="@Model.Ordre.RegNr">Registreringsnummer</label></div>
+        <input class="input" asp-for="@Model.Ordre.RegNr" type="text" id="RegNr" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.Model">Modell</label></div>
-        <input class="input" asp-for="@Model.Produkt.Model" type="text" id="Model" />
+        <div class="label"><label asp-for="@Model.Ordre.Model">Modell</label></div>
+        <input class="input" asp-for="@Model.Ordre.Model" type="text" id="Model" />
     </div>
     <div class="column">
-        <div class="label"><label asp-for="@Model.Produkt.Type">Type</label></div>
-        <input class="input" asp-for="@Model.Produkt.Type" type="text" id="Type" />
+        <div class="label"><label asp-for="@Model.Ordre.Type">Type</label></div>
+        <input class="input" asp-for="@Model.Ordre.Type" type="text" id="Type" />
     </div>
+     <div class="column">
+            <div class="label"><label asp-for="@Model.Ordre.Garanti">Garanti</label></div>
+            <input class="input" asp-for="@Model.Ordre.Garanti" type="text" id="Garanti" />
+        </div>
     
     <div class="clear"></div>
 
@@ -72,9 +79,10 @@
         <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
         <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
     </div>
-
+    <button type="submit" class="btn btn-warning">Lagre endringer</button>
+    
 </form>
 
-<button type="submit" class="btn btn-warning">Lagre endringer</button>
+
 
 
