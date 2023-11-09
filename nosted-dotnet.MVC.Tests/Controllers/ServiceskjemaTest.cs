@@ -7,11 +7,11 @@ using nosted_dotnet.MVC.Models.ServiceSkjema;
 using System.Diagnostics;
 using Xunit;
 
-namespace nosted_dotnet.MVC.Tests
+namespace nosted_dotnet.MVC.Tests.Controllers
 {
     public class ServiceSkjemaControllerTests
     {
-     
+
 
         // 1. Test for the Upsert (GET) action
         [Fact]
