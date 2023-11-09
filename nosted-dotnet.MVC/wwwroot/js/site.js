@@ -39,5 +39,3 @@ function cancelAction() {
 
 // Attach the cancelAction function to the "Avbryt" button's click event
 document.getElementById('tilbakeButton').addEventListener('click', cancelAction);
-
-
