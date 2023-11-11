@@ -12,8 +12,50 @@ namespace nosted_dotnet.MVC.Tests.Controllers
     public class ServiceSkjemaControllerTests
     {
 
+        
+        // Sjekker om indexmetoden i ServiceSkjemaController returnerer et view fylt med en liste over ServiceSkjemaer
+        [Fact]
+        public void Index_ReturnsViewWithServiceSchemas()
+        {
+            // Arrange
+            var mockServiceSkjemaRepository = new Mock<IServiceSkjemaRepository>();
+            var controller = new ServiceSkjemaController(mockServiceSkjemaRepository.Object);
 
-        // 1. Test for the Upsert (GET) action
+            // Mocking GetAllServiceSchemas to return a list of ServiceSkjema
+            mockServiceSkjemaRepository.Setup(repo => repo.GetAllServiceSchemas())
+                .Returns(new List<ServiceSkjema> { new ServiceSkjema(), new ServiceSkjema() });
+
+            // Act
+            var result = controller.Index() as ViewResult;
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.IsType<List<ServiceSkjema>>(result.Model);
+            Assert.Equal(2, (result.Model as List<ServiceSkjema>).Count);
+        }
+
+        
+        // Sikrer at Create-metoden i ServiceSkjemaController videresender til Upsert-handlingen.
+        [Fact]
+        public void Create_RedirectsToUpsert()
+        {
+            // Arrange
+            int ordreId = 1; // Define a sample ordreId
+            var mockServiceSkjemaRepository = new Mock<IServiceSkjemaRepository>();
+            var controller = new ServiceSkjemaController(mockServiceSkjemaRepository.Object);
+
+            // Act
+            var result = controller.Create(ordreId) as RedirectToActionResult;
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal("Upsert", result.ActionName);
+            Assert.Null(result.ControllerName); // Assert no specific controller name is set
+        }
+
+        
+
+        // Bekrefter om Upsert-handlingen (GET) i ServiceSkjemaController returnerer en visning, og forventer et ServiceSkjema-objekt.
         [Fact]
         public void Upsert_Get_ReturnsView()
         {
@@ -36,7 +78,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers
 
 
 
-        // 2. Test for the Upsert (POST) action with valid model
+        // Sjekker om Upsert-handlingen (POST) i ServiceSkjemaController med en gyldig modell videresender til "Index"-handlingen i "Ordre"-kontrolleren.
         [Fact]
         public void Upsert_Post_ValidModel_ReturnsRedirectToAction()
         {
@@ -57,7 +99,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers
 
 
 
-        // 3. Test for the Upsert (POST) action with invalid model
+        // Bekrefter at Upsert-handlingen (POST) i ServiceSkjemaController med en ugyldig modell returnerer en visning som inneholder valideringsfeil.
         [Fact]
         public void Upsert_Post_InvalidModel_ReturnsViewWithErrors()
         {
@@ -74,7 +116,6 @@ namespace nosted_dotnet.MVC.Tests.Controllers
             Assert.NotNull(result);
             Assert.True(result.ViewData.ModelState.ErrorCount > 0);
         }
-
-        // Additional tests for edge cases and other scenarios can be added here.
+        
     }
 }
