@@ -9,5 +9,7 @@ namespace nosted_dotnet.MVC.Data
         List<UserEntity> GetUsers();
         void Delete(string email);
         bool IsAdmin(string email);
+        UserEntity GetUserByEmail(string email);
+
     }
 }

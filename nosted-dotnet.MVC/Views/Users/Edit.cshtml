@@ -1,9 +1,9 @@
 ﻿@using nosted_dotnet.MVC.Models.Users
 @model UsersEditViewModel
 
-<h1>Edit Bruker</h1>
+<h1>Rediger Bruker</h1>
 
-<a href="@Url.Action("Index", "Users")" class="btn btn-primary">Back to List</a>
+<a href="@Url.Action("Index", "Users")" class="btn btn-primary">Tilbake til oversikt</a>
 
 
 <form asp-controller="Users" asp-action="Edit" method="post">
@@ -30,9 +30,10 @@
     </div>
 
 
-  <!--  <div class="form-check">
+   <div class="form-check">
         <input asp-for="IsAdmin" class="form-check-input" />
         <label asp-for="IsAdmin" class="form-check-label"></label>
-    </div> -->
+    </div>
+
     <button type="submit" class="btn btn-primary">Oppdater</button>
 </form>

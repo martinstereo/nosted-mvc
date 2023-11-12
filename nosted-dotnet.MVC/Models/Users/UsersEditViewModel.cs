@@ -11,12 +11,8 @@ public class UsersEditViewModel
             UpsertModel = new List<UserEntity>();
         }
 
-        public UserViewModel Id { get; }
-        public UserViewModel Fornavn { get; set; }
-        public UserViewModel Etternavn { get; set; }
-        public UserViewModel Email { get; set; }
         public bool IsAdmin { get; set; }
-        public UserViewModel User { get; internal set; }
+        public UserViewModel User { get; set; }
         public List<UserEntity> UpsertModel { get; }
         public UserEntity UpdatedUser { get; }
 }
