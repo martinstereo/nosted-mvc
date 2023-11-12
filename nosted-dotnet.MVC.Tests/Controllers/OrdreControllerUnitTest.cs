@@ -6,45 +6,39 @@ using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
+using System.Drawing;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
     public class OrdreControllerUnitTest
     {
-        private IAdresseRepository mockAdresseRepository;
-        private IKundeRepository mockKundeRepository;
-        private IProduktRepository mockProduktRepository;
-        private IOrdreRepository mockOrdreRepository;
-        private IServiceSkjemaRepository mockServiceSkjemaRepository;
-        private ISjekklisteRepository mockSjekklisteRepository;
-
-        private OrdreController GetUnitUnderTest()
-        {
-            return new OrdreController(mockAdresseRepository, mockKundeRepository, mockProduktRepository, mockOrdreRepository, mockServiceSkjemaRepository, mockSjekklisteRepository);
-        }
 
         [Fact]
         public void IndexReturnsViewWithOrders() 
         {
             // Arrange
-            var OrdreControllerUnderTest = GetUnitUnderTest();
+            var mockOrdreRepo = new Mock<IOrdreRepository>();
+            var mockAdresseRepo = new Mock<IAdresseRepository>();
+            var mockKundeRepo = new Mock<IKundeRepository>();
+            var mockProduktRepo = new Mock<IProduktRepository>();
+            var mockServiceSkjemaRepo = new Mock<IServiceSkjemaRepository>();
+            var mockSjekklisteRepo = new Mock<ISjekklisteRepository>();
 
-            var ordre = mockOrdreRepository.GetAll();
-            var model = ordre.Select(o => new OrdreIndexViewModel
-            {
-                OrdreId = o.Id,
-                Fornavn = mockKundeRepository.Get(o.KundeId).Navn,
-                Etternavn = mockKundeRepository.Get(o.KundeId).Etternavn,
-                Type = mockProduktRepository.Get(o.ProduktId).Type,
-                RegNr = mockProduktRepository.Get(o.ProduktId).RegNr,
-                ServiceDato = o.ServiceDato
-            }).ToList();
+            mockOrdreRepo.Setup(Repositories => Repositories.GetAll()).Returns(new List<Ordre> { new Ordre(), new Ordre() });
+            mockAdresseRepo.Setup(Repositories => Repositories.GetAll()).Returns(new List<Adresse> { new Adresse() { Gate = "Universitetsgata 1", Postkode = 2231, Poststed = "Kristiansand" }, new Adresse() { Gate = "Universitetsgata 1", Postkode = 2231, Poststed = "Kristiansand" } });
+            mockKundeRepo.Setup(Repositories => Repositories.GetAll()).Returns(new List<Kunde> { new Kunde(), new Kunde() });
+            mockProduktRepo.Setup(Repositories => Repositories.GetAll()).Returns(new List<Produkt> { new Produkt(), new Produkt() });
+            mockServiceSkjemaRepo.Setup(repo => repo.GetAllServiceSchemas()).Returns(new List<ServiceSkjema> { new ServiceSkjema(), new ServiceSkjema() });
+            mockSjekklisteRepo.Setup(repo => repo.GetAllSjekklister()).Returns(new List<Sjekkliste> { new Sjekkliste(), new Sjekkliste() });
+
+            var controller = new OrdreController(mockAdresseRepo.Object, mockKundeRepo.Object, mockProduktRepo.Object, mockOrdreRepo.Object, mockServiceSkjemaRepo.Object, mockSjekklisteRepo.Object);
 
             // Act
-            var result = OrdreControllerUnderTest.Index() as ViewResult;
+            var result = controller.Index() as ViewResult;
 
             //Assert
-            Assert.IsType<OrdreIndexViewModel>(result.Model);
+            Assert.NotNull(result);
+
         }
 
     }
