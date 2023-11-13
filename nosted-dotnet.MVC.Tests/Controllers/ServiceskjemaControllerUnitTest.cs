@@ -4,8 +4,6 @@ using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.ServiceSkjema;
-using System.Diagnostics;
-using Xunit;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
@@ -60,7 +58,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers
         public void Upsert_Get_ReturnsView()
         {
             // Arrange
-            int serviceSkjemaId = 1; // Provide a valid serviceSkjemaId
+            int serviceSkjemaId = 1;
             var mockServiceSkjemaRepository = new Mock<IServiceSkjemaRepository>();
             var controller = new ServiceSkjemaController(mockServiceSkjemaRepository.Object);
 
@@ -83,7 +81,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers
         public void Upsert_Post_ValidModel_ReturnsRedirectToAction()
         {
             // Arrange
-            var model = new ServiceSkjemaViewModel(); // Provide a valid model
+            var model = new ServiceSkjemaViewModel(); // gir en valid model
             var mockServiceSkjemaRepository = new Mock<IServiceSkjemaRepository>();
             var controller = new ServiceSkjemaController(mockServiceSkjemaRepository.Object);
 
@@ -104,7 +102,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers
         public void Upsert_Post_InvalidModel_ReturnsViewWithErrors()
         {
             // Arrange
-            var model = new ServiceSkjemaViewModel(); // Provide an invalid model
+            var model = new ServiceSkjemaViewModel(); // gir en invalid model
             var mockServiceSkjemaRepository = new Mock<IServiceSkjemaRepository>();
             var controller = new ServiceSkjemaController(mockServiceSkjemaRepository.Object);
             controller.ModelState.AddModelError("Property", "Error Message");
