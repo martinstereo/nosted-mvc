@@ -1,0 +1,72 @@
+﻿@model List<nosted_dotnet.MVC.Models.Users.UserViewModel>
+
+@{
+    ViewData["Title"] = "Bruker";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/js/site.js"></script>
+    <script>
+        function confirmDelete() {
+            return confirm("Er du sikker på at du vil slette denne brukeren?");
+        }
+ 
+            document.getElementById("submitFormBtn").addEventListener("click", function (event) {
+                event.preventDefault(); // For å hindre standard lenkeoppførsel
+                document.querySelector("form").submit(); // Sender skjemaet
+            });
+
+    </script>
+</head>
+
+<body class="container">
+
+    <h1>Brukere</h1>
+    <a href="@Url.Action("Add", "Users")" class="btn btn-primary">Legg til bruker</a>
+    <!-- Table for Bruker -->
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th>Bruker-ID:</th>
+                <th>E-post:</th>
+                <th>Fornavn:</th>
+                <th>Etternavn:</th>
+                <th>Stilling:</th>
+                <th>Action:</th> <!-- Add a new column for the delete button -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Fornavn</td>
+                    <td>@user.Etternavn</td>
+                    <td>@user.Email</td>
+                    <td>@user.IsAdmin</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Users", new { email = user.Email })" class="btn btn-primary">Rediger</a>
+                        <!-- Add a delete button that sends a POST request to DeleteUser action -->
+                  <!--      <form method="post" action="/Users/Delete" onsubmit="return confirmDelete()">
+                            <input type="hidden" name="email" value="@user.Email" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                          -->
+                        @using (Html.BeginForm("Delete", "Users", new { email = user.Email }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="submit" value="Slett" class="btn btn-danger" />
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</body>
+</html>

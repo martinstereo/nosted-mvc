@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34009.444
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nosted-dotnet.MVC", "nosted-dotnet.MVC/nosted-dotnet.MVC.csproj", "{2159E222-042A-419F-A5F5-0E20967088AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nosted-dotnet.MVC", "nosted-dotnet.MVC\nosted-dotnet.MVC.csproj", "{2159E222-042A-419F-A5F5-0E20967088AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nosted-dotnet.MVC.Tests", "nosted-dotnet.MVC.Tests/nosted-dotnet.MVC.Tests.csproj", "{4618BAF4-1741-430B-9CC2-61288C35CC68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nosted-dotnet.MVC.Tests", "nosted-dotnet.MVC.Tests\nosted-dotnet.MVC.Tests.csproj", "{4618BAF4-1741-430B-9CC2-61288C35CC68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

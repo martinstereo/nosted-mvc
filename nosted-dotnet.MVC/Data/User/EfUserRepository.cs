@@ -21,7 +21,7 @@ namespace nosted_dotnet.MVC.Data.User
             dataContext.SaveChanges();
         }
 
-        private UserEntity? GetUserByEmail(string email)
+        public UserEntity? GetUserByEmail(string email)
         {
             return dataContext.Users.FirstOrDefault(x => x.Email == email);
         }
@@ -53,7 +53,8 @@ namespace nosted_dotnet.MVC.Data.User
             existingUser.Fornavn = user.Fornavn;
             existingUser.Etternavn = user.Etternavn;
             dataContext.SaveChanges();
-            SetRoles(user.Email, roles);
+          //  SetRoles(user.Email, roles);
         }
+
     }
 }

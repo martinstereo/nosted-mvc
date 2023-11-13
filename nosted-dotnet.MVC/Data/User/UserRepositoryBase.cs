@@ -13,8 +13,12 @@ namespace nosted_dotnet.MVC.Data.User
         public bool IsAdmin(string email)
         {
             var identity = userManager.Users.FirstOrDefault(x => x.Email == email);
+            if (identity != null) 
+            {
             var existingRoles = userManager.GetRolesAsync(identity).Result;
             return existingRoles.FirstOrDefault(x => x == "Administrator") != null;
+            }
+            return false;
         }
 
         protected void SetRoles(string userEmail, List<string> roles)
