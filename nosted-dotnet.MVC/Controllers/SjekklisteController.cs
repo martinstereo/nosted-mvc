@@ -15,6 +15,15 @@ namespace nosted_dotnet.MVC.Controllers
             _sjekklisteRepository = sjekklisteRepository;
         }
         
+        public IActionResult Index()
+        {
+            // Retrieve a list of Sjekkliste from the repository
+            var sjekkliste = _sjekklisteRepository.GetAllSjekklister();
+
+            // Pass the list to a view to display the overview
+            return View(sjekkliste);
+        }
+        
         //skal være knytta til ordre? så når en ny ordre blir laget blir en sjekkliste laget
         public IActionResult Create(int ordreId)
         {

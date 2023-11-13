@@ -1,7 +1,7 @@
 ﻿.column {
     width: 25%;
-    float: left;
     box-sizing: border-box;
+    display: inline-table;
 }
 
 
@@ -22,8 +22,8 @@
     margin-bottom: 10px;
 }
 
-.button {
-    background-color: forestgreen;
+.lagreButton {
+    background-color: darkorange;
     color: #FFF;
     border: none;
     padding: 10px 20px;
@@ -32,4 +32,32 @@
 
 .clear {
     clear: both;
+}
+
+
+.tilbakeButton {
+    background-color: grey;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+
+
+
+
+/* Add spacing between form elements and buttons */
+.column, .label, .input, .btn {
+    margin-right: 10px; /* Adjust the value as needed */
+}
+
+.clear {
+    clear: both;
+}
+
+/* Additional styles for the buttons */
+.btn {
+    margin-top: 10px; /* Adjust the value as needed */
+    margin-bottom: 10px;
 }

@@ -1,6 +1,6 @@
 namespace nosted_dotnet.MVC.Tests
 {
-    public class UnitTest1
+    public class ExampleTest
     {
         [Fact]
         public void Test1()

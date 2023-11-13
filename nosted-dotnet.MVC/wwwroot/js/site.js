@@ -32,5 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('DeleteButton').addEventListener('click', cancelAction);
 
 
+function cancelAction() {
+    // Redirect to the "Ordre" page
+    window.location.href = '/Ordre';
+}
 
-
+// Attach the cancelAction function to the "Avbryt" button's click event
+document.getElementById('tilbakeButton').addEventListener('click', cancelAction);

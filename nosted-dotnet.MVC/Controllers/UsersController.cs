@@ -8,9 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Owin.BuilderProperties;
 using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Data.User;
-using nosted_dotnet.MVC.Entites;
 using nosted_dotnet.MVC.Entities;
-using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Models.Users;
 
 namespace nosted_dotnet.MVC.Controllers
