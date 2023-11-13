@@ -1,4 +1,4 @@
-﻿using nosted_dotnet.MVC.Entites;
+﻿using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
 using System.ComponentModel.DataAnnotations;
 
