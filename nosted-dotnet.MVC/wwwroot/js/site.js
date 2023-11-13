@@ -6,20 +6,36 @@
 // checklist js
 // Venter på at HTML dokumentet blir ferdig loada
 document.addEventListener("DOMContentLoaded", function () {
-    // får en referanse til "Alle ok" knappen 
-    const selectAllOkButton = document.getElementById("selectAllOkButton");
-    // legger til en click event listener til knappen 
-    selectAllOkButton.addEventListener("click", function () {
-      //her blir alle ok knappene trykka
-        const okRadioButtons = document.querySelectorAll('input[type="radio"][value="1"]');
-        // for løkke som går gjennom alle ok knappene 
-        okRadioButtons.forEach(function (radioButton) {
-            // sjekker at alle er selecta 
+    // får en referanse til "Alle ok" knappene 
+    const selectAllOkButtonMekanisk = document.getElementById("selectAllOkButtonMekanisk");
+    const selectAllOkButtonHydraulisk = document.getElementById("selectAllOkButtonHydraulisk");
+    const selectAllOkButtonElektrisk = document.getElementById("selectAllOkButtonElektrisk");
+
+    // legger til en click event listener til hver knapp 
+    selectAllOkButtonMekanisk.addEventListener("click", function () {
+        // her blir alle ok knappene i mekanisk kategori trykka
+        const okRadioButtonsMekanisk = document.querySelectorAll('.mekanisk');
+        okRadioButtonsMekanisk.forEach(function (radioButton) {
+            radioButton.checked = true;
+        });
+    });
+
+    selectAllOkButtonHydraulisk.addEventListener("click", function () {
+        // her blir alle ok knappene i hydraulisk kategori trykka
+        const okRadioButtonsHydraulisk = document.querySelectorAll('.hydraulisk');
+        okRadioButtonsHydraulisk.forEach(function (radioButton) {
+            radioButton.checked = true;
+        });
+    });
+
+    selectAllOkButtonElektrisk.addEventListener("click", function () {
+        // her blir alle ok knappene i elektrisk kategori trykka
+        const okRadioButtonsElektrisk = document.querySelectorAll('.elektrisk');
+        okRadioButtonsElektrisk.forEach(function (radioButton) {
             radioButton.checked = true;
         });
     });
 });
-
 
 //Ordre slett
 
