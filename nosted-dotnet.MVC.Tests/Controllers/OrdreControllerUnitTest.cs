@@ -9,6 +9,8 @@ using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
 using System.Drawing;
 using System.Reflection.Metadata.Ecma335;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text.RegularExpressions;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
@@ -69,34 +71,49 @@ namespace nosted_dotnet.MVC.Tests.Controllers
 
 
             //Act
-            controller.Post(new OrderFullViewModel
-            {
-                UpsertModel = new OrdreViewModel
+            controller.Post(
+                new OrderFullViewModel
                 {
-                    OrdreId = 1,
-                    ServiceDato = new DateTime(2022, 1, 1),
-                    ServiceRep = "Reperasjon",
-
-                    KundeId = 1,
-                    Fornavn = "Per",
-                    Etternavn = "Gunnar",
-                    TelefonNr = "12345678",
-                    Email = "pgunnar@nosted.com",
-
-                    ProduktId = 1,
-                    RegNr = "DD12345",
-                    Type = "Vinsj",
-                    Model = "2023FF",
-                    Garanti = "Nei",
-
-                    AdreseeId = 1,
-                    Postkode = 1234,
-                    Poststed = "Mandal",
-                    Gate = "Mandalsgata 1"
+                    UpsertModel = new OrdreViewModel
+                    {
+                        AdreseeId = 1,
+                        Postkode = 1234,
+                        Poststed = "Mandal",
+                        Gate = "Mandalsgata 1"
+                    }
+                },
+                new OrderFullViewModel
+                {
+                    UpsertModel = new OrdreViewModel
+                    {
+                        KundeId = 1,
+                        Fornavn = "Per",
+                        Etternavn = "Gunnar",
+                        TelefonNr = "12345678",
+                        Email = "pgunnar@nosted.com",
+                    }
+                },
+                new OrderFullViewModel
+                {
+                    UpsertModel = new OrdreViewModel
+                    {
+                        ProduktId = 1,
+                        RegNr = "DD12345",
+                        Type = "Vinsj",
+                        Model = "2023FF",
+                        Garanti = "Nei",
+                    }
+                },
+                new OrderFullViewModel
+                {
+                    UpsertModel = new OrdreViewModel
+                    {
+                        OrdreId = 1,
+                        ServiceDato = new DateTime(2022, 1, 1),
+                        ServiceRep = "Reperasjon"
+                    }
                 }
-            }) ;
-
-
+                ) ;
 
             var sp = mockOrdreRepo
             
