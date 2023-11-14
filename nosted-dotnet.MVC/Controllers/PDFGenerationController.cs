@@ -55,26 +55,25 @@ namespace nosted_dotnet.MVC.Controllers
                             }
 
                         // Add content to the PDF for SjekklisteOrder
-                        document.Add(new Phrase("Verdi 1 = ok, Verdi 2 = defekt, Verdi 3 = bør skiftes"));
                         document.Add(new Paragraph("Sjekkliste ID: " + sjekkliste.Id));
                         //document.Add(new Paragraph("Customer Name: " + sjekkliste.CustomerName));
-                        document.Add(new Paragraph("Clutch Lameller: " + sjekkliste.ClutchLameller));
-                        document.Add(new Paragraph("Bremser BP: " + sjekkliste.BremserBP));
-                        document.Add(new Paragraph("Trommel Lager: " + sjekkliste.TrommelLager));
-                        document.Add(new Paragraph("Kjedestrammer: " + sjekkliste.Kjedestrammer));
-                        document.Add(new Paragraph("Wire: " + sjekkliste.Wire));
-                        document.Add(new Paragraph("Pinion Lager: " + sjekkliste.PinionLager));
-                        document.Add(new Paragraph("Kjedehjul Kile: " + sjekkliste.KjedehjulKile));
-                        document.Add(new Paragraph("Sylinder Lekasje: " + sjekkliste.SylinderLekasje));
-                        document.Add(new Paragraph("Slanger: " + sjekkliste.Slanger));
-                        document.Add(new Paragraph("Hydraulikkblokk Test: " + sjekkliste.HydraulikkblokkTest));
-                        document.Add(new Paragraph("Oljeskifte Tank: " + sjekkliste.OljeskifteTank));
-                        document.Add(new Paragraph("Oljeskifte Girboks: " + sjekkliste.OljeskifteGirboks));
-                        document.Add(new Paragraph("Ringsylinder Tetninger: " + sjekkliste.RingsylinderTetninger));
-                        document.Add(new Paragraph("Bremsesylinder Tetninger: " + sjekkliste.BremsesylinderTetninger));
-                        document.Add(new Paragraph("Ledningsnett: " + sjekkliste.Ledningsnett));
-                        document.Add(new Paragraph("Radio: " + sjekkliste.Radio));
-                        document.Add(new Paragraph("Knappekasse: " + sjekkliste.Knappekasse));
+                        document.Add(new Paragraph("Clutch Lameller: " + GetStatusText(sjekkliste.ClutchLameller)));
+                        document.Add(new Paragraph("Bremser BP: " + GetStatusText(sjekkliste.BremserBP)));
+                        document.Add(new Paragraph("Trommel Lager: " + GetStatusText(sjekkliste.TrommelLager)));
+                        document.Add(new Paragraph("Kjedestrammer: " + GetStatusText(sjekkliste.Kjedestrammer)));
+                        document.Add(new Paragraph("Wire: " + GetStatusText(sjekkliste.Wire)));
+                        document.Add(new Paragraph("Pinion Lager: " + GetStatusText(sjekkliste.PinionLager)));
+                        document.Add(new Paragraph("Kjedehjul Kile: " + GetStatusText(sjekkliste.KjedehjulKile)));
+                        document.Add(new Paragraph("Sylinder Lekasje: " + GetStatusText(sjekkliste.SylinderLekasje)));
+                        document.Add(new Paragraph("Slanger: " + GetStatusText(sjekkliste.Slanger)));
+                        document.Add(new Paragraph("Hydraulikkblokk Test: " + GetStatusText(sjekkliste.HydraulikkblokkTest)));
+                        document.Add(new Paragraph("Oljeskifte Tank: " + GetStatusText(sjekkliste.OljeskifteTank)));
+                        document.Add(new Paragraph("Oljeskifte Girboks: " + GetStatusText(sjekkliste.OljeskifteGirboks)));
+                        document.Add(new Paragraph("Ringsylinder Tetninger: " + GetStatusText(sjekkliste.RingsylinderTetninger)));
+                        document.Add(new Paragraph("Bremsesylinder Tetninger: " + GetStatusText(sjekkliste.BremsesylinderTetninger)));
+                        document.Add(new Paragraph("Ledningsnett: " + GetStatusText(sjekkliste.Ledningsnett)));
+                        document.Add(new Paragraph("Radio: " + GetStatusText(sjekkliste.Radio)));
+                        document.Add(new Paragraph("Knappekasse: " + GetStatusText(sjekkliste.Knappekasse)));
                     }
 
                     else if (orderType == "serviceSkjema")
@@ -106,5 +105,27 @@ namespace nosted_dotnet.MVC.Controllers
                 return null;
             }
         }
+        private string GetStatusText(string statusValue)
+        {
+            if (int.TryParse(statusValue, out int intValue))
+            {
+                switch (intValue)
+                {
+                    case 1:
+                        return "ok";
+                    case 2:
+                        return "defekt";
+                    case 3:
+                        return "bør skiftes";
+                    default:
+                        return "Ukjent status";
+                }
+            }
+            else
+            {
+                return "Ugyldig verdi";
+            }
+        }
+
     }
 }

@@ -6,8 +6,6 @@
     <thead>
     <tr>
         <th>Serviceskjema ID</th>
-        <th>Kunde navn</th>
-        <th>Ordre ID</th>
     </tr>
     </thead>
     <tbody>
@@ -15,8 +13,6 @@
     {
         <tr>
             <td>@schema.Id</td>
-            <td>@schema.AvtaltKunde</td>
-            <td>@schema.OrdreId</td>
             <td>
                 <td>
                 <a href="@Url.Action("GeneratePdf", "PdfGeneration", new { orderType = "serviceSkjema", orderId = schema.Id })">Opprett PDF</a>
