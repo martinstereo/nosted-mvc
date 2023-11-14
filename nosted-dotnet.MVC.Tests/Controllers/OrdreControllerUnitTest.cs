@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Owin.BuilderProperties;
 using Moq;
 using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Data;
@@ -7,6 +8,7 @@ using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
@@ -63,20 +65,47 @@ namespace nosted_dotnet.MVC.Tests.Controllers
         {
             //Arrange
             SetupFakeContext();
-            var controllerUnderTest = GetUnitUnderTest();
+            var controller = GetUnitUnderTest();
 
 
             //Act
-            var result = controllerUnderTest.Post(
-                new Adresse
-                    {
-                        Gate = "Universitetsveien 2",
-                        Postkode = 5543,
-                        Poststed = "Oslo"
+            controller.Post(new OrderFullViewModel
+            {
+                UpsertModel = new OrdreViewModel
+                {
+                    OrdreId = 1,
+                    ServiceDato = new DateTime(2022, 1, 1),
+                    ServiceRep = "Reperasjon",
 
-                    }
+                    KundeId = 1,
+                    Fornavn = "Per",
+                    Etternavn = "Gunnar",
+                    TelefonNr = "12345678",
+                    Email = "pgunnar@nosted.com",
+
+                    ProduktId = 1,
+                    RegNr = "DD12345",
+                    Type = "Vinsj",
+                    Model = "2023FF",
+                    Garanti = "Nei",
+
+                    AdreseeId = 1,
+                    Postkode = 1234,
+                    Poststed = "Mandal",
+                    Gate = "Mandalsgata 1"
+                }
+            }) ;
+
+
+
+            var sp = mockOrdreRepo
+            
+
+            //Assert
+            Assert.Equal(1, sp.Id);
+
+        
                 
-                )
         }
 
     }
