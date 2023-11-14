@@ -61,7 +61,22 @@ namespace nosted_dotnet.MVC.Tests.Controllers
         [Fact]
         public void PostSendsCorrectValuesToRepository()
         {
+            //Arrange
+            SetupFakeContext();
+            var controllerUnderTest = GetUnitUnderTest();
 
+
+            //Act
+            var result = controllerUnderTest.Post(
+                new Adresse
+                    {
+                        Gate = "Universitetsveien 2",
+                        Postkode = 5543,
+                        Poststed = "Oslo"
+
+                    }
+                
+                )
         }
 
     }
