@@ -90,7 +90,7 @@ namespace nosted_dotnet.MVC.Controllers
                         document.Add(new Paragraph("Avtalt Kunde: " + serviceSkjema.AvtaltKunde));
                         document.Add(new Paragraph("Deler Brukt: " + serviceSkjema.DelerBrukt));
                         document.Add(new Paragraph("Reperasjons Beskrivelse: " + serviceSkjema.RepBeskrivelse));
-                        document.Add(new Paragraph("Utført av: " + serviceSkjema.UtførtAv));
+                        document.Add(new Paragraph("Utført av: " + serviceSkjema.UtfortAv));
                     }
                         document.Close();
 
