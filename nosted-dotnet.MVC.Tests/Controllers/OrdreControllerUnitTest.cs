@@ -6,6 +6,8 @@ using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
+using NuGet.Protocol.Core.Types;
+using System.Linq.Expressions;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
@@ -64,6 +66,22 @@ namespace nosted_dotnet.MVC.Tests.Controllers
             SetupFakeContext();
             var controller = GetUnitUnderTest();
 
+            // Capture the argument using Callback during setup
+            Ordre capturedOrder = null;
+            mockOrdreRepo.Setup(repo => repo.Upsert(It.IsAny<Ordre>()))
+                .Callback<Ordre>(ordre => capturedOrder = ordre);
+
+            Adresse capturedAdresse = null;
+            mockAdresseRepo.Setup(repo => repo.Upsert(It.IsAny<Adresse>()))
+                .Callback<Adresse>(adresse => capturedAdresse = adresse);
+
+            Kunde capturedKunde = null;
+            mockKundeRepo.Setup(repo => repo.Upsert(It.IsAny<Kunde>()))
+                .Callback<Kunde>(kunde => capturedKunde = kunde);
+
+            Produkt capturedProdukt = null;
+            mockProduktRepo.Setup(repo => repo.Upsert(It.IsAny<Produkt>()))
+                .Callback<Produkt>(produkt => capturedProdukt = produkt);
 
             //Act
             controller.Post(
@@ -111,19 +129,25 @@ namespace nosted_dotnet.MVC.Tests.Controllers
                 ) ;
 
             //Assert
-            mockOrdreRepo.Verify(repo => repo.Upsert(It.IsAny<Ordre>()), Times.AtLeastOnce);
-            mockOrdreRepo.Verify(repo => repo.Upsert(It.IsAny<Ordre>())).Callback<Ordre>(ordre => capturedOrder = ordre);
-
-
-            //mockAdresseRepo.Verify(repo => repo.Upsert(It.IsAny<Adresse>()), Times.AtLeastOnce);
-            //mockKundeRepo.Verify(repo => repo.Upsert(It.IsAny<Kunde>()), Times.AtLeastOnce);
-            //mockProduktRepo.Verify(repo => repo.Upsert(It.IsAny<Produkt>()), Times.AtLeastOnce);
-
-            Ordre capturedOrder = null;
-            
+                //  This is telling Moq to verify that a specific method on the mocked object has been called with specific arguments.
+                //  specifies that the Upsert-method on the repository should be called with any instance of X as an argument
+            mockOrdreRepo.Verify(repo => repo.Upsert(It.IsAny<Ordre>()), Times.AtLeastOnce);  
+            mockAdresseRepo.Verify(repo => repo.Upsert(It.IsAny<Adresse>()), Times.AtLeastOnce);
+            mockKundeRepo.Verify(repo => repo.Upsert(It.IsAny<Kunde>()), Times.AtLeastOnce);
+            mockProduktRepo.Verify(repo => repo.Upsert(It.IsAny<Produkt>()), Times.AtLeastOnce);
 
             Assert.NotNull(capturedOrder);
             Assert.Equal(1, capturedOrder.Id);
+            
+            Assert.NotNull(capturedAdresse);
+            Assert.Equal(1, capturedAdresse.Id);
+
+            Assert.NotNull(capturedKunde);
+            Assert.Equal(1, capturedKunde.Id);
+            
+            Assert.NotNull(capturedProdukt);
+            Assert.Equal(1, capturedProdukt.Id);
+
         }
 
     }
