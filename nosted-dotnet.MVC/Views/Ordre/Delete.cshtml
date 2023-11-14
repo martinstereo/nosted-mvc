@@ -10,5 +10,5 @@
     @Html.AntiForgeryToken()
     <p>Are you sure you want to delete this ordre?</p>
     <input type="submit" value="Slette" class="btn btn-danger" />
-    <button type="button" class="btn btn-primary" id="DeleteButton">Avbryt</button>
+    <a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Avbryt</a>
 }
