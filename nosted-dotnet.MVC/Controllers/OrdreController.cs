@@ -34,10 +34,10 @@ namespace nosted_dotnet.MVC.Controllers
             var model = ordre.Select(o => new OrdreIndexViewModel
             {
                 OrdreId = o.Id,
-                Fornavn = _kundeRepository.Get(o.KundeId).Navn,
-                Etternavn = _kundeRepository.Get(o.KundeId).Etternavn,
-                Type = _produktRepository.Get(o.ProduktId).Type,
-                RegNr = _produktRepository.Get(o.ProduktId).RegNr,
+                Fornavn = _kundeRepository.Get(o.KundeId)?.Navn,
+                Etternavn = _kundeRepository.Get(o.KundeId)?.Etternavn,
+                Type = _produktRepository.Get(o.ProduktId)?.Type,
+                RegNr = _produktRepository.Get(o.ProduktId)?.RegNr,
                 ServiceDato = o.ServiceDato
             }).ToList();
 
