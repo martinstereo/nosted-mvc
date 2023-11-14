@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Owin.BuilderProperties;
 using Moq;
 using nosted_dotnet.MVC.Controllers;
 using nosted_dotnet.MVC.Data;
@@ -7,10 +6,6 @@ using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
-using System.Drawing;
-using System.Reflection.Metadata.Ecma335;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Text.RegularExpressions;
 
 namespace nosted_dotnet.MVC.Tests.Controllers
 {
@@ -115,14 +110,20 @@ namespace nosted_dotnet.MVC.Tests.Controllers
                 }
                 ) ;
 
-            var sp = mockOrdreRepo
+            //Assert
+            mockOrdreRepo.Verify(repo => repo.Upsert(It.IsAny<Ordre>()), Times.AtLeastOnce);
+            mockOrdreRepo.Verify(repo => repo.Upsert(It.IsAny<Ordre>())).Callback<Ordre>(ordre => capturedOrder = ordre);
+
+
+            //mockAdresseRepo.Verify(repo => repo.Upsert(It.IsAny<Adresse>()), Times.AtLeastOnce);
+            //mockKundeRepo.Verify(repo => repo.Upsert(It.IsAny<Kunde>()), Times.AtLeastOnce);
+            //mockProduktRepo.Verify(repo => repo.Upsert(It.IsAny<Produkt>()), Times.AtLeastOnce);
+
+            Ordre capturedOrder = null;
             
 
-            //Assert
-            Assert.Equal(1, sp.Id);
-
-        
-                
+            Assert.NotNull(capturedOrder);
+            Assert.Equal(1, capturedOrder.Id);
         }
 
     }
