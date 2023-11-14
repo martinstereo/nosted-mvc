@@ -53,7 +53,7 @@ namespace nosted_dotnet.MVC.Controllers
                 DelerBrukt = serviceSkjema.DelerBrukt,
                 DelerSkiftet = serviceSkjema.DelerSkiftet,
                 RepBeskrivelse = serviceSkjema.RepBeskrivelse,
-                UtførtAv = serviceSkjema.UtførtAv,
+                UtførtAv = serviceSkjema.UtfortAv,
                 ArbeidsTimer = serviceSkjema.ArbeidsTimer,
                 OrdreId = serviceSkjema.OrdreId
             };
@@ -83,7 +83,7 @@ namespace nosted_dotnet.MVC.Controllers
                 DelerBrukt = model.DelerBrukt,
                 DelerSkiftet = model.DelerSkiftet,
                 RepBeskrivelse = model.RepBeskrivelse,
-                UtførtAv = model.UtførtAv,
+                UtfortAv = model.UtførtAv,
                 ArbeidsTimer = model.ArbeidsTimer,
                 OrdreId = model.OrdreId
             };

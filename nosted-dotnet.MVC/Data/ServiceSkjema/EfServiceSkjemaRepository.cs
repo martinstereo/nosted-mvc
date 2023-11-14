@@ -35,7 +35,7 @@ public class EfServiceSkjemaRepository : IServiceSkjemaRepository
             existing.DelerBrukt = serviceSkjema.DelerBrukt;
             existing.DelerSkiftet = serviceSkjema.DelerSkiftet;
             existing.RepBeskrivelse = serviceSkjema.RepBeskrivelse;
-            existing.UtførtAv = serviceSkjema.UtførtAv;
+            existing.UtfortAv = serviceSkjema.UtfortAv;
             _dataContext.SaveChanges();
             return;
         }
