@@ -77,11 +77,13 @@
         <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
         <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
     </div>
+    
+    <div class="column">
+        <button type="submit" class="btn btn-warning">Lagre</button>
+        <a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Tilbake</a>
+    </div>
+
 </form>
-
-<button type="submit" class="btn btn-warning">Lagre</button>
-<a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Tilbake</a>
-
 
 
 
