@@ -7,8 +7,6 @@
 
 <h1>Edit Ordre</h1>
 
-<a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Tilbake til ordrelinje</a>
-
 <form asp-controller="Ordre" asp-action="Edit" method="post">
     @Html.AntiForgeryToken()
     <input type="hidden" asp-for="@Model.Ordre.OrdreId"/>
@@ -64,12 +62,12 @@
         <div class="label"><label asp-for="@Model.Ordre.Type">Type</label></div>
         <input class="input" asp-for="@Model.Ordre.Type" type="text" id="Type" />
     </div>
-     <div class="column">
-            <div class="label"><label asp-for="@Model.Ordre.Garanti">Garanti</label></div>
-            <input class="input" asp-for="@Model.Ordre.Garanti" type="text" id="Garanti" />
-        </div>
-    
+
     <div class="clear"></div>
+    <div class="column">
+        <div class="label"><label asp-for="@Model.Ordre.Garanti">Garanti</label></div>
+        <input class="input" asp-for="@Model.Ordre.Garanti" type="text" id="Garanti" />
+    </div>
 
     <div class="column">
         <div class="label"><label asp-for="@Model.Ordre.ServiceDato">Service dato</label></div>
@@ -79,9 +77,10 @@
         <div class="label"><label asp-for="@Model.Ordre.ServiceRep">Service eller Reperasjon</label></div>
         <input class="input" asp-for="@Model.Ordre.ServiceRep" type="text" id="ServiceRep" />
     </div>
-    <button type="submit" class="btn btn-warning">Lagre endringer</button>
-    
 </form>
+
+<button type="submit" class="btn btn-warning">Lagre</button>
+<a href="@Url.Action("Index", "Ordre")" class="btn btn-secondary">Tilbake</a>
 
 
 

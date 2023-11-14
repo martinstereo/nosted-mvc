@@ -22,14 +22,6 @@
     margin-bottom: 10px;
 }
 
-.lagreButton {
-    background-color: darkorange;
-    color: #FFF;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
 .clear {
     clear: both;
 }
