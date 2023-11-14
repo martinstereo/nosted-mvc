@@ -38,7 +38,8 @@ namespace nosted_dotnet.MVC.Tests.Controllers
 
             //Assert
             Assert.NotNull(result);
-
+            Assert.IsType <List<OrdreIndexViewModel>>(result.Model);
+            Assert.Equal(2, (result.Model as List<OrdreIndexViewModel>).Count);
         }
 
     }
