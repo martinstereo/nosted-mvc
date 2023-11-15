@@ -3,7 +3,7 @@
 
 <h1>Rediger Bruker</h1>
 
-<a href="@Url.Action("Index", "Users")" class="btn btn-primary">Tilbake til oversikt</a>
+
 
 
 <form asp-controller="Users" asp-action="Edit" method="post">
@@ -35,5 +35,9 @@
         <label asp-for="IsAdmin" class="form-check-label"></label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Oppdater</button>
+    <div class="column">
+     <button type="submit" class="btn btn-warning">Lagre</button>
+     <a href="@Url.Action("Index", "Users")" class="btn btn-secondary">Tilbake</a>
+    </div>
+
 </form>
