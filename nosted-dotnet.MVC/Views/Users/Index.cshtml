@@ -25,7 +25,7 @@
 
 
     <h1>Brukere</h1>
-    <a href="@Url.Action("Add", "Users")" class="btn btn-primary">Legg til bruker</a>
+    <a href="@Url.Action("Add", "Users")" class="btn btn-warning">Legg til bruker</a>
     <!-- Table for Bruker -->
     <table class="table table-bordered mt-4">
         <thead>
@@ -48,7 +48,9 @@
                     <td>@user.Email</td>
                     <td>@user.IsAdmin</td>
                     <td>
-                        <a href="@Url.Action("Edit", "Users", new { email = user.Email })" class="btn btn-primary">Rediger</a>
+
+          
+                        <a href="@Url.Action("Edit", "Users", new { email = user.Email })" class="btn btn-secondary">Rediger</a>
                         @using (Html.BeginForm("Delete", "Users", new { email = user.Email }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
