@@ -22,7 +22,7 @@
     </script>
 </head>
 
-<body class="container">
+
 
     <h1>Brukere</h1>
     <a href="@Url.Action("Add", "Users")" class="btn btn-warning">Legg til bruker</a>
@@ -35,7 +35,7 @@
                 <th>Fornavn:</th>
                 <th>Etternavn:</th>
                 <th>Stilling:</th>
-                <th>Action:</th> <!-- Add a new column for the delete button -->
+                <th>Action:</th> 
             </tr>
         </thead>
         <tbody>
@@ -48,13 +48,9 @@
                     <td>@user.Email</td>
                     <td>@user.IsAdmin</td>
                     <td>
+
+          
                         <a href="@Url.Action("Edit", "Users", new { email = user.Email })" class="btn btn-secondary">Rediger</a>
-                        <!-- Add a delete button that sends a POST request to DeleteUser action -->
-                  <!--      <form method="post" action="/Users/Delete" onsubmit="return confirmDelete()">
-                            <input type="hidden" name="email" value="@user.Email" />
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                          -->
                         @using (Html.BeginForm("Delete", "Users", new { email = user.Email }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
@@ -67,6 +63,4 @@
         </tbody>
     </table>
 
-
-</body>
 </html>
