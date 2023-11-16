@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Entities;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class SjekklisteController : Controller
     {
         private readonly ISjekklisteRepository _sjekklisteRepository;

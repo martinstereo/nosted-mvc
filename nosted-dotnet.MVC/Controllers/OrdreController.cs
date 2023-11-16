@@ -5,10 +5,11 @@ using nosted_dotnet.MVC.Data;
 using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Models.Ordre;
 using nosted_dotnet.MVC.Repositories;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class OrdreController : Controller
     {
         private readonly IAdresseRepository _adresseRepository;

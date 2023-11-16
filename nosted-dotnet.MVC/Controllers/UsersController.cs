@@ -14,7 +14,7 @@ using nosted_dotnet.MVC.Models.Users;
 namespace nosted_dotnet.MVC.Controllers
 {
 
-    //[Authorize]
+    [Authorize]
     public class UsersController : Controller
     {
         private readonly IUserRepository userRepository;

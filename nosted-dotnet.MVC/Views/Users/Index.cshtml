@@ -1,5 +1,5 @@
 ﻿@model List<nosted_dotnet.MVC.Models.Users.UserViewModel>
-
+@using nosted_dotnet.MVC.Models.Users
 @{
     ViewData["Title"] = "Bruker";
 }
@@ -34,7 +34,7 @@
                 <th>Fornavn:</th>
                 <th>Etternavn:</th>
                 <th>E-post:</th>
-                <th>Stilling:</th>
+                <th>Rolle:</th>
                 <th>Action:</th> 
             </tr>
         </thead>
@@ -46,7 +46,16 @@
                     <td>@user.Fornavn</td>
                     <td>@user.Etternavn</td>
                     <td>@user.Email</td>
-                    <td>@user.IsAdmin</td>
+                    <td>
+                        @if (user.IsAdmin)
+                        {
+                            <span>Administrator</span>
+                        }
+                        else
+                        {
+                            <span>Ansatt</span>
+                        }
+                    </td>
                     <td>
 
           

@@ -11,6 +11,7 @@ using nosted_dotnet.MVC.Data.User;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;

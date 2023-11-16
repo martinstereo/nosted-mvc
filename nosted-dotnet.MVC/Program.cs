@@ -49,7 +49,7 @@ public class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Account}/{action=Login}/{id?}");
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         //Removing Server Headers 
         //Headers provide information that is better to hide

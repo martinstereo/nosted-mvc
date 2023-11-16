@@ -3,9 +3,11 @@ using nosted_dotnet.MVC.Data;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using nosted_dotnet.MVC.Data.ServiceSkjema;
+using Microsoft.AspNetCore.Authorization;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class PdfGenerationController : Controller
     {
         private readonly ISjekklisteRepository _sjekklisteRepository;
