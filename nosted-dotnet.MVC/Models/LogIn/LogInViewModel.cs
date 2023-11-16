@@ -9,5 +9,6 @@ public class LoginViewModel
 
     [Required(ErrorMessage = "Vennligst skriv inn passord.")]
     [DataType(DataType.Password)]
+
     public string Passord { get; set; }
 }
