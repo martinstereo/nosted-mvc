@@ -52,7 +52,7 @@ namespace nosted_dotnet.MVC.Data.User
             existingUser.Email = user.Email;
             existingUser.Navn = user.Navn;
             dataContext.SaveChanges();
-          //  SetRoles(user.Email, roles);
+            SetRoles(user.Email, roles);
         }
 
     }

@@ -33,9 +33,8 @@ namespace nosted_dotnet.MVC.Controllers
                 var currentUser = model.Users.FirstOrDefault(x => x.Email == email);
                 if (currentUser != null)
                 {
-
-                    model.Email = currentUser.Email;
                     model.Navn = currentUser.Navn;
+                    model.Email = currentUser.Email;
                     model.IsAdmin = currentUser.IsAdmin;
                 }
             }
@@ -50,6 +49,7 @@ namespace nosted_dotnet.MVC.Controllers
             {
                 Navn = model.Navn,
                 Email = model.Email,
+                IsAdmin = model.IsAdmin,
             };
             var roles = new List<string>();
             if (model.IsAdmin)

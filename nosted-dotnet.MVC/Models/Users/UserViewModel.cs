@@ -20,10 +20,6 @@ namespace nosted_dotnet.MVC.Models.Users
 
     public class UserViewModel
     {
-        public UserViewModel()
-        {
-            Users = new List<UserEntity>();
-        }
         public int Id { get; set; }
         public string? Navn { get; set; }
         [Required]
