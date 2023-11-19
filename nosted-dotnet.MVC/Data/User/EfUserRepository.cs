@@ -50,8 +50,7 @@ namespace nosted_dotnet.MVC.Data.User
             }
 
             existingUser.Email = user.Email;
-            existingUser.Fornavn = user.Fornavn;
-            existingUser.Etternavn = user.Etternavn;
+            existingUser.Navn = user.Navn;
             dataContext.SaveChanges();
           //  SetRoles(user.Email, roles);
         }

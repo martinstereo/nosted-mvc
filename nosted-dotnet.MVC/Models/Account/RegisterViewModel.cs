@@ -10,11 +10,7 @@ public class RegisterViewModel
 
     [Required]
     [Display(Name = "Fornavn")]
-    public string Fornavn { get; set; }
-
-    [Required]
-    [Display(Name = "Etternavn")]
-    public string Etternavn { get; set; }
+    public string Navn { get; set; }
 
     [Required]
     [EmailAddress]

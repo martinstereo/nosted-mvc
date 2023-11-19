@@ -22,14 +22,14 @@ namespace nosted_dotnet.MVC.Models.Users
     {
         public UserViewModel()
         {
-            BrukerList = new List<UserEntity>();
+            Users = new List<UserEntity>();
         }
         public int Id { get; set; }
         public string? Navn { get; set; }
         [Required]
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
-        public List<UserEntity> BrukerList { get; set; }
+        public List<UserEntity> Users { get; set; }
     }
 }
 
