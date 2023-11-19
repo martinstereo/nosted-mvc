@@ -25,8 +25,7 @@ namespace nosted_dotnet.MVC.Models.Users
             BrukerList = new List<UserEntity>();
         }
         public int Id { get; set; }
-        public string? Fornavn { get; set; }
-        public string? Etternavn { get; set; }
+        public string? Navn { get; set; }
         [Required]
         public string Email { get; set; }
         public bool IsAdmin { get; set; }

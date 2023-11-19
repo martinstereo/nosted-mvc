@@ -7,8 +7,7 @@ namespace nosted_dotnet.MVC.Entities;
 public class UserEntity
 {
     public int Id { get; set; }
-    public string? Fornavn { get; set; }
-    public string? Etternavn { get; set; }
+    public string? Navn { get; set; }
     public string Email { get; set; }
     public bool IsAdmin { get; set; }
 }

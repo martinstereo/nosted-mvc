@@ -10,6 +10,15 @@
     <h4>Lag ny bruker</h4>
     <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Navn" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Navn" class="form-control"/>
+            <span asp-validation-for="Navn" class="text-danger"></span>
+        </div>
+    </div>
+
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">

@@ -64,8 +64,7 @@ namespace nosted_dotnet.MVC.Controllers
             var model = brukerList.Select(user => new UserViewModel
             {
                 Id = user.Id,
-                Fornavn = user.Fornavn,
-                Etternavn = user.Etternavn,
+                Navn = user.Navn,
                 Email = user.Email,
                 IsAdmin = userRepository.IsAdmin(user.Email)
             }).ToList();

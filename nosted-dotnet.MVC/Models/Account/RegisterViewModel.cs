@@ -7,6 +7,15 @@ namespace nosted_dotnet.MVC.Models.Account;
 
 public class RegisterViewModel
 {
+
+    [Required]
+    [Display(Name = "Fornavn")]
+    public string Fornavn { get; set; }
+
+    [Required]
+    [Display(Name = "Etternavn")]
+    public string Etternavn { get; set; }
+
     [Required]
     [EmailAddress]
     [Display(Name = "Email")]
