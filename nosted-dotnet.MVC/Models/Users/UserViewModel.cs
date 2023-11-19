@@ -30,7 +30,6 @@ namespace nosted_dotnet.MVC.Models.Users
         [Required]
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
-        public List<UserEntity> User { get; set; }
         public List<UserEntity> BrukerList { get; set; }
     }
 }
