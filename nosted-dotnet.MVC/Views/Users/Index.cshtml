@@ -1,26 +1,38 @@
 ﻿﻿@using nosted_dotnet.MVC.Models.Users
 @model UserViewModel
-<h3>Rediger registrerte brukere</h3>
+
+<h1>Brukeradministrasjon</h1>
 
 <form asp-action="save" asp-controller="users" method="post">
-    <ul>
-        <li>
-            <label for="Navn">Navn</label>
-            <input type="text" name="Navn" value="@Model.Navn" />
-        </li>
+    
+    <div class="form-group">
+        <label asp-for="Navn" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Navn" class="form-control" />
+            <span asp-validation-for="Navn" class="text-danger"></span>
+        </div>
+    </div>
 
-        <li>
-            <label for="Email">Email</label>
-            <input type="email" name="Email" value="@Model.Email" />
-        </li>
-        <li>
-            <label for="Role">Sett som administrator</label>
-            <input asp-for="@Model.IsAdmin" />
-        </li>
-        <li>
-            <input type="submit" value="Lagre" />
-        </li>
-    </ul>
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" id="isAdminCheckbox" asp-for="IsAdmin" class="form-check-input" aria-required="true" />
+        <label for="isAdminCheckbox" class="form-check-label">Administrator</label>
+    </div>
+
+    <div>
+        <button class="btn btn-warning" type="submit">Lagre</button>
+    </div>
+
+    <br>
+    <br>
+
 </form>
 
 <table class="table">
@@ -61,3 +73,5 @@
         </tr>
     }
 </table>
+
+<a href="@Url.Action("Register", "Account")" class="btn btn-warning">Opprett ny bruker</a>

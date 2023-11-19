@@ -1,13 +1,12 @@
 ﻿@using nosted_dotnet.MVC.Models.Account
 @model RegisterViewModel
 @{
-    ViewData["Title"] = "Registrer deg";
+    ViewData["Title"] = "Registrer ny bruker";
 }
 
 <h1>@ViewData["Title"].</h1>
 
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-    <h4>Lag ny bruker</h4>
     <hr />
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
