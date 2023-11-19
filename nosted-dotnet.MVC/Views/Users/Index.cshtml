@@ -1,66 +1,63 @@
-﻿@model List<nosted_dotnet.MVC.Models.Users.UserViewModel>
+﻿﻿@using nosted_dotnet.MVC.Models.Users
+@model UserViewModel
+<h3>Rediger registrerte brukere</h3>
 
-@{
-    ViewData["Title"] = "Bruker";
-}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="~/js/site.js"></script>
-    <script>
-        function confirmDelete() {
-            return confirm("Er du sikker på at du vil slette denne brukeren?");
-        }
- 
-            document.getElementById("submitFormBtn").addEventListener("click", function (event) {
-                event.preventDefault(); // For å hindre standard lenkeoppførsel
-                document.querySelector("form").submit(); // Sender skjemaet
-            });
+<form asp-action="save" asp-controller="users" method="post">
+    <ul>
+        <li>
+            <label for="Navn">Navn</label>
+            <input type="text" name="Navn" value="@Model.Navn" />
+        </li>
 
-    </script>
-</head>
+        <li>
+            <label for="Email">Email</label>
+            <input type="email" name="Email" value="@Model.Email" />
+        </li>
+        <li>
+            <label for="Role">Sett som administrator</label>
+            <input asp-for="@Model.IsAdmin" />
+        </li>
+        <li>
+            <input type="submit" value="Lagre" />
+        </li>
+    </ul>
+</form>
 
-
-
-    <h1>Brukere</h1>
-    <a href="@Url.Action("Add", "Users")" class="btn btn-warning">Legg til bruker</a>
-    <!-- Table for Bruker -->
-    <table class="table table-bordered mt-4">
-        <thead>
-            <tr>
-                <th>Bruker-ID:</th>
-                <th>Fornavn:</th>
-                <th>Etternavn:</th>
-                <th>E-post:</th>
-                <th>Stilling:</th>
-                <th>Action:</th> 
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var user in Model)
-            {
-                <tr>
-                    <td>@user.Id</td>
-                    <td>@user.Fornavn</td>
-                    <td>@user.Etternavn</td>
-                    <td>@user.Email</td>
-                    <td>@user.IsAdmin</td>
-                    <td>
-
-          
-                        <a href="@Url.Action("Edit", "Users", new { email = user.Email })" class="btn btn-secondary">Rediger</a>
-                        @using (Html.BeginForm("Delete", "Users", new { email = user.Email }, FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            <input type="submit" value="Slett" class="btn btn-danger" />
-                        }
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-</html>
+<table class="table">
+    <tr>
+        <th>Navn</th>
+        <th>Email</th>
+        <th>Rolle</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Navn</td>
+            <td>@user.Email</td>
+            <td>
+                @if (user.IsAdmin)
+                {
+                    <span>Administrator</span>
+                }
+                else
+                {
+                    <span>Ansatt</span>
+                }
+            </td>
+            <td>
+                <form asp-action="delete" asp-controller="users" method="post">
+                    <input type="hidden" name="Email" value="@user.Email" />
+                    <input type="submit" value="Slett" />
+                </form>
+            </td>
+            <td>
+                <form asp-action="index" asp-controller="users" method="get">
+                    <input type="hidden" name="Email" value="@user.Email" />
+                    <input type="submit" value="Endre" />
+                </form>
+            </td>
+        </tr>
+    }
+</table>

@@ -7,6 +7,11 @@ namespace nosted_dotnet.MVC.Models.Account;
 
 public class RegisterViewModel
 {
+
+    [Required]
+    [Display(Name = "Navn på bruker")]
+    public string Navn { get; set; }
+
     [Required]
     [EmailAddress]
     [Display(Name = "Email")]
@@ -22,4 +27,5 @@ public class RegisterViewModel
     [Display(Name = "Confirm password")]
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
+    public bool IsAdmin { get; set; }
 }

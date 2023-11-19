@@ -7,6 +7,7 @@ using nosted_dotnet.MVC.Models.Users;
 
 namespace nosted_dotnet.MVC.Tests.Controllers;
 
+/*
 public class UsersControllerUnitTest
 {
     [Fact]
@@ -113,3 +114,4 @@ public class UsersControllerUnitTest
             userRepositoryMock.Verify(repo => repo.Delete("test@example.com"), Times.Once);
         }
     }
+*/

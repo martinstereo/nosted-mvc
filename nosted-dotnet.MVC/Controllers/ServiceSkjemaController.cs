@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using nosted_dotnet.MVC.Data.ServiceSkjema;
 using nosted_dotnet.MVC.Entities;
 using nosted_dotnet.MVC.Models.Ordre;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class ServiceSkjemaController : Controller
     {
         private readonly IServiceSkjemaRepository _serviceSkjemaRepository;

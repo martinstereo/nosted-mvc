@@ -11,6 +11,7 @@ using nosted_dotnet.MVC.Data.User;
 
 namespace nosted_dotnet.MVC.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
@@ -102,7 +103,9 @@ namespace nosted_dotnet.MVC.Controllers
                 {
                     userRepository.Add(new UserEntity
                     {
-                        Email = model.Email
+                        Navn = model.Navn,
+                        Email = model.Email,
+                        IsAdmin = model.IsAdmin,
                     });
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
