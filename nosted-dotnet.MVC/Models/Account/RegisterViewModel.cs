@@ -9,7 +9,7 @@ public class RegisterViewModel
 {
 
     [Required]
-    [Display(Name = "Fornavn")]
+    [Display(Name = "Navn på bruker")]
     public string Navn { get; set; }
 
     [Required]

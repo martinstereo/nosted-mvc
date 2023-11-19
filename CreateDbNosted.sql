@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `Nosted`.`AspNetRoles` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
+INSERT INTO AspNetRoles (Id, Name, NormalizedName) VALUES ('1', 'Administrator', 'Administrator');
 
 -- -----------------------------------------------------
 -- Table `Nosted`.`AspNetRoleClaims`
@@ -293,10 +294,9 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Nosted`.`Users` (
   `Id` INT(11) NOT NULL AUTO_INCREMENT,
-  `Fornavn` LONGTEXT NULL DEFAULT NULL,
-  `Etternavn` LONGTEXT NULL DEFAULT NULL,
+  `Navn` LONGTEXT NULL DEFAULT NULL,
   `Email` LONGTEXT NOT NULL,
-`IsAdmin` TINYINT,
+`IsAdmin` BIT,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
