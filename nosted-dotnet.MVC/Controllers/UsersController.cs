@@ -49,7 +49,7 @@ namespace nosted_dotnet.MVC.Controllers
             {
                 Navn = model.Navn,
                 Email = model.Email,
-                IsAdmin = model.IsAdmin,
+                IsAdmin = model.IsAdmin
             };
             var roles = new List<string>();
             if (model.IsAdmin)
