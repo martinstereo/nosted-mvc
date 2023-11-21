@@ -1,4 +1,4 @@
-<img src="https://intranet.nosted.com/themes/wowonder/img/logo.png">
+<img src="https://intranet.nosted.com/themes/wowonder/img/logo.png" width="200">
 
 # Nøsted & - programmeringsprosjekt - Gruppe 7
 
