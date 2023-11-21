@@ -4,6 +4,8 @@
 *Youtube video lenke*
 
 ## Hvordan bruke applikasjonen
+### Forutsetninger:
+For å kjøre applikasjon må du ha [Docker](https://www.docker.com/) installert på systemet ditt.
 
 ### Start Applikasjonen
 #### Gå inn i applikasjonsmappen
