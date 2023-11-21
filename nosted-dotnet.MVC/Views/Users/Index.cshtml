@@ -48,9 +48,9 @@
             <td>@user.Navn</td>
             <td>@user.Email</td>
             <td>
-                <form asp-action="delete" asp-controller="users" method="post">
+                <form asp-action="delete" asp-controller="users" method="post" onsubmit="return confirmDelete()">
                     <input type="hidden" name="Email" value="@user.Email" />
-                    <input type="submit" value="Slett" />
+                    <input class="btn btn-danger" type="submit" value="Slett" />
                 </form>
             </td>
             <td>

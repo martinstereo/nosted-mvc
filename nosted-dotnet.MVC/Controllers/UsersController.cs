@@ -23,6 +23,7 @@ namespace nosted_dotnet.MVC.Controllers
         {
             this.userRepository = userRepository;
         }
+
         [HttpGet]
         public IActionResult Index(string? email)
         {
