@@ -35,3 +35,7 @@ Disse sidene er fåreløpig ikke i bruk og har ingen hensikt. Dem eksisterer hvi
 Nettsidene displayer hvordan det kunne ha vært.
 
 ### Visning av prosjektet:
+
+
+### Systemarkitektur
+
