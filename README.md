@@ -62,4 +62,5 @@ Nettsidene displayer hvordan det kunne ha vært.
 
 
 ### Systemarkitektur
-*Bilde av systemarkitetkur*
+![Arkitekturmodell](https://github.com/martinstereo/nosted-mvc/assets/111498780/dbdcc4a0-ec51-431c-a24e-ae72904cf32e)
+
