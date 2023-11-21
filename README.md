@@ -23,9 +23,9 @@ Gå inn i applikasjonsmappen
 |--------------------|--------------------|
 |`docker run --rm --name mariadb -p 3308:3306/tcp -v "$(pwd)/database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|`docker run --rm --name mariadb -p 3308:3306/tcp -v "%cd%\database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|
 2. Gå inn i databasen og lag databasen og tabellene: 
-`docker exec -it mariadb mysql -p`. 
-Når du blir bedt om det skriv passordet (`12345`).
-Videre, kopier eller skriv SQL-scriptet fra denne filen: [CreateDbNosted.sql](CreateDbNosted.sql) (linje for linje).
+  - `docker exec -it mariadb mysql -p`. 
+  - Når du blir bedt om det skriv passordet (`12345`).
+  - Kopier eller skriv SQL-scriptet fra denne filen: [CreateDbNosted.sql](CreateDbNosted.sql) (linje for linje).
 
 ### Test ut koden på:
 `http://localhost:80/`
