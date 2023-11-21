@@ -8,9 +8,9 @@
 ### Start Applikasjonen
 #### Gå inn i applikasjonsmappen
 `cd nosted-mvc.MVC`
-#### Bygg og start Docker Container med webappplikasjon
-`docker image build -t webapp .`
-`docker container run --rm -it -d --name webapp --publish 80:80 webapp`
+#### Bygg og start Docker Container med webappplikasjon:
+1. `docker image build -t webapp .`
+2. `docker container run --rm -it -d --name webapp --publish 80:80 webapp`
 
 
 ### Opprett Databasen
