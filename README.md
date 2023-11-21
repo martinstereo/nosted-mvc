@@ -2,7 +2,7 @@
 
 # Nøsted & - programmeringsprosjekt - Gruppe 7
 
-### Gjennomgang av applikasjonen:
+## Gjennomgang av applikasjonen:
 *Youtube video lenke*
 
 ## Hvordan bruke applikasjonen
@@ -24,11 +24,11 @@ Gå inn i applikasjonsmappen
 |`docker run --rm --name mariadb -p 3308:3306/tcp -v "$(pwd)/database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|`docker run --rm --name mariadb -p 3308:3306/tcp -v "%cd%\database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|
 2. Gå inn i databasen og lag databasen og tabellene: 
 `docker exec -it mariadb mysql -p`. 
-når du blir bedt om det skriv passordet (`12345`).
+Når du blir bedt om det skriv passordet (`12345`).
+Videre, kopier eller skriv SQL-scriptet fra [this file](CreateDbNosted.sql) (linje for linje).
 
 ### Test ut koden på:
 `http://localhost:80/`
-
 
 ## Hvordan navigere applikasjonen
 ### - Log Inn
@@ -61,7 +61,6 @@ Dette er en oversikt over alle brukere og gir en mulighet til å lage ny bruker 
 #### - Rapport, Utstyrbehandling & Reservedeler (Administrator)
 Disse sidene er fåreløpig ikke i bruk og har ingen hensikt. Dem eksisterer hvis det ønskes å implementere disse nettsidene i fremtiden.
 Nettsidene displayer hvordan det kunne ha vært.
-
 
 ## Systemarkitektur
 <img src="https://github.com/martinstereo/nosted-mvc/assets/111498780/dbdcc4a0-ec51-431c-a24e-ae72904cf32e" width="700">
