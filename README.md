@@ -15,11 +15,11 @@ For å kjøre applikasjon må du ha [Docker](https://www.docker.com/) installert
 2. `docker container run --rm -it -d --name webapp --publish 80:80 webapp`
 
 ### 2. Opprett Databasen
-#### 1. Start a mariadb container using the localdirectory "database" to store the data:
+1. Start a mariadb container using the localdirectory "database" to store the data:
 |Bash (Mac and Linux)|CMD (Windows)|
 |--------------------|--------------------|
 |`docker run --rm --name mariadb -p 3308:3306/tcp -v "$(pwd)/database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|`docker run --rm --name mariadb -p 3308:3306/tcp -v "%cd%\database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|
-#### 2. Enter the database and create the database and table for this skeleton:
+2. Enter the database and create the database and table for this skeleton:
 `docker exec -it mariadb mysql -p`
 When prompted enter the password (`12345`)
 
