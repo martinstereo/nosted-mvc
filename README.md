@@ -5,6 +5,14 @@
 
 ## Hvordan bruke applikasjonen
 
+### Start Applikasjonen
+#### Gå inn i applikasjonsmappen
+`cd nosted-mvc.MVC`
+#### Bygg og start Docker Container med webappplikasjon
+`docker image build -t webapp .`
+`docker container run --rm -it -d --name webapp --publish 80:80 webapp`
+
+
 ### Opprett Databasen
 #### 1. Start a mariadb container using the localdirectory "database" to store the data:
 |Bash (Mac and Linux)|CMD (Windows)|
@@ -15,8 +23,7 @@
 `docker exec -it mariadb mysql -p`
 When prompted enter the password (`12345`)
 
-### Start Applikasjonen
-insert
+
 
 ## Hvordan navigere applikasjonen
 ### - Log Inn
