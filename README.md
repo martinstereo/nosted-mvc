@@ -11,7 +11,7 @@
 |--------------------|--------------------|
 |`docker run --rm --name mariadb -p 3308:3306/tcp -v "$(pwd)/database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|`docker run --rm --name mariadb -p 3308:3306/tcp -v "%cd%\database":/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -d mariadb:10.5.11`|
 
-#### 3. Enter the database and create the database and table for this skeleton:
+#### 2. Enter the database and create the database and table for this skeleton:
 `docker exec -it mariadb mysql -p`
 When prompted enter the password (`12345`)
 
