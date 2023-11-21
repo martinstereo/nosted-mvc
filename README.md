@@ -5,7 +5,7 @@
 
 ## Hvordan bruke applikasjonen
 
-### Opprettelse av Databasen
+### Opprett Databasen
 #### 1. Start a mariadb container using the localdirectory "database" to store the data:
 |Bash (Mac and Linux)|CMD (Windows)|
 |--------------------|--------------------|
@@ -15,7 +15,7 @@
 `docker exec -it mariadb mysql -p`
 When prompted enter the password (`12345`)
 
-## Start Applikasjonen
+### Start Applikasjonen
 insert
 
 ## Hvordan navigere applikasjonen
