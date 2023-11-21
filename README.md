@@ -1,4 +1,6 @@
-# Nøsted & - programmeringsprosjekt
+<img src="https://intranet.nosted.com/themes/wowonder/img/logo.png" width="200">
+
+# Nøsted & - programmeringsprosjekt - Gruppe 7
 
 ### Gjennomgang av applikasjonen:
 *Youtube video lenke*
@@ -61,5 +63,5 @@ Disse sidene er fåreløpig ikke i bruk og har ingen hensikt. Dem eksisterer hvi
 Nettsidene displayer hvordan det kunne ha vært.
 
 
-### Systemarkitektur
+## Systemarkitektur
 <img src="https://github.com/martinstereo/nosted-mvc/assets/111498780/dbdcc4a0-ec51-431c-a24e-ae72904cf32e" width="700">
