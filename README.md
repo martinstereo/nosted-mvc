@@ -25,7 +25,7 @@ Gå inn i applikasjonsmappen
 2. Gå inn i databasen og lag databasen og tabellene: 
 `docker exec -it mariadb mysql -p`. 
 Når du blir bedt om det skriv passordet (`12345`).
-Videre, kopier eller skriv SQL-scriptet fra [this file](CreateDbNosted.sql) (linje for linje).
+Videre, kopier eller skriv SQL-scriptet fra denne filen: [CreateDbNosted.sql](CreateDbNosted.sql) (linje for linje).
 
 ### Test ut koden på:
 `http://localhost:80/`
