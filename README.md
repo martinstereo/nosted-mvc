@@ -52,13 +52,13 @@ Her har vi en oversikt over alle ordre og den sine tilsvarende sjekkliste og ser
 
 7. Slett: (Administrator) Det er bare bestemte roller som har muligheten til å utføre denne handlingen. Det er fordi at selv om det er en sikkehetssjekk på at handlingen faktisk ønskes gjennomført, blir mye data slettet (Hele Ordren og avhengihetene dens vil gå tapt).
 
-#### - Sjekkliste & Service Skjema
+### - Sjekkliste & Service Skjema
 Her er en oversikt over alle som er opprettet. Det kan lastes ned PDF-Dokument av ønsket Id nummer.
 
-#### - Brukeradminstrasjon (Adminstrator)
+### - Brukeradminstrasjon (Adminstrator)
 Dette er en oversikt over alle brukere og gir en mulighet til å lage ny bruker til ansatte eller slette brukere som ikke lenger er i bruk.
 
-#### - Rapport, Utstyrbehandling & Reservedeler (Administrator)
+### - Rapport, Utstyrbehandling & Reservedeler (Administrator)
 Disse sidene er fåreløpig ikke i bruk og har ingen hensikt. Dem eksisterer hvis det ønskes å implementere disse nettsidene i fremtiden.
 Nettsidene displayer hvordan det kunne ha vært.
 
