@@ -21,15 +21,13 @@ public class UsersControllerUnitTest
             {
                 Id = 1,
                 Navn = "Admin",
-                Email = "admin@nosted.no",
-                IsAdmin = true,
+                Email = "admin@nosted.no"
             },
             new UserEntity()
             {
                 Id = 2,
                 Navn = "Ansatt",
-                Email = "ansatt@nosted.no",
-                IsAdmin = false
+                Email = "ansatt@nosted.no"
             }
         });
     }
