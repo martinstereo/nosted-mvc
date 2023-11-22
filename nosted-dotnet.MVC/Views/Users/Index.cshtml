@@ -1,9 +1,10 @@
 ﻿﻿@using nosted_dotnet.MVC.Models.Users
-@model UserViewModel
+@model nosted_dotnet.MVC.Models.Users.UserViewModel
 
 <h1>Brukeradministrasjon</h1>
 
 <form asp-action="save" asp-controller="users" method="post">
+    @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
     
     <div class="form-group">
         <label asp-for="Navn" class="col-md-2 control-label"></label>

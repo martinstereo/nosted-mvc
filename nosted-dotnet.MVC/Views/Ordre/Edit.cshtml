@@ -8,7 +8,7 @@
 <h1>Edit Ordre</h1>
 
 <form asp-controller="Ordre" asp-action="Edit" method="post">
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
     <input type="hidden" asp-for="@Model.Ordre.OrdreId"/>
     <input type="hidden" asp-for="@Model.Ordre.ProduktId"/>
     <input type="hidden" asp-for="@Model.Ordre.KundeId"/>

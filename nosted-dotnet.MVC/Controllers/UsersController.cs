@@ -42,7 +42,9 @@ namespace nosted_dotnet.MVC.Controllers
             return View(model);
         }
 
+        // Lagrer endringer eller oppretter ny bruker
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Save(UserViewModel model)
         {
 
@@ -63,7 +65,9 @@ namespace nosted_dotnet.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        // Sletter en bruker basert på e-post
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(string email)
         {
             userRepository.Delete(email);

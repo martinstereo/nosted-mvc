@@ -7,7 +7,8 @@
 <h1>@ViewData["Title"].</h1>
 
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-    <hr />
+    @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
+    <hr/>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
@@ -21,21 +22,21 @@
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control"/>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="Password" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="Password" class="form-control" />
+            <input asp-for="Password" class="form-control"/>
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="ConfirmPassword" class="form-control" />
+            <input asp-for="ConfirmPassword" class="form-control"/>
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
         </div>
     </div>

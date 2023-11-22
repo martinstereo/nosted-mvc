@@ -22,7 +22,7 @@ namespace nosted_dotnet.MVC.Data.User
             var identity = userManager.Users.FirstOrDefault(x => x.Email == userEmail);
             var existingRoles = userManager.GetRolesAsync(identity).Result;
 
-            //Remove role access before adding new
+            //fjerner role access for en ny legges til
             foreach (var existingRole in existingRoles)
             {
                 var result = userManager.RemoveFromRoleAsync(identity, existingRole).Result;

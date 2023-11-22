@@ -21,21 +21,6 @@
 <form asp-controller="ServiceSkjema" asp-action="Upsert" method="post">
     @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
     
-    @* <div>
-                <h2>Kunde:</h2>
-                <p>KundeId: @Model.Kunde.KundeId</p>
-                <p>Fornavn: @Model.Kunde.Fornavn</p>
-                <p>Etternavn: @Model.Kunde.Etternavn</p>
-            </div>
-            <div>
-                <h2>Produkt:</h2>
-                <p>ProduktId: @Model.Produkt.ProduktId</p>
-                <p>RegNr: @Model.Produkt.RegNr</p>
-                <p>Model: @Model.Produkt.Model</p>
-                <p>Model: @Model.Produkt.Type</p>
-            </div>*@
-            
-    
     <input type="hidden" asp-for="@Model.Id" class="col-4" />
     <input type="hidden" asp-for="@Model.OrdreId" class="col-4" />
             
