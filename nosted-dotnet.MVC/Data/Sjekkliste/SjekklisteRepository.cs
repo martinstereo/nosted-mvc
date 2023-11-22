@@ -65,7 +65,7 @@ public class SjekklisteRepository : ISjekklisteRepository
         
         public List<Sjekkliste> GetAllSjekklister()
         {
-            // Retrieve all Sjekkliste entities from the database
+            // henter alle sjekkliste entities fra databasen
             return _dataContext.Sjekkliste.ToList();
         }
         

@@ -23,6 +23,7 @@ namespace nosted_dotnet.MVC.Controllers
         {
             this.userRepository = userRepository;
         }
+
         [HttpGet]
         public IActionResult Index(string? email)
         {
@@ -35,21 +36,22 @@ namespace nosted_dotnet.MVC.Controllers
                 {
                     model.Navn = currentUser.Navn;
                     model.Email = currentUser.Email;
-                    model.IsAdmin = currentUser.IsAdmin;
+                    model.IsAdmin = userRepository.IsAdmin(currentUser.Email);
                 }
             }
             return View(model);
         }
 
+        // Lagrer endringer eller oppretter ny bruker
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Save(UserViewModel model)
         {
 
             UserEntity newUser = new UserEntity
             {
                 Navn = model.Navn,
-                Email = model.Email,
-                IsAdmin = model.IsAdmin
+                Email = model.Email
             };
             var roles = new List<string>();
             if (model.IsAdmin)
@@ -63,7 +65,9 @@ namespace nosted_dotnet.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        // Sletter en bruker basert på e-post
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(string email)
         {
             userRepository.Delete(email);

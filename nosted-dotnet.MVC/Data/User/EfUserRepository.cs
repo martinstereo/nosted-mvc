@@ -7,17 +7,25 @@ namespace nosted_dotnet.MVC.Data.User
     {
         private readonly DataContext dataContext;
 
-        public EfUserRepository(DataContext dataContext, UserManager<IdentityUser> userManager) : base(userManager)
+        public EfUserRepository(DataContext dataContext, UserManager<IdentityUser> userManager) : base (userManager)
         {
             this.dataContext = dataContext;
         }
 
         public void Delete(string email)
         {
+            // Deletes user from Users Table
             UserEntity? user = GetUserByEmail(email);
             if (user == null)
                 return;
             dataContext.Users.Remove(user);
+
+            // Delete user from AspNetUsers Table
+            var identityUser = userManager.FindByEmailAsync(email).Result;
+            if (identityUser != null)
+            {
+                userManager.DeleteAsync(identityUser).Wait();
+            }
             dataContext.SaveChanges();
         }
 

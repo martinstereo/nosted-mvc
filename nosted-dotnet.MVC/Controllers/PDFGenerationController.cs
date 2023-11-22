@@ -26,12 +26,11 @@ namespace nosted_dotnet.MVC.Controllers
 
             if (pdfBytes != null && pdfBytes.Length > 0)
             {
-                // Set appropriate content type and file name
+                // Setter type og filnavn
                 return File(pdfBytes, "application/pdf", $"{orderType}.pdf");
             }
             else
             {
-                // Handle the case where PDF generation fails
                 return Content("PDF generation failed.");
             }
         }
@@ -42,7 +41,7 @@ namespace nosted_dotnet.MVC.Controllers
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
-                        // Create a new document
+                        // Lager et nytt dokument
                         Document document = new Document();
                         PdfWriter writer = PdfWriter.GetInstance(document, ms);
 
@@ -56,9 +55,8 @@ namespace nosted_dotnet.MVC.Controllers
                                 return null;
                             }
 
-                        // Add content to the PDF for SjekklisteOrder
+                        // innhold for sjekkliste PDF
                         document.Add(new Paragraph("Sjekkliste ID: " + sjekkliste.Id));
-                        //document.Add(new Paragraph("Customer Name: " + sjekkliste.CustomerName));
                         document.Add(new Paragraph("Clutch Lameller: " + GetStatusText(sjekkliste.ClutchLameller)));
                         document.Add(new Paragraph("Bremser BP: " + GetStatusText(sjekkliste.BremserBP)));
                         document.Add(new Paragraph("Trommel Lager: " + GetStatusText(sjekkliste.TrommelLager)));
@@ -86,7 +84,7 @@ namespace nosted_dotnet.MVC.Controllers
                             return null;
                         }
                         
-                        // Add content to the PDF for ServiceSkjemaOrder
+                        // Innhold for serviceskjema PDF
                         document.Add(new Paragraph("Serviceskjema ID: " + serviceSkjema.Id));
                         document.Add(new Paragraph("Kunde: " + serviceSkjema.AvtaltKunde));
                         document.Add(new Paragraph("Avtalt Kunde: " + serviceSkjema.AvtaltKunde));
@@ -96,17 +94,16 @@ namespace nosted_dotnet.MVC.Controllers
                     }
                         document.Close();
 
-                    // Convert the document to a byte array
+                    // Convert dokumentet til en byte array
                     return ms.ToArray();
                 }
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that may occur during PDF generation
-                // You can log the error or return null in case of failure
                 return null;
             }
         }
+        //gjør verdiene 1, 2 og 3 om til "ok", "defekt" osv
         private string GetStatusText(string statusValue)
         {
             if (int.TryParse(statusValue, out int intValue))

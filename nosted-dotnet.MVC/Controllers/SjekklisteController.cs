@@ -19,14 +19,12 @@ namespace nosted_dotnet.MVC.Controllers
         
         public IActionResult Index()
         {
-            // Retrieve a list of Sjekkliste from the repository
             var sjekkliste = _sjekklisteRepository.GetAllSjekklister();
-
-            // Pass the list to a view to display the overview
+            
             return View(sjekkliste);
         }
         
-        //skal være knytta til ordre? så når en ny ordre blir laget blir en sjekkliste laget
+        // Skal være knyttet til en ordre, så når en ny ordre blir laget, blir en sjekkliste laget
         public IActionResult Create(int ordreId)
         {
             var sjekkliste = new Sjekkliste
@@ -38,7 +36,7 @@ namespace nosted_dotnet.MVC.Controllers
             return RedirectToAction("Upsert", new { id = sjekkliste.Id });
         }
 
-        // For editing or creating a checklist
+        // For redigering eller opprettelse av en sjekkliste
         public IActionResult Upsert(int id)
         {
             var sjekkliste = _sjekklisteRepository.Get(id);
@@ -68,7 +66,6 @@ namespace nosted_dotnet.MVC.Controllers
                 Radio = sjekkliste.Radio,
                 Knappekasse = sjekkliste.Knappekasse,
                 TrykkSetting = sjekkliste.TrykkSetting ?? 0,
-                //FunksjonsTestKommentar = sjekkliste.FunksjonsTestKommentar,
                 TrekKraft = sjekkliste.TrekKraft ?? 0,
                 BremseKraft = sjekkliste.BremseKraft ?? 0,
                 Resultat = sjekkliste.Resultat,
@@ -79,8 +76,9 @@ namespace nosted_dotnet.MVC.Controllers
             return View(model);
         }
 
-        // POST action for handling form submissions when creating or updating a checklist
+        // POST-handling for å håndtere skjema-innsendinger når du oppretter eller oppdaterer en sjekkliste
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Upsert(SjekklisteViewModel model)
         {
             if (!ModelState.IsValid)
@@ -88,15 +86,13 @@ namespace nosted_dotnet.MVC.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
                 foreach (var error in errors)
                 {
-                    // Log the error message
                     System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
                 }
-
-                // If there are validation errors, redisplay the form
+                
                 return View(model);
             }
 
-            // Map properties from SjekklisteViewModel to Sjekkliste
+            // Mapper alle egenskaper fra modellen til Sjekkliste
             var sjekkliste = new Sjekkliste
             {
                 Id = model.Id,
@@ -118,13 +114,11 @@ namespace nosted_dotnet.MVC.Controllers
                 Radio = model.Radio,
                 Knappekasse = model.Knappekasse,
                 TrykkSetting = model.TrykkSetting,
-                //FunksjonsTestKommentar = model.FunksjonsTestKommentar,
                 TrekKraft = model.TrekKraft,
                 BremseKraft = model.BremseKraft,
                 Resultat = model.Resultat,
                 MechanicComment = model.MechanicComment,
                 OrdreId = model.OrdreId
-                // Map other properties from SjekklisteViewModel to Sjekkliste
             };
 
             _sjekklisteRepository.Update(sjekkliste);

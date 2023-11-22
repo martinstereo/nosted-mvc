@@ -13,7 +13,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <p>@UserManager.GetUserName(User)!</p>
+            <p>Hei, @UserManager.GetUserName(User)!</p>
         </li>
         <li class="nav-item ml-auto">
             <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOff">Logg ut</a>

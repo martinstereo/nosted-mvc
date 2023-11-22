@@ -6,7 +6,6 @@
     <thead>
     <tr>
         <th>Sjekkliste ID</th>
-        <!-- Add more columns as needed -->
     </tr>
     </thead>
     <tbody>
@@ -14,7 +13,6 @@
     {
         <tr>
             <td>@checklist.Id</td>
-            <!-- Add more columns as needed -->
             <td>
                 <a href="@Url.Action("GeneratePdf", "PdfGeneration", new { orderType = "Sjekkliste", orderId = checklist.Id })">Opprett PDF</a>
             </td>
