@@ -10,6 +10,7 @@ namespace nosted_dotnet.MVC.Tests.Controllers;
 
 public class UsersControllerUnitTest
 {
+
     private Mock<IUserRepository> userRepositoryMock;
 
     private void SetupFakeContext()
@@ -64,5 +65,21 @@ public class UsersControllerUnitTest
         Assert.Equal("Index", redirectToActionResult.ActionName);
     }
 
-        
+    [Fact]
+    public void Delete_ValidEmail_RedirectsToIndex()
+    {
+        // Arrange
+        SetupFakeContext();
+
+        var controller = new UsersController(userRepositoryMock.Object);
+
+        //Act
+        var result = controller.Delete("ansatt@nosted.no") as RedirectToActionResult;
+
+        //Assert
+        userRepositoryMock.Verify(repo => repo.Delete("ansatt@nosted.no"), Times.Once);
+        Assert.NotNull(result);
+        Assert.Equal("Index", result.ActionName);
+    }
+
 }
