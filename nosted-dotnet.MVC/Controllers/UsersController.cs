@@ -23,6 +23,8 @@ namespace nosted_dotnet.MVC.Controllers
         {
             this.userRepository = userRepository;
         }
+        
+        // Viser en liste over brukere med mulighet for filtrering basert på e-post
         [HttpGet]
         public IActionResult Index(string? email)
         {
@@ -41,6 +43,7 @@ namespace nosted_dotnet.MVC.Controllers
             return View(model);
         }
 
+        // Lagrer endringer eller oppretter ny bruker
         [HttpPost]
         public IActionResult Save(UserViewModel model)
         {
@@ -63,6 +66,7 @@ namespace nosted_dotnet.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        // Sletter en bruker basert på e-post
         [HttpPost]
         public IActionResult Delete(string email)
         {

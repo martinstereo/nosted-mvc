@@ -22,7 +22,7 @@
     <h1>Ny ordre</h1>
     <p>Fyll ut kundeinformasjon</p>
     <form asp-controller="Ordre" asp-action="Post" method="post">
-        @Html.AntiForgeryToken() <!-- This line to includes the anti-forgery token -->
+        @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
         
         <div class="column">
             <div class="label"><label asp-for="@Model.UpsertModel.Fornavn">Navn</label></div>

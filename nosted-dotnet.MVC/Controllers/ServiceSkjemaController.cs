@@ -21,13 +21,12 @@ namespace nosted_dotnet.MVC.Controllers
 
         public IActionResult Index()
         {
-            // Retrieve a list of service schemas from the repository
             var serviceSkjema = _serviceSkjemaRepository.GetAllServiceSchemas();
-
-            // You can pass this list to a view to display the overview
+            
             return View(serviceSkjema);
         }
         
+        // Oppretter et nytt ServiceSkjema basert på OrdreId
         public IActionResult Create(int ordreId)
         {
             var serviceSkjema = new ServiceSkjema
@@ -39,6 +38,7 @@ namespace nosted_dotnet.MVC.Controllers
             return RedirectToAction("Upsert", new { id = serviceSkjema.Id });
         }
 
+        // Viser eller oppdaterer et ServiceSkjema basert på Id
         public IActionResult Upsert(int id)
         {
             var serviceSkjema = _serviceSkjemaRepository.Get(id);
@@ -61,6 +61,8 @@ namespace nosted_dotnet.MVC.Controllers
 
             return View(model);
         }
+        
+        // POST-handling for å lagre oppdateringer av ServiceSkjema
         [HttpPost]
         public IActionResult Upsert(ServiceSkjemaViewModel model)
         {
@@ -69,11 +71,9 @@ namespace nosted_dotnet.MVC.Controllers
                 var errors = ModelState.Values.SelectMany(v => v.Errors);
                 foreach (var error in errors)
                 {
-                    // Log the error message
                     System.Diagnostics.Debug.WriteLine(error.ErrorMessage);
                 }
-
-                // If we got this far, something failed, redisplay form
+                
                 return View(model);
             }
 

@@ -10,7 +10,7 @@ namespace nosted_dotnet.MVC.Data.ServiceSkjema
         List<Entities.ServiceSkjema> GetAll();
         Entities.ServiceSkjema GetByOrderId(int id);
         
-        // Retrieve a list of service schemas
+        // henter en liste med serviceskjema
         List<Entities.ServiceSkjema> GetAllServiceSchemas();
     }
 }
