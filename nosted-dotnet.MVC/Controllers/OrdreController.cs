@@ -252,6 +252,7 @@ namespace nosted_dotnet.MVC.Controllers
 
         // Bekrefter slettingen av en ordre
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var ordre = _ordreRepository.Get(id);
@@ -268,6 +269,7 @@ namespace nosted_dotnet.MVC.Controllers
 
         // Redigerer en ordre med tilhørende detaljer i forskjellige repositories
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(OrdreEditViewModel model)
         {
             if (ModelState.IsValid)

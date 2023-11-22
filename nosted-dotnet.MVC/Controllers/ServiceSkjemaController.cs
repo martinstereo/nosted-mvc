@@ -64,6 +64,7 @@ namespace nosted_dotnet.MVC.Controllers
         
         // POST-handling for å lagre oppdateringer av ServiceSkjema
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Upsert(ServiceSkjemaViewModel model)
         {
             if (!ModelState.IsValid)

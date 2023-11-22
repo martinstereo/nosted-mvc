@@ -78,6 +78,7 @@ namespace nosted_dotnet.MVC.Controllers
 
         // POST-handling for å håndtere skjema-innsendinger når du oppretter eller oppdaterer en sjekkliste
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Upsert(SjekklisteViewModel model)
         {
             if (!ModelState.IsValid)
