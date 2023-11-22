@@ -23,8 +23,7 @@ namespace nosted_dotnet.MVC.Controllers
         {
             this.userRepository = userRepository;
         }
-        
-        // Viser en liste over brukere med mulighet for filtrering basert på e-post
+
         [HttpGet]
         public IActionResult Index(string? email)
         {
@@ -37,7 +36,7 @@ namespace nosted_dotnet.MVC.Controllers
                 {
                     model.Navn = currentUser.Navn;
                     model.Email = currentUser.Email;
-                    model.IsAdmin = currentUser.IsAdmin;
+                    model.IsAdmin = userRepository.IsAdmin(currentUser.Email);
                 }
             }
             return View(model);
@@ -52,8 +51,7 @@ namespace nosted_dotnet.MVC.Controllers
             UserEntity newUser = new UserEntity
             {
                 Navn = model.Navn,
-                Email = model.Email,
-                IsAdmin = model.IsAdmin
+                Email = model.Email
             };
             var roles = new List<string>();
             if (model.IsAdmin)
