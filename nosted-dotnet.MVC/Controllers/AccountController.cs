@@ -30,7 +30,7 @@ namespace nosted_dotnet.MVC.Controllers
         }
 
         // GET: /Account/Login
-        [HttpGet]
+        [HttpGet] 
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
