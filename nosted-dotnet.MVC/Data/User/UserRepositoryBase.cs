@@ -4,7 +4,7 @@ namespace nosted_dotnet.MVC.Data.User
 {
     public abstract class UserRepositoryBase
     {
-        UserManager<IdentityUser> userManager;
+        protected UserManager<IdentityUser> userManager;
         public UserRepositoryBase(UserManager<IdentityUser> userManager)
         {
             this.userManager = userManager;
