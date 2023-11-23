@@ -26,13 +26,12 @@
         
         <div class="column">
             <div class="label"><label asp-for="@Model.UpsertModel.Fornavn">Navn</label></div>
-            <!-- Razor will automatically HTML-encode alfakrollModel.Fornavn osv -->
+            <!-- Razor automatisk HTML-encoder alfakrollModel.Fornavn osv -->
             <input class="input" asp-for="@Model.UpsertModel.Fornavn"  type="text" id="Fornavn" />
         </div>
 
         <div class="column">
             <div class="label"><label asp-for="@Model.UpsertModel.Etternavn">Etternavn</label></div>
-            <!-- Razor will automatically HTML-encode alfakrollModel.Etternavn osv -->
             <input class="input" asp-for="@Model.UpsertModel.Etternavn"  type="text" id="Etternavn" />
         </div>
         
