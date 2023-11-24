@@ -16,7 +16,7 @@
     <div class="col-md-8">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
-                @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
+               
                 <h4>Bruk en lokal bruker til å logge inn</h4>
                 <hr/>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
