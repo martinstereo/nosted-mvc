@@ -25,6 +25,7 @@ namespace nosted_dotnet.MVC.Controllers
         }
 
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(string? email)
         {
             var model = new UserViewModel();
