@@ -3,7 +3,7 @@
 # Nøsted & - programmeringsprosjekt - Gruppe 7
 
 ## Gjennomgang av applikasjonen:
-*Youtube video lenke*
+https://youtu.be/WqTs3I504us
 
 ## Hvordan bruke applikasjonen
 ### Forutsetninger:
