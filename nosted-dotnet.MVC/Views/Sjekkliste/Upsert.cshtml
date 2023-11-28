@@ -8,10 +8,7 @@
 
 
 <form class="form-container" asp-action="Upsert" asp-controller="Sjekkliste" method="post">
-   <td> @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
-    <input type="hidden" asp-for="@Model.Id"/>
-    <input type="hidden" asp-for="@Model.OrdreId"/>
-
+    @Html.AntiForgeryToken() <!-- lager anti-forgery token -->
 
    <td>
     <input type="hidden" asp-for="@Model.Id"/>

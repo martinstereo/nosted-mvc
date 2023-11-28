@@ -193,7 +193,6 @@ namespace nosted_dotnet.MVC.Controllers
 
         // Redigerer en eksisterende ordre med tilhørende detaljer fra flere repositories
         [HttpGet]
-        [ValidateAntiForgeryToken]
         public IActionResult Edit(int id)
         {
             var ordre = _ordreRepository.Get(id);
