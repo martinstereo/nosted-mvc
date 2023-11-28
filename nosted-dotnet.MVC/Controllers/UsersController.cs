@@ -45,7 +45,7 @@ namespace nosted_dotnet.MVC.Controllers
         // Lagrer endringer eller oppretter ny bruker
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Save(UserViewModel model)
+        public IActionResult Update(UserViewModel model)
         {
 
             UserEntity newUser = new UserEntity
@@ -59,8 +59,6 @@ namespace nosted_dotnet.MVC.Controllers
 
             if (userRepository.GetUsers().FirstOrDefault(x => x.Email.Equals(newUser.Email, StringComparison.InvariantCultureIgnoreCase)) != null)
                 userRepository.Update(newUser, roles);
-            else
-                userRepository.Add(newUser);
 
             return RedirectToAction("Index");
         }

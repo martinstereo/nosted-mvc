@@ -58,7 +58,7 @@ public class UsersControllerUnitTest
         var validModel = new UserViewModel { Navn = "Administrator", Email = "johndoe@example.com" };
 
         // Act
-        var result = controller.Save(validModel);
+        var result = controller.Update(validModel);
 
         // Assert
         var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
